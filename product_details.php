@@ -9,7 +9,7 @@
 <body>
     <?php
     $page = 'catalogo';
-    $str_data = file_get_contents("json/paises.json");
+    $str_data = file_get_contents("json/ciudades.json");
     $paises = json_decode($str_data, true);
 
     require_once "includes/encabezado.php";
