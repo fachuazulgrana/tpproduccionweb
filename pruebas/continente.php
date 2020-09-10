@@ -1,6 +1,6 @@
 <?php
 
-class Contienente{
+class Continente{
 
 	private $con;
 	
@@ -8,7 +8,7 @@ class Contienente{
 		$this->con= $con;
 	}
 
-	public function getContienente(){
+	public function getContinente(){
 		$query = "SELECT * FROM continentes";
 		return $this->con->query($query);
 	}

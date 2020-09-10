@@ -25,7 +25,15 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                         <?php !empty($_GET['continente']) ? $opcion = $_GET['continente'] : $opcion = "" ?>
                                         <select name="continente" class="custom-select custom-select-lg" id="continente" onchange="this.form.submit()">
                                             <option value="" selected="selected">Seleccionar Continente</option>
-                                            <?php foreach ($dataContinentes as $continentes) : ?>
+
+                                            <!-- 1 -->
+
+                                            <?php
+                                            /*require_once('pruebas/continente.php');
+                                            $Continente = new Continentes($con);
+
+                                            foreach ($Continente->getContinentes() as $continentes)*/
+                                            foreach ($dataContinentes as $continentes) : ?>
                                                 <option <?php echo ($opcion == $continentes['nombre']) ? 'selected="selected"' : '' ?>>
                                                     <?php echo $continentes['nombre'] ?>
                                                 </option>
@@ -41,7 +49,15 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                         <input type="hidden" name="continente" value="<?php echo isset($_GET['continente']) ? $_GET['continente'] : '' ?>">
                                         <select name="pais" class="custom-select custom-select-lg" id="pais" onchange="this.form.submit()">
                                             <option>Seleccionar Pais</option>
-                                            <?php foreach ($dataPaises as $paises) : ?>
+
+                                            <!-- 2 -->
+
+                                            <?php
+                                            /*require_once('pruebas/pais.php');
+                                            $Pais = new Pais($con);
+
+                                            foreach ($Pais->getPais() as $paises)*/
+                                            foreach ($dataPaises as $paises) : ?>
                                                 <?php if ($paises['continente'] == $_GET['continente']) : ?>
                                                     <option <?php echo ($opcion2 == $paises['nombre']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $paises['nombre']; ?>
@@ -67,6 +83,9 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                         <input type="hidden" name="pais" value="<?php echo isset($_GET['pais']) ? $_GET['pais'] : '' ?>">
                                         <select name="ciudad" class="custom-select custom-select-lg" id="ciudad" onchange="this.form.submit()">
                                             <option>Seleccionar Ciudad</option>
+
+                                            <!-- 3 -->
+
                                             <?php foreach ($dataCiudades as $ciudades) : ?>
                                                 <?php if ($ciudades['pais'] == $_GET['pais']) : ?>
                                                     <option <?php echo ($opcion3 == $ciudades['nombre']) ? 'selected="selected"' : '' ?>>
