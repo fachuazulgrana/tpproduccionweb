@@ -15,3 +15,14 @@
 <?php
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
+
+<?php
+require_once './pruebas/mysql-login.php';
+
+try{
+	$con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
+}catch (PDOException $e){
+	print "¡Error!: " . $e->getMessage();
+	die();
+}
+?>
