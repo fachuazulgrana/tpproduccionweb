@@ -13,7 +13,7 @@
     //$paises = json_decode($str_data, true);
 
     require_once "includes/encabezado.php";
-    $id = $_GET['id'];
+    //$id = $_GET['id'];
 
     // Si $_POST submit esta setteado, guarda los datos del comentario en comentarios.json
     // foreach ($Productos->getProductos() as $ciudades)
@@ -44,7 +44,7 @@
         
         foreach ($Productos->getProductos() as $ciudades){
             //if ($value == $id) break;
-            if($ciudades[id] == $id) break;
+            if($ciudades['id'] == $_GET['id']) break;
         }
         echo '<h1>' . $ciudades['nombre'] . '</h1>';
         ?>
