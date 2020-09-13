@@ -58,6 +58,11 @@ $dataCiudades = json_decode($str_data_ciudades, true);
 
                                             foreach ($Pais->getPais() as $paises) :
                                             /*foreach ($dataPaises as $paises) : */?>
+                                                <option <?php echo ($opcion2 == $paises['nombre']) ? 'selected="selected"' : '' ?>>
+                                                    <?php echo $paises['nombre']; ?>
+                                                </option>
+
+                                                <!--
                                                 <?php if ($paises['continente'] == $_GET['continente']) : ?>
                                                     <option <?php echo ($opcion2 == $paises['nombre']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $paises['nombre']; ?>
@@ -69,6 +74,7 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                                         <?php echo $paises['nombre']; ?>
                                                     </option>
                                                 <?php endif ?>
+                                                -->
 
                                             <?php endforeach ?>
                                         </select>
@@ -85,8 +91,17 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                             <option>Seleccionar Ciudad</option>
 
                                             <!-- 3 -->
+                                            <?php 
+                                            require_once('pruebas/productos.php');
+                                            $Productos = new Productos($con);
 
-                                            <?php foreach ($dataCiudades as $ciudades) : ?>
+                                            foreach ($Productos->getProductos() as $ciudades) :
+                                            /*foreach ($dataCiudades as $ciudades) : */?>
+                                                <option <?php echo ($opcion3 == $ciudades['nombre']) ? 'selected="selected"' : '' ?>>
+                                                    <?php echo $ciudades['nombre']; ?>
+                                                </option>
+
+                                            <!--
                                                 <?php if ($ciudades['pais'] == $_GET['pais']) : ?>
                                                     <option <?php echo ($opcion3 == $ciudades['nombre']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $ciudades['nombre']; ?>
@@ -98,6 +113,7 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                                         <?php echo $ciudades['nombre']; ?>
                                                     </option>
                                                 <?php endif ?>
+                                            -->
 
                                             <?php endforeach ?>
                                         </select>
