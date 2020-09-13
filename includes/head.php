@@ -13,11 +13,11 @@
 
 
 <?php
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-?>
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
+	
+require_once('./pruebas/mysql-login.php');
+require_once('pruebas/productos.php');
 
-<?php
-require_once './pruebas/mysql-login.php';
 
 try{
 	$con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
@@ -25,4 +25,7 @@ try{
 	print "¡Error!: " . $e->getMessage();
 	die();
 }
+
+
+$Productos = new Productos($con);
 ?>

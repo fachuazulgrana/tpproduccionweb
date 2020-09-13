@@ -1,7 +1,10 @@
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3">
               <div class="card carta">
 
-                <?php echo '<img src="' .  $value["url"] . '" class="card-img-top" alt="..." />' ?>
+              <?php 
+                //foreach ($Productos->getProductos() as $ciudades)
+                echo '<img src="' .  $value["url"] . '" class="card-img-top" alt="..." />' 
+              ?>
 
                 <div class="card-body">
                   <h5 class="card-title1 font-weight-bold"><?php echo $value["nombre"]; ?></h5>

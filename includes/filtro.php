@@ -21,8 +21,10 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                 <div class="col-12 col-md-6 col-lg-4 py-2">
 
                                     <form action="" method="GET" class="">
-                                        <?php $opcion = 'Todo'; ?>
-                                        <?php !empty($_GET['continente']) ? $opcion = $_GET['continente'] : $opcion = "" ?>
+                                        <?php 
+                                        $opcion = 'Todo';
+                                        !empty($_GET['continente']) ? $opcion = $_GET['continente'] : $opcion = "" 
+                                        ?>
                                         <select name="continente" class="custom-select custom-select-lg" id="continente" onchange="this.form.submit()">
                                             <option value="" selected="selected">Seleccionar Continente</option>
 
@@ -44,8 +46,10 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                 <div class="col-12 col-md-6 col-lg-4">
 
                                     <form action="" method="GET" class="">
-                                        <?php $opcion2 = 'Todo'; ?>
-                                        <?php !empty($_GET['pais']) ? $opcion2 = $_GET['pais'] : $opcion2 = "" ?>
+                                        <?php 
+                                        $opcion2 = 'Todo';
+                                        !empty($_GET['pais']) ? $opcion2 = $_GET['pais'] : $opcion2 = "" 
+                                        ?>
                                         <input type="hidden" name="continente" value="<?php echo isset($_GET['continente']) ? $_GET['continente'] : '' ?>">
                                         <select name="pais" class="custom-select custom-select-lg" id="pais" onchange="this.form.submit()">
                                             <option>Seleccionar Pais</option>
@@ -83,18 +87,17 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                 <div class="col-12 col-md-6 col-lg-4">
 
                                     <form action="" method="GET" class="">
-                                        <?php $opcion3 = 'Todo'; ?>
-                                        <?php !empty($_GET['ciudad']) ? $opcion3 = $_GET['ciudad'] : $opcion3 = "" ?>
+                                        <?php 
+                                        $opcion3 = 'Todo';
+                                        !empty($_GET['ciudad']) ? $opcion3 = $_GET['ciudad'] : $opcion3 = "" 
+                                        ?>
                                         <input type="hidden" name="continente" value="<?php echo isset($_GET['continente']) ? $_GET['continente'] : '' ?>">
                                         <input type="hidden" name="pais" value="<?php echo isset($_GET['pais']) ? $_GET['pais'] : '' ?>">
                                         <select name="ciudad" class="custom-select custom-select-lg" id="ciudad" onchange="this.form.submit()">
                                             <option>Seleccionar Ciudad</option>
 
                                             <!-- 3 -->
-                                            <?php 
-                                            require_once('pruebas/productos.php');
-                                            $Productos = new Productos($con);
-
+                                            <?php
                                             foreach ($Productos->getProductos() as $ciudades) :
                                             /*foreach ($dataCiudades as $ciudades) : */?>
                                                 <option <?php echo ($opcion3 == $ciudades['nombre']) ? 'selected="selected"' : '' ?>>

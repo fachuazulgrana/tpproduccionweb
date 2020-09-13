@@ -9,13 +9,14 @@
 <body>
     <?php
     $page = 'catalogo';
-    $str_data = file_get_contents("json/ciudades.json");
-    $paises = json_decode($str_data, true);
+    //$str_data = file_get_contents("json/ciudades.json");
+    //$paises = json_decode($str_data, true);
 
     require_once "includes/encabezado.php";
     $id = $_GET['id'];
 
     // Si $_POST submit esta setteado, guarda los datos del comentario en comentarios.json
+    // foreach ($Productos->getProductos() as $ciudades)
     if (isset($_POST['submit'])) {
         $data = $_POST;
         unset($data['submit']);
@@ -38,10 +39,14 @@
 
     <div class="container text-center pt-5 pb-4">
         <?php 
-        foreach ($paises as $key => $value) {
-            if ($key == $id) break;
+        //foreach ($Productos->getProductos() as $ciudades)
+        //foreach ($paises as $key => $value) {
+        
+        foreach ($Productos->getProductos() as $ciudades){
+            //if ($value == $id) break;
+            if($ciudades[id] == $id) break;
         }
-        echo '<h1>' . $value['nombre'] . '</h1>';
+        echo '<h1>' . $ciudades['nombre'] . '</h1>';
         ?>
     </div>
 
@@ -56,20 +61,20 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-5">
                     <div class="imagen1">
-                        <a href="<?php echo $value['url']; ?>" data-fancybox="gallery" data-caption="Caption for single image">
-                            <img height="auto" width="100%" src="<?php echo $value['url']; ?>" alt="imagen de <?php echo $value['nombre']; ?>">
+                        <a href="<?php echo $ciudades['url']; ?>" data-fancybox="gallery" data-caption="Caption for single image">
+                            <img height="auto" width="100%" src="<?php echo $ciudades['url']; ?>" alt="imagen de <?php echo $ciudades['nombre']; ?>">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-7 incluye py-2">
                     <h4 class="pl-3">
-                        <?php echo $value['nombre']; ?> <br>
+                        <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $value['continente']; ?> <br>
-                        Precio: <?php echo $value['precio']; ?>
+                        <?php echo $ciudades['continente']; ?> <br>
+                        Precio: <?php echo $ciudades['precio']; ?>
                     </h5>
-                    <?php echo '<p class="col-9 pt-4">' . $value['descripcion'] . '</p>' ?>
+                    <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>' ?>
                 </div>
             </div>
         </div>
@@ -87,7 +92,7 @@
                 </div>
                 <div class="col-10">
                     <ul class="descripcion_detalles">
-                        <?php foreach ($value['descripcion_details'] as $k => $v) : ?>
+                        <?php foreach ($ciudades['descripcion_details'] as $k => $v) : ?>
                             <li><?php echo $v; ?></li>
                         <?php endforeach ?>
                     </ul>
@@ -97,9 +102,9 @@
                     <table class="table">
                         <tbody>
                             <?php
-                            echo '<tr><td>Pais: </td><td>' . $value['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $value['continente'] . '</td></tr>';
-                            echo '<tr><td>Precio: </td><td> ' . $value['precio'] . '</td></tr>';
+                            echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continente'] . '</td></tr>';
+                            echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
                     </table>
