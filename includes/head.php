@@ -16,6 +16,9 @@
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	
 require_once('./pruebas/mysql-login.php');
+
+require_once('pruebas/continente.php');
+require_once('pruebas/pais.php');
 require_once('pruebas/productos.php');
 
 
@@ -27,5 +30,7 @@ try{
 }
 
 
+$Continente = new Continente($con);
+$Pais = new Pais($con);
 $Productos = new Productos($con);
 ?>

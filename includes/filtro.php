@@ -31,9 +31,6 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                             <!-- 1 -->
 
                                             <?php
-                                            require_once('pruebas/continente.php');
-                                            $Continente = new Continente($con);
-
                                             foreach ($Continente->getContinente() as $continentes) :
                                             /*foreach ($dataContinentes as $continentes) :*/ ?>
                                                 <option <?php echo ($opcion == $continentes['nombre']) ? 'selected="selected"' : '' ?>>
@@ -57,9 +54,6 @@ $dataCiudades = json_decode($str_data_ciudades, true);
                                             <!-- 2 -->
 
                                             <?php
-                                            require_once('pruebas/pais.php');
-                                            $Pais = new Pais($con);
-
                                             foreach ($Pais->getPais() as $paises) :
                                             /*foreach ($dataPaises as $paises) : */?>
                                                 <option <?php echo ($opcion2 == $paises['nombre']) ? 'selected="selected"' : '' ?>>
