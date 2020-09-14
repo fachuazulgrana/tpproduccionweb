@@ -9,10 +9,11 @@
         $pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
         $ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : null);
 
+        //foreach ($Productos->getProductos() as $ciudades)
+        //foreach ($productos as $key => $value) {
+        foreach ($Productos->getProductos() as $ciudades){
 
-        foreach ($productos as $key => $value) {
-
-          if ($page == 'index' && $value['destacado']) {
+          if ($page == 'index' && $ciudades['destacado']) {
 
             include('card_paises.php');
           } elseif ($page == 'catalogo') {
@@ -20,11 +21,11 @@
 
             if (
               ((empty($continente) || $continente == 'Todo') && empty($pais) && empty($ciudad) || // No se aplica filtro 
-              (empty($ciudad) && empty($pais) && $continente == $value['continente']) || // Se filtra por continente
-              ((empty($continente) || $continente == 'Todo') && empty($ciudad) && $pais == $value['pais'] ) || // Se filtra por paises
-              ((empty($continente) || $continente == 'Todo') && (empty($pais) || $pais == 'Todo') && $ciudad == $value['nombre'] ) ||
-              (empty($ciudad) && $pais == $value['pais'] && $continente == $value['continente']) ||
-              ($continente == $value['continente'] && $pais == $value['pais'] && $ciudad == $value['nombre']) // Se filtra por continente y pais
+              (empty($ciudad) && empty($pais) && $continente == $ciudades['continente']) || // Se filtra por continente
+              ((empty($continente) || $continente == 'Todo') && empty($ciudad) && $pais == $ciudades['pais'] ) || // Se filtra por paises
+              ((empty($continente) || $continente == 'Todo') && (empty($pais) || $pais == 'Todo') && $ciudad == $ciudades['nombre'] ) ||
+              (empty($ciudad) && $pais == $ciudades['pais'] && $continente == $ciudades['continente']) ||
+              ($continente == $ciudades['continente'] && $pais == $ciudades['pais'] && $ciudad == $ciudades['nombre']) // Se filtra por continente y pais
               ) 
             
             )
