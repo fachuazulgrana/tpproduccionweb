@@ -8,9 +8,15 @@ class Pais{
 		$this->con= $con;
 	}
 
-	public function getPais(){
-		$query = "SELECT * FROM paises";
+	public function getPais($filtro = array()){
+		$query = "SELECT * FROM paises WHERE 1 = 1";
+
+		if(!empty($filtro['continente'])){
+			$query .= ' AND continentes_id  =' . $filtro['continente'];
+		}
+
 		return $this->con->query($query);
+
 	}
 }
 

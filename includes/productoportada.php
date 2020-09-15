@@ -5,31 +5,74 @@
       <div class="row">
 
         <?php
+
+
+      //WORKARROUND PARA EL FILTRO DEL GET
+        $continente_id = '';
+        $pais_id = '';
+        $producto_id = '';
+
+        if(isset($_GET["continente"])){
+
+          foreach($Continente->getContinente() as $c){
+            if($_GET['continente'] == $c['nombre']){
+              $continente_id = $c['id'];
+            }
+          }
+        } else{
+          $continente_id = null;
+        }
+
+        if(isset($_GET["pais"])){
+  
+          foreach($Pais->getPais() as $p){
+            if($_GET['pais'] == $p['nombre']){
+              $pais_id = $p['id'];
+            }
+          }
+        } else{
+          $pais_id = null;
+        }
+  
+        if(isset($_GET["ciudad"])){
+  
+          foreach($Productos->getProductos() as $pr){
+            if($_GET['ciudad'] == $pr['nombre']){
+              $producto_id = $pr['id'];
+            }
+          }
+        } else{
+          $producto_id = null;
+        }
+
+
+        $filtro_final = [
+          "continente" => $continente_id,
+          "pais" => $pais_id,
+          "ciudad" => $producto_id
+        ];
+
         //$continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
         //$pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
         //$ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : null);
 
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($productos as $key => $value) {
-        foreach ($Productos->getProductos($_GET) as $ciudades){
+        
           //foreach($Continente->getContinente() as $continentes){
-            //foreach ($Pais->getPais() as $paises){
+          //foreach ($Pais->getPais() as $paises){
 
-              if ($page == 'index' && $ciudades['destacado'] == 1) {
+          if ($page == 'index') {
 
-                include('card_paises.php');
-              } elseif ($page == 'catalogo') {
-                if (
-                  ((empty($_GET["continente"])) && empty($_GET["pais"]) && empty($_GET["ciudad"]) ||
-                  (empty($_GET["ciudad"]) && empty($_GET["pais"]) && $_GET["continente"] /*== $continentes['nombre']*/) ||
-                  ((empty($_GET["continente"])) && empty($_GET["ciudad"]) && $_GET["pais"] /*== $paises['nombre']*/ ) ||
-                  ((empty($_GET["continente"])) && (empty($_GET["pais"])) && $_GET["ciudad"] == $ciudades['nombre'] ) ||
-                  (empty($_GET["ciudad"]) && $_GET["pais"] /*== $paises['nombre']*/ && $_GET["continente"] /*== $continentes['nombre']*/) ||
-                  ($_GET["continente"] /*== $continentes['nombre']*/ && $_GET["pais"] /*== $paises['nombre']*/ && $_GET["ciudad"] == $ciudades['nombre'])
-                  ) 
-                
-                )
-              /*
+            foreach ($Productos->getProductosDestacados() as $ciudades) {
+
+            include('card_paises.php');
+            }
+          } elseif ($page == 'catalogo') {
+
+            foreach ($Productos->getProductos($filtro_final) as $ciudades) {
+
+            /*
                 if (
                   ((empty($continente) || $continente == 'Todo') && empty($pais) && empty($ciudad) || // No se aplica filtro 
                   (empty($ciudad) && empty($pais) && $continente == $ciudades['continente']) || // Se filtra por continente
@@ -40,17 +83,14 @@
                   ) 
                 
                 )
-              */
-                {
+              */ 
+              include('card_paises.php');
+            }
+          }
 
-
-                  include('card_paises.php');
-                }
-              }
-
-            //}
           //}
-        }
+          //}
+        
         ?>
 
       </div>
