@@ -3,7 +3,7 @@
 
               <?php 
                 //foreach ($Productos->getProductos() as $ciudades)
-                echo '<img src="' .  $ciudades["url"] . '" class="card-img-top" alt="..." />' 
+                echo '<img src="' .  $value["url"] . '" class="card-img-top" alt="..." />' 
               ?>
 
                 <div class="card-body">
