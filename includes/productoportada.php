@@ -15,7 +15,7 @@
           //foreach($Continente->getContinente() as $continentes){
             //foreach ($Pais->getPais() as $paises){
 
-              if ($page == 'index' && $ciudades['destacado'] == 1) {
+              if ($page == 'index' && $value['destacado'] == 1) {
 
                 include('card_paises.php');
               } elseif ($page == 'catalogo') {
