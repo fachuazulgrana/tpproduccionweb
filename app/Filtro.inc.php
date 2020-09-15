@@ -30,7 +30,6 @@ class Filtro {
                                 $fila['nombre'],
                                 $fila['descripcion'],
                                 $fila['paises_id'],
-                                $fila['continentes_id'],
                                 $fila['precio'],
                                 $fila['activo'],
                                 $fila['destacado']
@@ -68,7 +67,6 @@ class Filtro {
                                 $fila['nombre'],
                                 $fila['descripcion'],
                                 $fila['paises_id'],
-                                $fila['continentes_id'],
                                 $fila['precio'],
                                 $fila['activo'],
                                 $fila['destacado']
@@ -207,7 +205,6 @@ public static function obtener_productos_filtro($conexion, $filtro = array()) {
                             $fila['nombre'],
                             $fila['descripcion'],
                             $fila['paises_id'],
-                            $fila['continentes_id'],
                             $fila['precio'],
                             $fila['activo'],
                             $fila['destacado']
