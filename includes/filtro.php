@@ -1,11 +1,11 @@
 <?php
-$str_data_continentes = file_get_contents("json/continentes.json");
+/* $str_data_continentes = file_get_contents("json/continentes.json");
 $str_data_paises = file_get_contents("json/paises.json");
 $str_data_ciudades = file_get_contents("json/ciudades.json");
 
 $dataContinentes = json_decode($str_data_continentes, true);
 $dataPaises = json_decode($str_data_paises, true);
-$dataCiudades = json_decode($str_data_ciudades, true);
+$dataCiudades = json_decode($str_data_ciudades, true); */
 
 include_once 'app/Conexion.inc.php';
 include_once 'app/config.inc.php';
@@ -16,12 +16,10 @@ include_once 'app/Filtro.inc.php';
 $continent = Filtro::obtener_continentes(Conexion::obtener_conexion());
 $country = Filtro::obtener_paises(Conexion::obtener_conexion());
 $product = Filtro::obtener_productos(Conexion::obtener_conexion());
-
 ?>
 
 <div class="container pt-4 px-5">
     <div class="row justify-content-center">
-
         <div class="col-12">
             <div class="filter-wrap py-4">
                 <h3>Filtro</h3>
@@ -103,16 +101,16 @@ $product = Filtro::obtener_productos(Conexion::obtener_conexion());
                                                 ?>
                                             <?php foreach ($prod_pais as $pr) { ?>
                                                 
-                                                    <option <?php echo ($opcion3 == $pr->obtener_nombre()) ? 'selected="selected"' : '' ?>>
-                                                        <?php echo $pr->obtener_nombre(); ?>
+                                                    <option <?php echo ($opcion3 == $pr->obtener_ciudad()) ? 'selected="selected"' : '' ?>>
+                                                        <?php echo $pr->obtener_ciudad(); ?>
                                                     </option>
                                             <?php } 
                                             
                                             endif ?>
                                                 <?php if ($_GET['pais'] == null || $_GET['pais'] == '') : 
                                                     foreach($product as $prod) { ?>
-                                                    <option <?php echo ($opcion3 == $prod->obtener_nombre()) ? 'selected="selected"' : '' ?>>
-                                                    <?php echo $prod->obtener_nombre(); ?>
+                                                    <option <?php echo ($opcion3 == $prod->obtener_ciudad()) ? 'selected="selected"' : '' ?>>
+                                                    <?php echo $prod->obtener_ciudad(); ?>
                                                     </option>
                                                     <?php   
                                                 }
