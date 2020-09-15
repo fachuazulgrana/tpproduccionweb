@@ -1,6 +1,6 @@
 <?php
 
-class Pais{
+class PaisPrueba{
 
 	private $con;
 	
