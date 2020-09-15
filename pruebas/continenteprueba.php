@@ -1,6 +1,6 @@
 <?php
 
-class Continente{
+class ContinentePrueba{
 
 	private $con;
 	
