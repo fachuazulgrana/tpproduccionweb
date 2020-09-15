@@ -15,7 +15,7 @@
 <?php
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	
-require_once('./pruebas/mysql-login.php');
+/*require_once('./pruebas/mysql-login.php');
 
 require_once('pruebas/continente.php');
 require_once('pruebas/pais.php');
@@ -27,10 +27,10 @@ try{
 }catch (PDOException $e){
 	print "¡Error!: " . $e->getMessage();
 	die();
-}
+} */
 
 
-$Continente = new Continente($con);
+/* $Continente = new Continente($con);
 $Pais = new Pais($con);
-$Productos = new Productos($con);
+$Productos = new Productos($con); */
 ?>
