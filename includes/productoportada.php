@@ -5,15 +5,15 @@
       <div class="row">
 
         <?php
-        //$continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
-        //$pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
-        //$ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : null);
+        $continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
+        $pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
+        $ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : null);
 
         //foreach ($Productos->getProductos() as $ciudades)
-        //foreach ($productos as $key => $value) {
-        foreach ($Productos->getProductos() as $ciudades){
-          foreach($Continente->getContinente() as $continentes){
-            foreach ($Pais->getPais() as $paises){
+        foreach ($productos as $key => $value) {
+        //foreach ($Productos->getProductos() as $ciudades){
+          //foreach($Continente->getContinente() as $continentes){
+            //foreach ($Pais->getPais() as $paises){
 
               if ($page == 'index' && $ciudades['destacado'] == 1) {
 
@@ -49,8 +49,8 @@
               }
 
             }
-          }
-        }
+          //}
+        //}
         ?>
 
       </div>
