@@ -27,9 +27,48 @@ class Filtro {
 
                         $productos[] = new Producto(
                                 $fila['id'],
-                                $fila['nombre'],
+                                $fila['ciudad'],
                                 $fila['descripcion'],
                                 $fila['paises_id'],
+                                $fila['continentes_id'],
+                                $fila['precio'],
+                                $fila['activo'],
+                                $fila['destacado']
+                        );
+                    }
+                }
+            } catch (PDOException $ex) {
+                print 'ERROR EN OBTENER PRODUCTOS ' . $ex->getMessage();
+            }
+        }
+        return $productos;
+    }
+
+
+
+    public static function obtener_productos_destacados($conexion) {
+        $productos = [];
+
+        if (isset($conexion)) {
+
+            try {
+
+                $sql = "SELECT * FROM produccion_web.productos WHERE destacado = 1";
+
+                $sentencia = $conexion->prepare($sql);
+                $sentencia->execute();
+                $resultado = $sentencia->fetchAll();
+
+                if (count($resultado)) {
+
+                    foreach ($resultado as $fila) {
+
+                        $productos[] = new Producto(
+                                $fila['id'],
+                                $fila['ciudad'],
+                                $fila['descripcion'],
+                                $fila['paises_id'],
+                                $fila['continentes_id'],
                                 $fila['precio'],
                                 $fila['activo'],
                                 $fila['destacado']
@@ -64,9 +103,10 @@ class Filtro {
 
                         $productos[] = new Producto(
                                 $fila['id'],
-                                $fila['nombre'],
+                                $fila['ciudad'],
                                 $fila['descripcion'],
                                 $fila['paises_id'],
+                                $fila['continentes_id'],
                                 $fila['precio'],
                                 $fila['activo'],
                                 $fila['destacado']
@@ -176,16 +216,18 @@ public static function obtener_productos_filtro($conexion, $filtro = array()) {
     if (isset($conexion)) {
 
         try {
-
-            $sql = "SELECT * FROM produccion_web.productos";
-            $where = array();
+            $sql = "SELECT * FROM produccion_web.productos WHERE 1=1";
 
             if(!empty($filtro['continente'])){
-                $where[] = 'continente  =' . $filtro['continente'];
+                $sql .= ' AND continentes_id  =' . $filtro['continente'];
             }
 
             if(!empty($filtro['pais'])){
-                $where[] = 'pais  =' . $filtro['pais'];
+                $sql .= ' AND paises_id  =' . $filtro['pais'];
+            }
+
+            if(!empty($filtro['ciudad'])){
+                $sql .= ' AND id  =' . $filtro['ciudad'];
             }
 
             if(!empty($where)){
@@ -202,9 +244,10 @@ public static function obtener_productos_filtro($conexion, $filtro = array()) {
 
                     $productos[] = new Producto(
                             $fila['id'],
-                            $fila['nombre'],
+                            $fila['ciudad'],
                             $fila['descripcion'],
                             $fila['paises_id'],
+                            $fila['continentes_id'],
                             $fila['precio'],
                             $fila['activo'],
                             $fila['destacado']
