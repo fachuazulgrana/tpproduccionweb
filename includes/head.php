@@ -14,6 +14,9 @@
 
 <?php
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
+	include_once 'app/config.inc.php';
+	include_once 'app/Conexion.inc.php';
+	Conexion::abrir_conexion();
 	
 /*require_once('./pruebas/mysql-login.php');
 

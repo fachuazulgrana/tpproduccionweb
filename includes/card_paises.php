@@ -1,4 +1,4 @@
-            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3">
+<div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3">
               <div class="card carta">
 
               <?php 

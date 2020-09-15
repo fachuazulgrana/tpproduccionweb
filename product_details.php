@@ -39,14 +39,12 @@
 
     <div class="container text-center pt-5 pb-4">
         <?php 
-        //foreach ($Productos->getProductos() as $ciudades)
-        //foreach ($paises as $key => $value) {
-        
-        foreach ($Productos->getProductos() as $ciudades){
-            //if ($value == $id) break;
-            if($ciudades['id'] == $_GET['id']) break;
-        }
-        echo '<h1>' . $ciudades['nombre'] . '</h1>';
+        include_once 'app/Filtro.inc.php';
+        $details = Filtro::obtener_producto_ciudad(Conexion::obtener_conexion(), $_GET['id']);
+
+        foreach($details as $deta){        
+        echo '<h1>' . $deta->obtener_ciudad() . '</h1>';
+    
         ?>
     </div>
 
@@ -62,19 +60,19 @@
                 <div class="col-5">
                     <div class="imagen1">
                         <a href="<?php echo $ciudades['url']; ?>" data-fancybox="gallery" data-caption="Caption for single image">
-                            <img height="auto" width="100%" src="<?php echo $ciudades['url']; ?>" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+                            <img height="auto" width="100%" src="<?php echo $ciudades['url']; ?>" alt="imagen de <?php echo $deta->obtener_ciudad(); ?>">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-7 incluye py-2">
                     <h4 class="pl-3">
-                        <?php echo $ciudades['nombre']; ?> <br>
+                        <?php echo $deta->obtener_ciudad(); ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $ciudades['continente']; ?> <br>
-                        Precio: <?php echo $ciudades['precio']; ?>
+                        <?php echo $deta->obtener_continente_id(); ?> <br>
+                        Precio: <?php echo $deta->obtener_precio(); ?>
                     </h5>
-                    <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>' ?>
+                    <?php echo '<p class="col-9 pt-4">' . $deta->obtener_descripcion() . '</p>' ?>
                 </div>
             </div>
         </div>
@@ -92,9 +90,10 @@
                 </div>
                 <div class="col-10">
                     <ul class="descripcion_detalles">
-                        <?php foreach ($ciudades['descripcion_details'] as $k => $v) : ?>
-                            <li><?php echo $v; ?></li>
-                        <?php endforeach ?>
+                        <!-- <?php foreach ($ciudades['descripcion_details'] as $k => $v) : ?>
+                            <li><?php echo $v; ?></li> -->
+                            <li><?php echo $deta->obtener_descripcion(); ?></li>
+                       <!--  <?php endforeach ?> -->
                     </ul>
                 </div>
                 <div class="col-10 pt-3">
@@ -102,9 +101,10 @@
                     <table class="table">
                         <tbody>
                             <?php
-                            echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continente'] . '</td></tr>';
-                            echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
+                            echo '<tr><td>Pais: </td><td>' . $deta->obtener_ciudad() . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $deta->obtener_continente_id() . '</td></tr>';
+                            echo '<tr><td>Precio: </td><td> ' . $deta->obtener_precio() . '</td></tr>';
+                        }
                             ?>
                         </tbody>
                     </table>
@@ -171,7 +171,7 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" class="input-xlarge" name="producto_id" value="<?php echo $_GET['id'] ?>" />
+                                <input type="hidden" class="input-xlarge" name="producto_id" value="<?php echo $deta->obtener_id() ?>" />
 
                                 <div class="col-sm-6 col-md-2">
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="submit">
@@ -247,6 +247,7 @@
 
                     <?php
                             }
+                        
                         }
                     }
                     ?>

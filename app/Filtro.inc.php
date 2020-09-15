@@ -6,6 +6,7 @@ include_once 'app/Continente.inc.php';
 include_once 'app/Pais.inc.php';
 include_once 'app/Producto.inc.php';
 
+
 class Filtro {
 
     public static function obtener_productos($conexion) {
@@ -18,6 +19,44 @@ class Filtro {
                 $sql = "SELECT * FROM produccion_web.productos";
 
                 $sentencia = $conexion->prepare($sql);
+                $sentencia->execute();
+                $resultado = $sentencia->fetchAll();
+
+                if (count($resultado)) {
+
+                    foreach ($resultado as $fila) {
+
+                        $productos[] = new Producto(
+                                $fila['id'],
+                                $fila['ciudad'],
+                                $fila['descripcion'],
+                                $fila['paises_id'],
+                                $fila['continentes_id'],
+                                $fila['precio'],
+                                $fila['activo'],
+                                $fila['destacado']
+                        );
+                    }
+                }
+            } catch (PDOException $ex) {
+                print 'ERROR EN OBTENER PRODUCTOS ' . $ex->getMessage();
+            }
+        }
+        return $productos;
+    }
+
+
+    public static function obtener_producto_ciudad($conexion, $id) {
+        $productos = [];
+
+        if (isset($conexion)) {
+
+            try {
+
+                $sql = "SELECT * FROM produccion_web.productos WHERE id = :id";
+
+                $sentencia = $conexion->prepare($sql);
+                $sentencia->bindParam(':id', $id, PDO::PARAM_STR);
                 $sentencia->execute();
                 $resultado = $sentencia->fetchAll();
 
