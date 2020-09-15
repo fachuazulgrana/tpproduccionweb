@@ -1,6 +1,6 @@
 <?php
 
-class ProductosPrueba{
+class Continente{
 
 	private $con;
 	
@@ -8,8 +8,8 @@ class ProductosPrueba{
 		$this->con= $con;
 	}
 
-	public function getProductos(){
-		$query = "SELECT * FROM productos";
+	public function getContinente(){
+		$query = "SELECT * FROM continentes";
 		return $this->con->query($query);
 	}
 }

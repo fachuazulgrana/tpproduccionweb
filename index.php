@@ -8,9 +8,6 @@
 
 <body>
     <?php
-    // hay que borrar la linea 12 y 13
-    $str_data = file_get_contents("json/ciudades.json");
-    $productos = json_decode($str_data, true);
     require_once "functions/cortar.php";
 
     $page = 'index';
