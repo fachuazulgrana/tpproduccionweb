@@ -8,6 +8,11 @@
 
 <body>
     <?php
+    
+    include_once 'app/config.inc.php';
+    include_once 'app/Conexion.inc.php';
+    Conexion :: abrir_conexion();
+    
     // hay que borrar la linea 12 y 13
     $str_data = file_get_contents("json/ciudades.json");
     $productos = json_decode($str_data, true);
