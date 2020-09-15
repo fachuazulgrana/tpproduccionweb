@@ -6,17 +6,15 @@ class Producto {
     private $nombre;
     private $descripcion;
     private $paises_id;
-    private $continente_id;
     private $precio;
     private $activo;
     private $destacado;
 
-    public function __construct($id, $nombre, $descripcion, $paises_id, $continente_id, $precio, $activo, $destacado) {
+    public function __construct($id, $nombre, $descripcion, $paises_id, $precio, $activo, $destacado) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->paises_id = $paises_id;
-        $this->continente_id = $continente_id;
         $this->precio = $precio;
         $this->activo = $activo;
         $this->destacado = $destacado;
@@ -50,8 +48,5 @@ class Producto {
         return $this->destacado;
     }
 
-    public function obtener_continente_id() {
-        return $this->continente_id;
-    }
 
 }
