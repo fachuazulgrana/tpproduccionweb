@@ -36,7 +36,7 @@
   
         if(isset($_GET["ciudad"])){
   
-          foreach($Productos->getProductos() as $pr){
+          foreach($Productos->getProductos('', '') as $pr){
             if($_GET['ciudad'] == $pr['nombre']){
               $producto_id = $pr['id'];
             }
@@ -69,8 +69,8 @@
             include('card_paises.php');
             }
           } elseif ($page == 'catalogo') {
-
-            foreach ($Productos->getProductos($filtro_final) as $ciudades) {
+            $orden = 'ASC';
+            foreach ($Productos->getProductos($filtro_final, $orden) as $ciudades) {
 
             /*
                 if (

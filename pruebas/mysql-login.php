@@ -15,6 +15,7 @@ define("RUTA_CATALOGO", SERVIDOR . "/catalogo.php");
 define("RUTA_PAQUETES", SERVIDOR . "/paquetes.php");
 define("RUTA_CONTACTO", SERVIDOR . "/contacto.php");
 
+
 define("RUTA_CSS", SERVIDOR . "/CSS/");
 define("RUTA_JS", SERVIDOR . "/js/");
 

@@ -8,7 +8,7 @@ class Productos{
 		$this->con= $con;
 	}
 
-	public function getProductos($filtro = array()){
+	public function getProductos($filtro = array(), $orden){
 		/*
 			SELECT * FROM productos ORDER BY nombre ASC
 			SELECT * FROM productos ORDER BY nombre DESC
@@ -37,8 +37,35 @@ class Productos{
 				return $this->con->query("SELECT * FROM productos ORDER BY rand() LIMIT 6");
 			}
 		*/
-		$query = "SELECT * FROM productos WHERE 1 = 1";
+		$query = "SELECT * FROM productos ";
 
+		$where = array();
+
+		if (!empty($filtro['continente']) ){
+			$where[] = ' continentes_id = '.$filtro['continente'];
+		}
+
+		if (!empty($filtro['pais']) ){
+			$where[] = ' paises_id = '.$filtro['pais'];
+		}
+
+		if (!empty($filtro['ciudad']) ){
+			$where[] = ' id = '.$filtro['ciudad'];
+		}
+
+
+
+		if (!empty($where) ){
+			$query .= ' WHERE '.implode (' AND ',$where);
+		}
+
+		if (!empty($orden)){
+			$query .= ' ORDER BY nombre ' . $orden;
+		} else {
+			$query .= ' ORDER BY nombre ASC';
+		}
+
+/* 
 		if(!empty($filtro['continente'])){
 			$query .= ' AND continentes_id  =' . $filtro['continente'];
 		}
@@ -53,14 +80,22 @@ class Productos{
 
 		if(!empty($filtro['ciudad'])){
 			$query .= ' AND id  =' . $filtro['ciudad'];
-		}
+		} */
+
+/* 		if($orden == "ASC"){
+			$query .= ' BY nombre ASC';
+		} */
 
 		return $this->con->query($query);
 	}
 
+
+
+
+
 	public function getProductosDestacados(){
 
-		$query = "SELECT * FROM productos WHERE destacado = 1";
+		$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
 		return $this->con->query($query);
 	}
 

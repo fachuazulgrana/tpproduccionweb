@@ -23,7 +23,7 @@
             <rect width="100%" height="100" style="fill:rgb(255,165,0);stroke-width:0;stroke:rgb(0,0,0)" />
         </svg>
     </div>
-
+    
     <section>
         <div class="container shadow justify-content-around p-4">
             <div class="row justify-content-center text-center">

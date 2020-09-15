@@ -84,7 +84,7 @@
                                                 "pais" => $pais_id,
                                                 "ciudad" => ''
                                             ];
-                                                foreach ($Productos->getProductos($filtro) as $ciudades) : ?>
+                                                foreach ($Productos->getProductos($filtro, '') as $ciudades) : ?>
                                                     <option <?php echo ($opcion3 == $ciudades['nombre']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $ciudades['nombre']; ?>
                                                     </option>
