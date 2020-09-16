@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
@@ -8,6 +8,7 @@
 -- Versión de PHP: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -88,7 +89,7 @@ CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
   `descripcion` text COLLATE utf8_bin NOT NULL,
-  `detalle` text COLLATE utf8_bin NOT NULL,
+  `detalles` text COLLATE utf8_bin NOT NULL,
   `paises_id` int(11) NOT NULL,
   `continentes_id` int(11) NOT NULL,
   `precio` float NOT NULL,
@@ -170,7 +171,7 @@ ALTER TABLE `paises`
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `paises_id` (`paises_id`),
-  ADD KEY `productos_cont_id` (`continentes_id`);
+  ADD KEY `continentes_id` (`continentes_id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
