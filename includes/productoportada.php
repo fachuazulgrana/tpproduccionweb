@@ -15,7 +15,7 @@
         if(isset($_GET["continente"])){
 
           foreach($Continente->getContinente() as $c){
-            if($_GET['continente'] == $c['nombre']){
+            if($_GET['continente'] == $c['id']){
               $continente_id = $c['id'];
             }
           }
@@ -26,7 +26,7 @@
         if(isset($_GET["pais"])){
   
           foreach($Pais->getPais() as $p){
-            if($_GET['pais'] == $p['nombre']){
+            if($_GET['pais'] == $p['id']){
               $pais_id = $p['id'];
             }
           }
@@ -37,7 +37,7 @@
         if(isset($_GET["ciudad"])){
   
           foreach($Productos->getProductos('', '') as $pr){
-            if($_GET['ciudad'] == $pr['nombre']){
+            if($_GET['ciudad'] == $pr['id']){
               $producto_id = $pr['id'];
             }
           }
