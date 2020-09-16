@@ -36,6 +36,14 @@ class Productos{
 			public function getProductosHomeRandom(){
 				return $this->con->query("SELECT * FROM productos ORDER BY rand() LIMIT 6");
 			}
+
+			if(!empty($filtro['order']) == 'AZ'){
+				$query .= ' ORDERBY nombre ASC';
+			} elseif (!empty($filtro['order']) == 'ZA'){
+				$query .= ' ORDERBY nombre DESC';
+			} elseif {
+				$query .= ' ORDERBY destacado ASC';
+			}
 		*/
 		$query = "SELECT * FROM productos ";
 
