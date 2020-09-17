@@ -200,40 +200,47 @@
         </div>
     </section>
 
+<!-- ACÁ SE APLICA COMENTARIOS.PHP -->
+
     <div class="testimonial_area">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <?php
-                    if (file_exists('json/comentarios.json')) {
+                    /*if (file_exists('json/comentarios.json')) {
                         $comentarioJson = file_get_contents('json/comentarios.json');
                         $comentarioArray = json_decode($comentarioJson, true);
-                        krsort($comentarioArray);
+                        krsort($comentarioArray);*/
                         $cantidad = 0;
-                        foreach ($comentarioArray as $comentario) {
-                            if ($comentario['producto_id'] == $_GET['id']) {
+                        foreach ($Comentarios->getComentarios() as $comentario){
+                            if($comentario['productos_id'] == $_GET['id']){
                                 $cantidad++;
                                 if ($cantidad == 11) break;
+
+                        /*foreach ($comentarioArray as $comentario) {
+                            if ($comentario['producto_id'] == $_GET['id']) {
+                                $cantidad++;
+                                if ($cantidad == 11) break;*/
                     ?>
                                 <div class="row justify-content-center align-items-center">
                                     <div class="border p-4 shadow col-8 single_testmonial">
                                         <p> <?php echo $comentario['comentario']; ?> </p>
 
                                         <div class="testmonial_author">
-                                            <h3>- <?php echo $comentario['nombre']; ?> </h3>
+                                            <h3>- <?php echo $comentario['email']; ?> </h3>
                                         </div>
 
                                         <h3 class="text-warning">
                                             <?php
-                                            if ($comentario['estrellas'] == '1') {
+                                            if ($comentario['rank'] == '1') {
                                                 echo '★';
-                                            } elseif ($comentario['estrellas'] == '2') {
+                                            } elseif ($comentario['rank'] == '2') {
                                                 echo '★★';
-                                            } elseif ($comentario['estrellas'] == '3') {
+                                            } elseif ($comentario['rank'] == '3') {
                                                 echo '★★★';
-                                            } elseif ($comentario['estrellas'] == '4') {
+                                            } elseif ($comentario['rank'] == '4') {
                                                 echo '★★★★';
-                                            } elseif ($comentario['estrellas'] == '5') {
+                                            } elseif ($comentario['rank'] == '5') {
                                                 echo '★★★★★';
                                             }
                                             //echo $comentario['estrellas']; 
@@ -249,7 +256,7 @@
                     <?php
                             }
                         }
-                    }
+                    //}
                     ?>
                 </div>
             </div>
