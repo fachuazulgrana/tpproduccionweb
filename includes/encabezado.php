@@ -11,16 +11,16 @@
                 </a>
             </li>
             <li <?php echo ($page == 'index') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href="index.php">Inicio</a>
+                <a class="nav-link borde" href=<?php echo RUTA_HOME ?>>Inicio</a>
             </li>
             <li <?php echo ($page == 'catalogo') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href="catalogo.php">Catálogo</a>
+                <a class="nav-link borde" href=<?php echo RUTA_CATALOGO ?>>Catálogo</a>
             </li>
             <li <?php echo ($page == 'paquetes') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href="paquetes.php">Paquetes</a>
+                <a class="nav-link borde" href=<?php echo RUTA_PAQUETES ?>>Paquetes</a>
             </li>
             <li <?php echo ($page == 'contacto') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href="contacto.php">Contacto</a>
+                <a class="nav-link borde" href=<?php echo RUTA_CONTACTO ?>>Contacto</a>
             </li>
         </ul>
         <ul class="navbar-nav align-items-center ml-auto social_links">
