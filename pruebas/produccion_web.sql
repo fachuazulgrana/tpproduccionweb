@@ -89,7 +89,7 @@ CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
   `descripcion` text COLLATE utf8_bin NOT NULL,
-  `detalles` text COLLATE utf8_bin NOT NULL,
+  `detalle` text COLLATE utf8_bin NOT NULL,
   `paises_id` int(11) NOT NULL,
   `continentes_id` int(11) NOT NULL,
   `precio` float NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, `continentes_id`, `precio`, `activo`, `destacado`) VALUES
-(1, 'Madrid', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.\r\n   ', 'ESPANIA Aéreos ES/FE/ES - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 1, 58900, 1, 0),
+(1, 'Madrid', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.\r\n   ', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 1, 58900, 1, 0),
 (2, 'Santiago de Compostela', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 1, 60000, 1, 0),
 (3, 'Covadonga', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 1, 55000, 1, 0),
 (4, 'La Manjoya', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 1, 53200, 1, 0),
