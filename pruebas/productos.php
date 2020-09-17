@@ -10,6 +10,8 @@ class Productos{
 
 	public function getProductos($filtro = array(), $orden){
 		/*
+			--comandos para el sql--
+
 			SELECT * FROM productos ORDER BY nombre ASC
 			SELECT * FROM productos ORDER BY nombre DESC
 			SELECT * FROM productos ORDER BY rand() LIMIT 6
@@ -18,6 +20,10 @@ class Productos{
 			SELECT * FROM productos WHERE categoria_id = $filtro['cat']
 			SELECT * FROM productos WHERE marca_id = $filtro['marca']
 			SELECT * FROM productos WHERE marca_id = $filtro['marca'] AND categoria_id = $filtro['cat']
+
+
+
+			--esto es algo que explicó el profe para filtrar--
 
 			$where = array();
 
@@ -33,9 +39,17 @@ class Productos{
 				$query .= ' WHERE '.implode (' AND ',$where);
 			}
 
+
+
+			--función random--
+
 			public function getProductosHomeRandom(){
 				return $this->con->query("SELECT * FROM productos ORDER BY rand() LIMIT 6");
 			}
+
+
+
+			--ordenar A a Z, Z a A y destacado--
 
 			if(!empty($filtro['order']) == 'AZ'){
 				$query .= ' ORDERBY nombre ASC';
@@ -44,6 +58,12 @@ class Productos{
 			} elseif {
 				$query .= ' ORDERBY destacado ASC';
 			}
+
+
+
+			--esto es para saber la IP de la persona--
+
+			echo $_SERVER['REMOTE_ADDR'];
 		*/
 		$query = "SELECT * FROM productos ";
 
