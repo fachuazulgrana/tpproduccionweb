@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2020 a las 03:20:10
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.8
+-- Tiempo de generación: 18-09-2020 a las 00:01:01
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `email` char(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `rank` int(11) NOT NULL,
+  `comentario` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `fecha` date NOT NULL,
+  `ip` char(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `productos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `email`, `rank`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES
+(20200917, 'asd@asd', 5, 'asd', '2020-09-17', '127.0.0.1', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `continentes`
 --
 
@@ -39,11 +62,11 @@ CREATE TABLE `continentes` (
 --
 
 INSERT INTO `continentes` (`id`, `nombre`, `activo`) VALUES
-(1, 'Europa', 0),
-(2, 'America del Norte', 0),
-(3, 'America del Sur', 0),
-(4, 'Asia', 0),
-(5, 'Africa', 0),
+(1, 'Europa', 1),
+(2, 'America del Norte', 1),
+(3, 'America del Sur', 1),
+(4, 'Asia', 1),
+(5, 'Africa', 1),
 (6, 'Oceania', 0);
 
 -- --------------------------------------------------------
@@ -64,20 +87,20 @@ CREATE TABLE `paises` (
 --
 
 INSERT INTO `paises` (`id`, `nombre`, `continentes_id`, `activo`) VALUES
-(1, 'España', 1, 0),
-(2, 'Francia', 1, 0),
-(3, 'Italia', 1, 0),
+(1, 'España', 1, 1),
+(2, 'Francia', 1, 1),
+(3, 'Italia', 1, 1),
 (4, 'Alemania', 1, 0),
-(5, 'Estados Unidos', 2, 0),
-(6, 'Canada', 2, 0),
-(7, 'Mexico', 2, 0),
-(8, 'Brasil', 3, 0),
-(9, 'Argentina', 3, 0),
-(10, 'Japon', 4, 0),
+(5, 'Estados Unidos', 2, 1),
+(6, 'Canada', 2, 1),
+(7, 'Mexico', 2, 1),
+(8, 'Brasil', 3, 1),
+(9, 'Argentina', 3, 1),
+(10, 'Japon', 4, 1),
 (11, 'Corea del Sur', 4, 0),
 (12, 'Egipto', 5, 0),
-(13, 'Nigeria', 5, 0),
-(14, 'Australia', 6, 0);
+(13, 'Nigeria', 5, 1),
+(14, 'Australia', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -153,6 +176,13 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 --
 
 --
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `productos_id` (`productos_id`);
+
+--
 -- Indices de la tabla `continentes`
 --
 ALTER TABLE `continentes`
@@ -198,6 +228,12 @@ ALTER TABLE `productos`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `paises`
