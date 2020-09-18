@@ -16,13 +16,13 @@
     //$id = $_GET['id'];
 
     // Si $_POST submit esta setteado, guarda los datos del comentario en comentarios.json
-    // foreach ($Productos->getProductos() as $ciudades)
     if (isset($_POST['submit'])) {
         $data = $_POST;
         unset($data['submit']);
         $data['fecha'] = date('d/m/Y H:i:s');
         $fecha = new DateTime();
         $indexComentario = $fecha->format('YmdHisu');
+        /*
         if (file_exists('json/comentarios.json')) {
             $comentarioJson = file_get_contents('json/comentarios.json');
             $comentarioArray = json_decode($comentarioJson, true);
@@ -33,6 +33,7 @@
         $fp = fopen('json/comentarios.json', 'w');
         fwrite($fp, json_encode($comentarioArray));
         fclose($fp);
+        */
     }
     ?>
 
@@ -175,6 +176,7 @@
 
                                 <div class="col-sm-6 col-md-2">
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="submit">
+                                    <?php $Comentarios->setComentarios(); ?>
                                 </div>
                             </div>
                         </div>
@@ -231,15 +233,15 @@
 
                                     <h3 class="text-warning">
                                         <?php
-                                        if ($comentario['rank'] == '1') {
+                                        if ($comentario['ranqueo'] == '1') {
                                             echo '★';
-                                        } elseif ($comentario['rank'] == '2') {
+                                        } elseif ($comentario['ranqueo'] == '2') {
                                             echo '★★';
-                                        } elseif ($comentario['rank'] == '3') {
+                                        } elseif ($comentario['ranqueo'] == '3') {
                                             echo '★★★';
-                                        } elseif ($comentario['rank'] == '4') {
+                                        } elseif ($comentario['ranqueo'] == '4') {
                                             echo '★★★★';
-                                        } elseif ($comentario['rank'] == '5') {
+                                        } elseif ($comentario['ranqueo'] == '5') {
                                             echo '★★★★★';
                                         }
                                         //echo $comentario['estrellas']; 

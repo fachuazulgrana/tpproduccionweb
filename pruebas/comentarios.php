@@ -14,7 +14,10 @@ class Comentarios{
     }
     
     public function setComentarios(){
-		$this->con->query($query = "INSERT FROM comentarios");
+		$sql = "INSERT INTO comentarios (id, email, ranqueo, comentario, fecha, ip, productos_id) 
+		VALUES ('1', 'email', '5', 'comentario', '2020', '127.0.0.1', '1')";
+
+		$this->con->exec($sql);
     }
 }
 
