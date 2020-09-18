@@ -38,13 +38,13 @@
 
 
     <div class="container text-center pt-5 pb-4">
-        <?php 
+        <?php
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($paises as $key => $value) {
-        
-        foreach ($Productos->getProductos('','') as $ciudades){
+
+        foreach ($Productos->getProductos('', '') as $ciudades) {
             //if ($value == $id) break;
-            if($ciudades['id'] == $_GET['id']) break;
+            if ($ciudades['id'] == $_GET['id']) break;
         }
         echo '<h1>' . $ciudades['nombre'] . '</h1>';
         ?>
@@ -93,9 +93,9 @@
                 </div>
                 <div class="col-10">
                     <ul class="descripcion_detalles">
-                        <?php foreach ($ciudades['descripcion_details'] as $k => $v) : ?>
-                            <li><?php echo $v; ?></li>
-                        <?php endforeach ?>
+                        <li>
+                            <?php echo $ciudades['detalle']; ?>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-10 pt-3">
@@ -200,7 +200,7 @@
         </div>
     </section>
 
-<!-- ACÁ SE APLICA COMENTARIOS.PHP -->
+    <!-- ACÁ SE APLICA COMENTARIOS.PHP -->
 
     <div class="testimonial_area">
         <div class="container">
@@ -211,51 +211,51 @@
                         $comentarioJson = file_get_contents('json/comentarios.json');
                         $comentarioArray = json_decode($comentarioJson, true);
                         krsort($comentarioArray);*/
-                        $cantidad = 0;
-                        foreach ($Comentarios->getComentarios() as $comentario){
-                            if($comentario['productos_id'] == $_GET['id']){
-                                $cantidad++;
-                                if ($cantidad == 11) break;
+                    $cantidad = 0;
+                    foreach ($Comentarios->getComentarios() as $comentario) {
+                        if ($comentario['productos_id'] == $_GET['id']) {
+                            $cantidad++;
+                            if ($cantidad == 11) break;
 
-                        /*foreach ($comentarioArray as $comentario) {
+                            /*foreach ($comentarioArray as $comentario) {
                             if ($comentario['producto_id'] == $_GET['id']) {
                                 $cantidad++;
                                 if ($cantidad == 11) break;*/
                     ?>
-                                <div class="row justify-content-center align-items-center">
-                                    <div class="border p-4 shadow col-8 single_testmonial">
-                                        <p> <?php echo $comentario['comentario']; ?> </p>
+                            <div class="row justify-content-center align-items-center">
+                                <div class="border p-4 shadow col-8 single_testmonial">
+                                    <p> <?php echo $comentario['comentario']; ?> </p>
 
-                                        <div class="testmonial_author">
-                                            <h3>- <?php echo $comentario['email']; ?> </h3>
-                                        </div>
-
-                                        <h3 class="text-warning">
-                                            <?php
-                                            if ($comentario['rank'] == '1') {
-                                                echo '★';
-                                            } elseif ($comentario['rank'] == '2') {
-                                                echo '★★';
-                                            } elseif ($comentario['rank'] == '3') {
-                                                echo '★★★';
-                                            } elseif ($comentario['rank'] == '4') {
-                                                echo '★★★★';
-                                            } elseif ($comentario['rank'] == '5') {
-                                                echo '★★★★★';
-                                            }
-                                            //echo $comentario['estrellas']; 
-                                            ?>
-                                        </h3>
-
-                                        <small>
-                                            <i> <?php echo $comentario['fecha']; ?> </i>
-                                        </small>
+                                    <div class="testmonial_author">
+                                        <h3>- <?php echo $comentario['email']; ?> </h3>
                                     </div>
+
+                                    <h3 class="text-warning">
+                                        <?php
+                                        if ($comentario['rank'] == '1') {
+                                            echo '★';
+                                        } elseif ($comentario['rank'] == '2') {
+                                            echo '★★';
+                                        } elseif ($comentario['rank'] == '3') {
+                                            echo '★★★';
+                                        } elseif ($comentario['rank'] == '4') {
+                                            echo '★★★★';
+                                        } elseif ($comentario['rank'] == '5') {
+                                            echo '★★★★★';
+                                        }
+                                        //echo $comentario['estrellas']; 
+                                        ?>
+                                    </h3>
+
+                                    <small>
+                                        <i> <?php echo $comentario['fecha']; ?> </i>
+                                    </small>
                                 </div>
+                            </div>
 
                     <?php
-                            }
                         }
+                    }
                     //}
                     ?>
                 </div>
