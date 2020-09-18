@@ -11,7 +11,11 @@ class Comentarios{
 	public function getComentarios(){
 		$query = "SELECT * FROM comentarios";
 		return $this->con->query($query);
-	}
+    }
+    
+    public function setComentarios(){
+		$this->con->query($query = "INSERT FROM comentarios");
+    }
 }
 
 ?>

@@ -61,7 +61,6 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-5">
                     <div class="imagen1">
-                        <!-- <img src="pruebas/img/<?php echo $ciudades['id'] ?>.jpg" alt="imagen de <?php $ciudades['nombre'] ?>"> -->
                         <a href="pruebas/img<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
                             <img height="auto" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
                         </a>
@@ -72,7 +71,7 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $ciudades['continente']; ?> <br>
+                        <?php echo $ciudades['continentes_id'] .' - '. $ciudades['paises_id']; ?> <br>
                         Precio: <?php echo $ciudades['precio']; ?>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>' ?>
@@ -93,9 +92,7 @@
                 </div>
                 <div class="col-10">
                     <ul class="descripcion_detalles">
-                        <?php foreach ($ciudades['descripcion_details'] as $k => $v) : ?>
-                            <li><?php echo $v; ?></li>
-                        <?php endforeach ?>
+                        <li><?php echo $ciudades['detalle']; ?></li>
                     </ul>
                 </div>
                 <div class="col-10 pt-3">
@@ -104,7 +101,7 @@
                         <tbody>
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continente'] . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] .' - '. $ciudades['paises_id']  .'</td></tr>';
                             echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
@@ -133,6 +130,8 @@
                     <rect width="100%" height="100" style="fill:#F78014;stroke-width:0;stroke:rgb(0,0,0)" />
                 </svg>
             </div>
+            
+<!-- ACÁ ESCRIBEN EL COMENTARIO -->
 
             <div class="container">
                 <form action="#" method="post">
@@ -172,7 +171,7 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" class="input-xlarge" name="producto_id" value="<?php echo $_GET['id'] ?>" />
+                                <input type="hidden" class="input-xlarge" name="productos_id" value="<?php echo $_GET['id'] ?>" />
 
                                 <div class="col-sm-6 col-md-2">
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="submit">
@@ -200,7 +199,7 @@
         </div>
     </section>
 
-<!-- ACÁ SE APLICA COMENTARIOS.PHP -->
+<!-- ACÁ DEVUELVE EL COMENTARIO -->
 
     <div class="testimonial_area">
         <div class="container">
