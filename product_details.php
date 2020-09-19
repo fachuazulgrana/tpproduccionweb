@@ -16,12 +16,12 @@
     //$id = $_GET['id'];
 
     // Si $_POST submit esta setteado, guarda los datos del comentario en comentarios.json
-    if (isset($_POST['submit'])) {
+/*     if (isset($_POST['submit'])) {
         $data = $_POST;
         unset($data['submit']);
         $data['fecha'] = date('d/m/Y H:i:s');
         $fecha = new DateTime();
-        $indexComentario = $fecha->format('YmdHisu');
+        $indexComentario = $fecha->format('YmdHisu'); */
         /*
         if (file_exists('json/comentarios.json')) {
             $comentarioJson = file_get_contents('json/comentarios.json');
@@ -34,7 +34,7 @@
         fwrite($fp, json_encode($comentarioArray));
         fclose($fp);
         */
-    }
+  /*   } */
     ?>
 
 
@@ -72,7 +72,7 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $ciudades['continentes_id'] .' - '. $ciudades['paises_id']; ?> <br>
+                        <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: <?php echo $ciudades['precio']; ?>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>' ?>
@@ -102,7 +102,7 @@
                         <tbody>
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] .' - '. $ciudades['paises_id']  .'</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']  . '</td></tr>';
                             echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
@@ -131,8 +131,8 @@
                     <rect width="100%" height="100" style="fill:#F78014;stroke-width:0;stroke:rgb(0,0,0)" />
                 </svg>
             </div>
-            
-<!-- ACÁ ESCRIBEN EL COMENTARIO -->
+
+            <!-- ACÁ ESCRIBEN EL COMENTARIO -->
 
             <div class="container">
                 <form action="#" method="post">
@@ -175,8 +175,10 @@
                                 <input type="hidden" class="input-xlarge" name="productos_id" value="<?php echo $_GET['id'] ?>" />
 
                                 <div class="col-sm-6 col-md-2">
-                                    <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="submit">
-                                    <?php $Comentarios->setComentarios(); ?>
+                                    <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar">
+                                    <?php
+                                        $Comentarios->setComentarios();
+                                        ?>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +203,7 @@
         </div>
     </section>
 
-<!-- ACÁ DEVULVEN LOS COMENTARIOS -->
+    <!-- ACÁ DEVULVEN LOS COMENTARIOS -->
 
     <div class="testimonial_area">
         <div class="container">
@@ -233,18 +235,18 @@
 
                                     <h3 class="text-warning">
                                         <?php
-                                        if ($comentario['ranqueo'] == '1') {
+                                        if ($comentario['calificacion'] == '1') {
                                             echo '★';
-                                        } elseif ($comentario['ranqueo'] == '2') {
+                                        } elseif ($comentario['calificacion'] == '2') {
                                             echo '★★';
-                                        } elseif ($comentario['ranqueo'] == '3') {
+                                        } elseif ($comentario['calificacion'] == '3') {
                                             echo '★★★';
-                                        } elseif ($comentario['ranqueo'] == '4') {
+                                        } elseif ($comentario['calificacion'] == '4') {
                                             echo '★★★★';
-                                        } elseif ($comentario['ranqueo'] == '5') {
+                                        } elseif ($comentario['calificacion'] == '5') {
                                             echo '★★★★★';
                                         }
-                                        //echo $comentario['estrellas']; 
+                                        //echo $comentario['calificacion']; 
                                         ?>
                                     </h3>
 
