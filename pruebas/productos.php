@@ -77,10 +77,9 @@ class Productos{
 			$where[] = ' paises_id = '.$filtro['pais'];
 		}
 
-		if (!empty($filtro['ciudad']) ){
+ 		if (!empty($filtro['ciudad']) ){
 			$where[] = ' id = '.$filtro['ciudad'];
-		}
-
+		} 
 
 
 		if (!empty($where) ){
@@ -124,6 +123,28 @@ class Productos{
 	public function getProductosDestacados(){
 
 		$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
+		return $this->con->query($query);
+	}
+
+
+	public function getProductosFiltro($filtro = array()){
+		
+		$query = "SELECT * FROM productos ";
+
+		$where = array();
+
+		if (!empty($filtro['continente']) ){
+			$where[] = ' continentes_id = '.$filtro['continente'];
+		}
+
+		if (!empty($filtro['pais']) ){
+			$where[] = ' paises_id = '.$filtro['pais'];
+		}
+
+		if (!empty($where) ){
+			$query .= ' WHERE '.implode (' AND ',$where);
+		}
+
 		return $this->con->query($query);
 	}
 

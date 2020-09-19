@@ -7,7 +7,7 @@
         <?php
 
 
-      //WORKARROUND PARA EL FILTRO DEL GET
+/*       //WORKARROUND PARA EL FILTRO DEL GET
         $continente_id = '';
         $pais_id = '';
         $producto_id = '';
@@ -50,7 +50,7 @@
           "continente" => $continente_id,
           "pais" => $pais_id,
           "ciudad" => $producto_id
-        ];
+        ]; */
 
         //$continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
         //$pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
@@ -70,7 +70,7 @@
             }
           } elseif ($page == 'catalogo') {
             $orden = 'ASC';
-            foreach ($Productos->getProductos($filtro_final, $orden) as $ciudades) {
+            foreach ($Productos->getProductos($_GET, $orden) as $ciudades) {
 
             /*
                 if (

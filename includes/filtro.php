@@ -16,7 +16,7 @@
                                         !empty($_GET['continente']) ? $opcion = $_GET['continente'] : $opcion = ""
                                         ?>
                                         <select name="continente" class="custom-select custom-select-lg" id="continente" onchange="this.form.submit()">
-                                            <option value="0" selected="selected">Seleccionar Continente</option>
+                                            <option value="" selected="selected">Seleccionar Continente</option>
                                             <?php
                                             foreach ($Continente->getContinente() as $continentes) : ?>
                                                 <option value="<?php echo $continentes['id'] ?>" <?php echo ($opcion == $continentes['id']) ? 'selected="selected"' : '' ?>>
@@ -36,21 +36,9 @@
                                         <input type="hidden" name="continente" value="<?php echo isset($_GET['continente']) ? $_GET['continente'] : '' ?>">
                                         <select name="pais" class="custom-select custom-select-lg" id="pais" onchange="this.form.submit()">
                                             <option value="0">Seleccionar Pais</option>
-                                            <?php
 
-                                            //CATCH DEL CONTINENTE ELEGIDO
-                                            foreach ($Continente->getContinente() as $c) {
-                                                if ($_GET['continente'] == $c['id']) {
-                                                    $cont_id = $c['id'];
-
-                                                $filtro_p = [
-                                                    "continente" => $cont_id,
-                                                ];
-                                                }
-                                            } ?>
-                                            
                                                 <?php
-                                                foreach ($Pais->getPais($filtro_p) as $paises) : ?>
+                                                foreach ($Pais->getPais($_GET) as $paises) : ?>
                                                     <option value="<?php echo $paises['id'] ?>" <?php echo ($opcion2 == $paises['id']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $paises['nombre']; ?>
                                                     </option>
@@ -71,20 +59,7 @@
                                             <option value="0">Seleccionar Ciudad</option>
 
                                             <?php
-
-                                            //CATCH DEL PAIS ID ELEGIDO
-                                            foreach ($Pais->getPais() as $paises) {
-                                                if ($_GET['pais'] == $paises['id']) {
-                                                    $pais_id = $paises['id'];
-                                                }
-                                            }
-
-                                            $filtro = [
-                                                "continente" => $cont_id,
-                                                "pais" => $pais_id,
-                                                "ciudad" => ''
-                                            ];
-                                                foreach ($Productos->getProductos($filtro, '') as $ciudades) : ?>
+                                                foreach ($Productos->getProductosFiltro($_GET) as $ciudades) : ?>
                                                     <option value="<?php echo $ciudades['id'] ?>" <?php echo ($opcion3 == $ciudades['id']) ? 'selected="selected"' : '' ?>>
                                                         <?php echo $ciudades['nombre']; ?>
                                                     </option>
