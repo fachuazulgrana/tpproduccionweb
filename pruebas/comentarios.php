@@ -32,8 +32,8 @@ class Comentarios
 		$sql = "INSERT INTO comentarios (`nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES ('$name', '$email', '$calificacion', '$comentario','$fechareg','$ip','$producto_id')";
 		$this->con->exec($sql);
 		/* $statement = $this->con->prepare($sql);
-				$inserted = $statement->execute(); */
-			}
+		$inserted = $statement->execute(); */
+		}
 	}
 }
 
