@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2020 a las 00:01:01
+-- Tiempo de generación: 19-09-2020 a las 22:47:46
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.3
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,8 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comentarios` (
   `id` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
   `email` char(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `rank` int(11) NOT NULL,
+  `calificacion` int(11) NOT NULL,
   `comentario` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `fecha` date NOT NULL,
   `ip` char(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -42,8 +42,10 @@ CREATE TABLE `comentarios` (
 -- Volcado de datos para la tabla `comentarios`
 --
 
-INSERT INTO `comentarios` (`id`, `email`, `rank`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES
-(20200917, 'asd@asd', 5, 'asd', '2020-09-17', '127.0.0.1', 1);
+INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES
+(20200935, 'mateoporcar', 'mateo.porcar@live.com.ar', 4, 'hihhkjk', '2019-09-20', '100.100.100', 1),
+(20200936, 'mateoporcar', 'mateo.porcar@live.com.ar', 4, 'hihhkjk', '2019-09-20', '100.100.100', 1),
+(20200937, 'mateoporcar', 'mateo.porcar@live.com.ar', 4, 'hihhkjk', '2019-09-20', '100.100.100', 1);
 
 -- --------------------------------------------------------
 
@@ -206,6 +208,12 @@ ALTER TABLE `productos`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20200938;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
