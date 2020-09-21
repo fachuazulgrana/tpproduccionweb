@@ -79,7 +79,7 @@
                         Acá va el promedio
                         <!-- 
                             ESTO SERÍA EL PROMEDIO PERO NO FUNCIONA
-                            <?php //echo $Comentarios->getRanqueo(); ?> 
+                            <?php //echo floatval($Comentarios->getRanqueo()); ?> 
                         -->
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
