@@ -14,7 +14,14 @@
                   <p class="card-text"><?php echo cortar($ciudades["descripcion"]); ?></p>
                   <div class="row justify-content-center pt-1 pb-3">
                     <h5>
-                      <span class="card-text text-center badge badge-light"><?php echo $ciudades["precio"]; ?></span>
+                      <span class="card-text text-center badge badge-light">Acá va el promedio</span>
+
+                      <!-- 
+                        ESTO DEBERÍA IR ACÁ CUANDO ARREGLEMOS EL RANQUEO
+                        <span class="card-text text-center badge badge-light"><?php $Comentarios->getRanqueo(); ?></span> 
+                      -->
+
+                      <span class="card-text text-center badge badge-light">$<?php echo $ciudades["precio"]; ?></span>
                     </h5>
                   </div>
                   <div class="container d-flex justify-content-around">

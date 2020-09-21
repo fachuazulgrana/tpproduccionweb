@@ -13,7 +13,7 @@ try{
 	
 	<button class="btn btn-primary" disabled>
     <span class="spinner-border spinner-border-sm"></span>
-    Error, por favor recargar la página...
+    	Error, por favor recargar la página...
   	</button>
 <?php
 	die();

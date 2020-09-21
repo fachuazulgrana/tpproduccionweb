@@ -73,9 +73,16 @@
                     </h4>
                     <h5 class="pl-3">
                         <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
-                        Precio: <?php echo $ciudades['precio']; ?>
+                        Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
-                    <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>' ?>
+                    <h5 class="pl-3">
+                        Acá va el promedio
+                        <!-- 
+                            ESTO SERÍA EL PROMEDIO PERO NO FUNCIONA
+                            <?php //echo $Comentarios->getRanqueo(); ?> 
+                        -->
+                    </h5>
+                    <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
             </div>
         </div>
