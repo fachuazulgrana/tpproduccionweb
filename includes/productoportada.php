@@ -7,7 +7,7 @@
         <?php
 
 
-/*       //WORKARROUND PARA EL FILTRO DEL GET
+        /*       //WORKARROUND PARA EL FILTRO DEL GET
         $continente_id = '';
         $pais_id = '';
         $producto_id = '';
@@ -58,19 +58,19 @@
 
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($productos as $key => $value) {
-        
-          //foreach($Continente->getContinente() as $continentes){
-          //foreach ($Pais->getPais() as $paises){
 
-          if ($page == 'index') {
+        //foreach($Continente->getContinente() as $continentes){
+        //foreach ($Pais->getPais() as $paises){
 
-            foreach ($Productos->getProductosDestacados() as $ciudades) {
+        if ($page == 'index') {
 
+          foreach ($Productos->getProductosDestacados() as $ciudades) {
             include('card_paises.php');
-            }
-          } elseif ($page == 'catalogo') {
-            $orden = 'ASC';
-            foreach ($Productos->getProductos($_GET, $orden) as $ciudades) {
+          }
+          
+        } elseif ($page == 'catalogo') {
+          // Parametros: ($_GET [continente, pais, ciudad], ORDER, activo/inactivo)
+          foreach ($Productos->getProductos($_GET, 'ASC', 1) as $ciudades) {
 
             /*
                 if (
@@ -81,16 +81,16 @@
                   (empty($ciudad) && $pais == $ciudades['pais'] && $continente == $ciudades['continente']) ||
                   ($continente == $ciudades['continente'] && $pais == $ciudades['pais'] && $ciudad == $ciudades['nombre']) // Se filtra por continente y pais
                   ) 
-                
                 )
-              */ 
-              include('card_paises.php');
-            }
-          }
+              */
+            include('card_paises.php');
 
-          //}
-          //}
-        
+          }
+        }
+
+        //}
+        //}
+
         ?>
 
       </div>

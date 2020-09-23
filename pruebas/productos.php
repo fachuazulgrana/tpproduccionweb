@@ -1,14 +1,17 @@
 <?php
 
-class Productos{
+class Productos
+{
 
 	private $con;
-	
-	function __construct($con){
-		$this->con= $con;
+
+	function __construct($con)
+	{
+		$this->con = $con;
 	}
 
-	public function getProductos($filtro = array(), $orden){
+	public function getProductos($filtro = array(), $orden, $activo)
+	{
 		/*
 			--comandos para el sql--
 
@@ -69,30 +72,37 @@ class Productos{
 
 		$where = array();
 
-		if (!empty($filtro['continente']) ){
-			$where[] = ' continentes_id = '.$filtro['continente'];
+		// $_GET continente = ?
+		if (!empty($filtro['continente'])) {
+			$where[] = ' continentes_id = ' . $filtro['continente'];
 		}
 
-		if (!empty($filtro['pais']) ){
-			$where[] = ' paises_id = '.$filtro['pais'];
+		// $_GET pais = ?
+		if (!empty($filtro['pais'])) {
+			$where[] = ' paises_id = ' . $filtro['pais'];
 		}
 
- 		if (!empty($filtro['ciudad']) ){
-			$where[] = ' id = '.$filtro['ciudad'];
-		} 
-
-
-		if (!empty($where) ){
-			$query .= ' WHERE '.implode (' AND ',$where);
+		// $_GET ciudad = ?
+		if (!empty($filtro['ciudad'])) {
+			$where[] = ' id = ' . $filtro['ciudad'];
 		}
 
-		if (!empty($orden)){
+		// Activo = 1 , Inactivo = 0
+		$where[] = ' activo = ' . $activo;
+
+		// Union de array elements con un string
+		if (!empty($where)) {
+			$query .= ' WHERE ' . implode(' AND ', $where);
+		}
+
+		// Agregado a query final el ORDER BY
+		if (!empty($orden)) {
 			$query .= ' ORDER BY nombre ' . $orden;
 		} else {
 			$query .= ' ORDER BY nombre ASC';
 		}
 
-/* 
+		/* 
 		if(!empty($filtro['continente'])){
 			$query .= ' AND continentes_id  =' . $filtro['continente'];
 		}
@@ -109,7 +119,7 @@ class Productos{
 			$query .= ' AND id  =' . $filtro['ciudad'];
 		} */
 
-/* 		if($orden == "ASC"){
+		/* 		if($orden == "ASC"){
 			$query .= ' BY nombre ASC';
 		} */
 
@@ -120,34 +130,33 @@ class Productos{
 
 
 
-	public function getProductosDestacados(){
+	public function getProductosDestacados()
+	{
 
 		$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
 		return $this->con->query($query);
 	}
 
 
-	public function getProductosFiltro($filtro = array()){
-		
+	public function getProductosFiltro($filtro = array())
+	{
+
 		$query = "SELECT * FROM productos ";
 
 		$where = array();
 
-		if (!empty($filtro['continente']) ){
-			$where[] = ' continentes_id = '.$filtro['continente'];
+		if (!empty($filtro['continente'])) {
+			$where[] = ' continentes_id = ' . $filtro['continente'];
 		}
 
-		if (!empty($filtro['pais']) ){
-			$where[] = ' paises_id = '.$filtro['pais'];
+		if (!empty($filtro['pais'])) {
+			$where[] = ' paises_id = ' . $filtro['pais'];
 		}
 
-		if (!empty($where) ){
-			$query .= ' WHERE '.implode (' AND ',$where);
+		if (!empty($where)) {
+			$query .= ' WHERE ' . implode(' AND ', $where);
 		}
 
 		return $this->con->query($query);
 	}
-
 }
-
-?>
