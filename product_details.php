@@ -43,7 +43,7 @@
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($paises as $key => $value) {
 
-        foreach ($Productos->getProductos('', '') as $ciudades) {
+        foreach ($Productos->getProductos('', '', 1) as $ciudades) {
             //if ($value == $id) break;
             if ($ciudades['id'] == $_GET['id']) break;
         }
