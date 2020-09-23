@@ -110,7 +110,7 @@
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
                             echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']  . '</td></tr>';
-                            echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
+                            echo '<tr><td>Precio: </td><td> ' .'$'. $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
                     </table>
