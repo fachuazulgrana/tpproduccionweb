@@ -63,7 +63,7 @@
                 <div class="col-5">
                     <div class="imagen1">
                         <a href="pruebas/img<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
-                            <img height="auto" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+                            <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
                         </a>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3">
               <div class="card carta">
 
-              <img height="auto" width="100%" src="pruebas/img/<?php echo $ciudades['id'] ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+              <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id'] ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
 
               
               <?php 
