@@ -27,7 +27,7 @@ class Comentarios
 			$fechareg = date("d/m/y");
 			/* $data['fecha'] = date('d/m/Y H:i:s');
 			$fecha = new DateTime(); */
-			$ip = "100.100.100";
+			$ip = $_SERVER['REMOTE_ADDR'];
 			$producto_id = $_POST['productos_id'];
 			$sql = "INSERT INTO comentarios (`nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES ('$name', '$email', '$calificacion', '$comentario','$fechareg','$ip','$producto_id')";
 			$this->con->exec($sql);
