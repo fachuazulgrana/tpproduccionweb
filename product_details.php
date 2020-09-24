@@ -72,6 +72,7 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
+                        <?php //echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
                         <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>

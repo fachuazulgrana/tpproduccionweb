@@ -18,6 +18,11 @@ class Pais{
 		return $this->con->query($query);
 
 	}
+
+	public function getNamePais(){
+		$query = "SELECT paises.nombre FROM paises INNER JOIN productos ON paises.id = productos.paises_id";
+		return $this->con->query($query);
+	}
 }
 
 ?>
