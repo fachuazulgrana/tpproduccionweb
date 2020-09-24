@@ -72,15 +72,12 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
+                        <?php //echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
                         <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
                     <h5 class="pl-3">
-                        Acá va el promedio
-                        <!-- 
-                            ESTO SERÍA EL PROMEDIO PERO NO FUNCIONA
-                            <?php //echo floatval($Comentarios->getRanqueo()); ?> 
-                        -->
+                        <?php echo $Comentarios->getRanqueo(); ?>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
@@ -185,7 +182,7 @@
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar">
                                     <?php
                                         $Comentarios->setComentarios();
-                                        ?>
+                                    ?>
                                 </div>
                             </div>
                         </div>

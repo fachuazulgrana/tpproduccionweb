@@ -24,7 +24,7 @@ class Comentarios
 			$email = $_POST['email'];
 			$calificacion = $_POST['estrellas'];
 			$comentario = $_POST['comentario'];
-			$fechareg = date("d/m/y");
+			$fechareg = date("y/m/d");
 			/* $data['fecha'] = date('d/m/Y H:i:s');
 			$fecha = new DateTime(); */
 			$ip = $_SERVER['REMOTE_ADDR'];
@@ -41,8 +41,11 @@ class Comentarios
 	{
 		//ESTE ES EL RANQUEO QUE DEBERÍA FUNCIONAR PERO DICE QUE HAY UN ERROR CUANDO USO EL ECHO
 		//ESTO SOLO FUNCIONARÍA BIEN EN product_details.php NO EN card_paises.php HAY QUE PENSAR COMO AGREGARLO ALLÁ
-		$query = "SELECT AVG(calificacion) FROM comentarios WHERE productos_id =" .$_GET['id'];
-		return $this->con->query($query);
+		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE productos_id =" .$_GET['id'];
+		$resultado = $this->con->query($query)->fetch();
+		//var_dump($resultado);
+		//return $resulta2 = floor(($resultado['ranking'] * 1000)) / 1000;
+		return bcdiv($resultado['ranking'], '1', 1);
 	}
 
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
