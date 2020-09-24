@@ -52,9 +52,9 @@
           "ciudad" => $producto_id
         ]; */
 
-        //$continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
-        //$pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
-        //$ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : null);
+        // $continente = (isset($_GET["continente"]) ? $_GET['continente'] : null);
+        // $pais = (isset($_GET["pais"]) ? $_GET['pais'] : null);
+        // $ciudad = (isset($_GET["ciudad"]) ? $_GET['ciudad'] : $_GET['producto'] = '');
 
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($productos as $key => $value) {
@@ -70,7 +70,7 @@
           
         } elseif ($page == 'catalogo') {
           // Parametros: ($_GET [continente, pais, ciudad], ORDER, activo/inactivo)
-          foreach ($Productos->getProductos($_GET, 'ASC', 1) as $ciudades) {
+          foreach ($Productos->getProductos($_GET, 'ASC') as $ciudades) {
 
             /*
                 if (
