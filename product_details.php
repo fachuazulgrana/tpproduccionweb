@@ -77,7 +77,7 @@
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
                     <h5 class="pl-3">
-                        <?php echo $Comentarios->getRanqueo(); ?>
+                        Puntaje: <?php echo $Comentarios->getRanqueo(); ?>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
