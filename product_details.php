@@ -72,8 +72,8 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php //echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
-                        <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
+                        <?php echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
+                        <?php //echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
                     <h5 class="pl-3">
@@ -106,7 +106,7 @@
                         <tbody>
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']  . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $Continente->getNameContinente() . ' - ' . $Pais->getNamePais() .  '</td></tr>';
                             echo '<tr><td>Precio: </td><td> ' .'$'. $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>

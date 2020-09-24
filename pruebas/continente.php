@@ -25,7 +25,9 @@ class Continente
 	}
 
 	public function getNameContinente(){
-		$query = "SELECT continentes.nombre FROM continentes INNER JOIN productos ON continentes.id = productos.continentes_id";
-		return $this->con->query($query);
+		$query = "SELECT continentes.nombre AS nombre FROM continentes INNER JOIN paises ON continentes.id = paises.continentes_id INNER JOIN productos ON paises.id = productos.paises_id WHERE productos.id =" . $_GET['id'];
+		$resultado = $this->con->query($query)->fetch();
+		//var_dump($resultado);
+		return $resultado['nombre'];
 	}
 }
