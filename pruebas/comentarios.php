@@ -44,7 +44,8 @@ class Comentarios
 		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE productos_id =" .$_GET['id'];
 		$resultado = $this->con->query($query)->fetch();
 		//var_dump($resultado);
-		return $resultado['ranking'];
+		//return $resulta2 = floor(($resultado['ranking'] * 1000)) / 1000;
+		return bcdiv($resultado['ranking'], '1', 1);
 	}
 
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
