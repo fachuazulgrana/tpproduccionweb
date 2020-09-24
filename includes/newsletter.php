@@ -1,6 +1,34 @@
+  <?php
+  class Newsletter{
+
+    private $con;
+    
+    function __construct($con){
+      $this->con= $con;
+    }
+    /*
+    public function getNewsletter(){
+      $query = "SELECT * FROM newsletter";
+      return $this->con->query($query);
+    }
+    */
+    public function setNewsletter()
+    {
+      if (isset($_POST['news'])) {
+        $email = $_POST['email'];
+        $fechareg = date("y/m/d");
+        //$producto_id = $_POST['productos_id'];
+        $sql = "INSERT INTO newsletter (`id`, `email`, `fecha`) VALUES ('0', '$email', '$fechareg')";
+        $this->con->exec($sql);
+      }
+    }
+  }
+  ?>
+
 <section class="newsletter-area">
 
   <?php
+  /*
   if (isset($_POST['submit'])) {
     $dato = $_POST;
     unset($dato['submit']);
@@ -16,6 +44,7 @@
     fwrite($correos, json_encode($correosArray));
     fclose($correos);
   }
+  */
   ?>
 
   <div class="container">
@@ -40,8 +69,13 @@
                           <input type="email" id="email" name="email" class="form-control newsletter-input pr-lg-1" placeholder="Ingrese email">
                         </div>
 
+                        <?php $Newsletter = new Newsletter($con); ?>
+
                         <div class="col-lg-3 col-md-4 p-2">
-                          <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Subscribite" name="submit">
+                          <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Subscribite" name="news">
+                          <?php
+                            $Newsletter->setNewsletter();
+                          ?>
                         </div>
                       </div>
                     </fieldset>
