@@ -219,10 +219,10 @@
                         $comentarioArray = json_decode($comentarioJson, true);
                         krsort($comentarioArray);*/
                     $cantidad = 0;
-                    foreach ($Comentarios->getComentarios() as $comentario) {
-                        if ($comentario['productos_id'] == $_GET['id']) {
-                            $cantidad++;
-                            if ($cantidad == 11) break;
+                    foreach ($Comentarios->getComentarios($_GET) as $comentario) {
+                       /*  if ($comentario['productos_id'] == $_GET['id']) { */
+                            /* $cantidad++;
+                            if ($cantidad == 11) break; */
 
                             /*foreach ($comentarioArray as $comentario) {
                             if ($comentario['producto_id'] == $_GET['id']) {
@@ -261,9 +261,9 @@
                             </div>
 
                     <?php
-                        }
+                        /* } */
+                    /* } */
                     }
-                    //}
                     ?>
                 </div>
             </div>
