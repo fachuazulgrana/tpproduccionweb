@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2020 a las 03:04:41
+-- Tiempo de generación: 25-09-2020 a las 15:46:00
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.3
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -45,9 +44,27 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`, `activo`) VALUES
-(1, 'asd', 'asd@asd', 2, 'asd', '2019-09-20', '100.100.100', 1, 0),
-(2, 'sad', 'sad@sad', 5, 'sad', '2019-09-20', '100.100.100', 1, 0),
-(8, 'asd', 'sss@sss', 3, 'sasa', '2023-09-20', '::1', 1, 0);
+(1, 'asd', 'asd@asd', 2, 'asd', '2019-09-20', '100.100.100', 1, 1),
+(2, 'sad', 'sad@sad', 5, 'sad', '2019-09-20', '100.100.100', 1, 1),
+(8, 'asd', 'sss@sss', 3, 'sasa', '2023-09-20', '::1', 1, 1),
+(13, 'Luis', 'mateo@mateo.com', 2, 'comentario', '2020-09-24', '::1', 13, 1),
+(14, 'Luis', 'mateo@mateo.com', 2, 'comentario', '2020-09-24', '::1', 13, 0),
+(19, 'M', 'sffdg@gghg', 5, 'afsdfsd', '2020-09-24', '::1', 1, 1),
+(20, 'M', 'sffdg@gghg', 5, 'afsdfsd', '2020-09-24', '::1', 1, 1),
+(21, 'M', 'sffdg@gghg', 5, 'afsdfsd', '2020-09-24', '::1', 1, 0),
+(22, 'mateoporcar', 'sffdg@gghg', 4, 'TEST DE IP ', '2020-09-24', '::1', 1, 0),
+(23, 'mateoporcar', 'mateo.porcar@gmail.com', 5, 'luissssss', '2020-09-24', '::1', 17, 0),
+(24, 'Mateo', 'mateo@mateo.com', 4, 'fgdfgdgdgf', '2020-09-24', '::1', 14, 0),
+(25, 'M', 'mateo.porcar@gmail.com', 5, 'sdfsfsfdsdf', '2020-09-24', '::1', 14, 0),
+(26, 'Mateo', 'mateo.porcar@gmail.com', 3, 'veniac', '2020-09-24', '::1', 10, 0),
+(27, 'Mateo', 'mateo@mateo.com', 5, 'sfgsfsfsdfsdfsfs   vvvv', '2020-09-24', '::1', 19, 0),
+(28, 'mateoporcar', 'mateo.porcar@gmail.com', 3, 'WHASHINTOOOON', '2020-09-24', '::1', 19, 0),
+(29, 'mateoporcar', 'mateo.porcar@gmail.com', 3, 'WHASHINTOOOON', '2020-09-24', '::1', 19, 0),
+(30, 'Mateo', 'mateo@mateo.com', 3, 'HOLA TULUM', '2020-09-21', '::1', 24, 0),
+(34, 'Mate', 'fsfsdfq@hola.com', 4, 'TULLLLLLLL', '2020-09-24', '::1', 24, 0),
+(35, 'compostela', 'mateo@holamundo.com', 4, 'SANTIAGO DE COMPOSTELA 1', '2020-09-23', '::1', 2, 0),
+(36, 'compostela', 'mateo@holamundo.com', 4, 'SANTIAGO DE COMPOSTELA 2', '2020-09-24', '::2', 2, 0),
+(37, 'compostela', 'mateo@holamundo.com', 2, 'SANTIAGO DE COMPOSTELA 3', '2020-09-24', '::1', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -246,7 +263,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
