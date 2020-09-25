@@ -43,7 +43,7 @@
         //foreach ($Productos->getProductos() as $ciudades)
         //foreach ($paises as $key => $value) {
 
-        foreach ($Productos->getProductos('', '') as $ciudades) {
+        foreach ($Productos->getProductos('', '', 1) as $ciudades) {
             //if ($value == $id) break;
             if ($ciudades['id'] == $_GET['id']) break;
         }
@@ -72,15 +72,12 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
+                        <?php echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
+                        <?php //echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
                     <h5 class="pl-3">
-                        Acá va el promedio
-                        <!-- 
-                            ESTO SERÍA EL PROMEDIO PERO NO FUNCIONA
-                            <?php //echo $Comentarios->getRanqueo(); ?> 
-                        -->
+                        Puntaje: <?php echo $Comentarios->getRanqueo(); ?>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
@@ -109,8 +106,8 @@
                         <tbody>
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']  . '</td></tr>';
-                            echo '<tr><td>Precio: </td><td> ' . $ciudades['precio'] . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $Continente->getNameContinente() . ' - ' . $Pais->getNamePais() .  '</td></tr>';
+                            echo '<tr><td>Precio: </td><td> ' .'$'. $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
                     </table>
@@ -185,7 +182,7 @@
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar">
                                     <?php
                                         $Comentarios->setComentarios();
-                                        ?>
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -222,10 +219,10 @@
                         $comentarioArray = json_decode($comentarioJson, true);
                         krsort($comentarioArray);*/
                     $cantidad = 0;
-                    foreach ($Comentarios->getComentarios() as $comentario) {
-                        if ($comentario['productos_id'] == $_GET['id']) {
-                            $cantidad++;
-                            if ($cantidad == 11) break;
+                    foreach ($Comentarios->getComentarios($_GET) as $comentario) {
+                       /*  if ($comentario['productos_id'] == $_GET['id']) { */
+                            /* $cantidad++;
+                            if ($cantidad == 11) break; */
 
                             /*foreach ($comentarioArray as $comentario) {
                             if ($comentario['producto_id'] == $_GET['id']) {
@@ -264,9 +261,9 @@
                             </div>
 
                     <?php
-                        }
+                        /* } */
+                    /* } */
                     }
-                    //}
                     ?>
                 </div>
             </div>

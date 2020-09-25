@@ -18,7 +18,7 @@
 
                       <!-- 
                         ESTO DEBERÍA IR ACÁ CUANDO ARREGLEMOS EL RANQUEO
-                        <span class="card-text text-center badge badge-light"><?php $Comentarios->getRanqueo(); ?></span> 
+                        <span class="card-text text-center badge badge-light"><?php //$Comentarios->getRanqueo(); ?></span> 
                       -->
 
                       <span class="card-text text-center badge badge-light">$<?php echo $ciudades["precio"]; ?></span>

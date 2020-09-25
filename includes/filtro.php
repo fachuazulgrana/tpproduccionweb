@@ -18,7 +18,7 @@
                                         <select name="continente" class="custom-select custom-select-lg" id="continente" onchange="this.form.submit()">
                                             <option value="" selected="selected">Seleccionar Continente</option>
                                             <?php
-                                            foreach ($Continente->getContinente() as $continentes) : ?>
+                                            foreach ($Continente->getContinente(1) as $continentes) : ?>
                                                 <option value="<?php echo $continentes['id'] ?>" <?php echo ($opcion == $continentes['id']) ? 'selected="selected"' : '' ?>>
                                                     <?php echo $continentes['nombre'] ?>
                                                 </option>
