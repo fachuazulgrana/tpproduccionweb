@@ -9,7 +9,11 @@ class Pais{
 	}
 
 	public function getPais($filtro = array()){
-		$query = "SELECT * FROM paises WHERE 1 = 1";
+		/* $query = "SELECT * FROM paises WHERE 1 = 1"; */
+		$query = "SELECT paises.id, paises.nombre FROM paises
+		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
+		WHERE paises.activo = 1";
+
 
 		if(!empty($filtro['continente'])){
 			$query .= ' AND continentes_id  =' . $filtro['continente'];
@@ -17,6 +21,11 @@ class Pais{
 
 		return $this->con->query($query);
 
+	}
+
+	public function getNamePais(){
+		$query = "SELECT paises.nombre FROM paises INNER JOIN productos ON paises.id = productos.paises_id";
+		return $this->con->query($query);
 	}
 }
 
