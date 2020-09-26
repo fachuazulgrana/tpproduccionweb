@@ -2,7 +2,7 @@
     $hostname = 'localhost';
     $database = 'produccion_web';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $puerto = 3306;
 
 
