@@ -15,7 +15,7 @@
                                     <div class="carousel-content welcome wow fadeInUp">
                                         <h3 class="titulo-carousel">Delfos Tour</h3>
                                         <p class="subtitulo-carousel text-white">¡CONOCÉ NUESTROS DESTINOS!</p>
-                                        <a class="btn btn-slide text-white" href="catalogo.php">Ver mas</a>
+                                        <a class="btn btn-slide text-white" href="<?php echo RUTA_CATALOGO ?>">Ver mas</a>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                     <div class="carousel-content welcome">
                                         <h3 class="titulo-carousel">Delfos Tour</h3>
                                         <p class="subtitulo-carousel text-white">¡CONOCÉ NUESTROS DESTINOS!</p>
-                                        <a class="btn btn-slide text-white" href="catalogo.php">Ver mas</a>
+                                        <a class="btn btn-slide text-white" href="<?php echo RUTA_CATALOGO ?>">Ver mas</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                     <div class="carousel-content welcome">
                                         <h3 class="titulo-carousel">Delfos Tour</h3>
                                         <p class="subtitulo-carousel text-white">¡CONOCÉ NUESTROS DESTINOS!</p>
-                                        <a class="btn btn-slide text-white" href="catalogo.php">Ver mas</a>
+                                        <a class="btn btn-slide text-white" href="<?php echo RUTA_CATALOGO ?>">Ver mas</a>
                                     </div>
                                 </div>
                             </div>

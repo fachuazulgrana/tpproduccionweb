@@ -9,42 +9,13 @@
 <body>
     <?php
     $page = 'catalogo';
-    //$str_data = file_get_contents("json/ciudades.json");
-    //$paises = json_decode($str_data, true);
-
     require_once "includes/encabezado.php";
-    //$id = $_GET['id'];
-
-    // Si $_POST submit esta setteado, guarda los datos del comentario en comentarios.json
-/*     if (isset($_POST['submit'])) {
-        $data = $_POST;
-        unset($data['submit']);
-        $data['fecha'] = date('d/m/Y H:i:s');
-        $fecha = new DateTime();
-        $indexComentario = $fecha->format('YmdHisu'); */
-        /*
-        if (file_exists('json/comentarios.json')) {
-            $comentarioJson = file_get_contents('json/comentarios.json');
-            $comentarioArray = json_decode($comentarioJson, true);
-        } else {
-            $comentarioArray = array();
-        }
-        $comentarioArray[$indexComentario] = $data;
-        $fp = fopen('json/comentarios.json', 'w');
-        fwrite($fp, json_encode($comentarioArray));
-        fclose($fp);
-        */
-  /*   } */
     ?>
 
 
     <div class="container text-center pt-5 pb-4">
         <?php
-        //foreach ($Productos->getProductos() as $ciudades)
-        //foreach ($paises as $key => $value) {
-
         foreach ($Productos->getProductos('', '', 1) as $ciudades) {
-            //if ($value == $id) break;
             if ($ciudades['id'] == $_GET['id']) break;
         }
         echo '<h1>' . $ciudades['nombre'] . '</h1>';
@@ -62,8 +33,8 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-5">
                     <div class="imagen1">
-                        <a href="pruebas/img<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
-                            <img height="auto" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+                        <a href="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
+                            <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
                         </a>
                     </div>
                 </div>
@@ -72,15 +43,13 @@
                         <?php echo $ciudades['nombre']; ?> <br>
                     </h4>
                     <h5 class="pl-3">
-                        <?php echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
+                        <?php echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais(); ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
-                    <h5 class="pl-3">
-                        Acá va el promedio
-                        <!-- 
-                            ESTO SERÍA EL PROMEDIO PERO NO FUNCIONA
-                            <?php //echo floatval($Comentarios->getRanqueo()); ?> 
-                        -->
+                    <h5 class="pl-3 d-flex">
+                        <p class="mr-2">Puntaje: </p> <br>
+                        <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo(); ?> </p>
+                        <div class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo(); ?>"></div>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
@@ -109,8 +78,8 @@
                         <tbody>
                             <?php
                             echo '<tr><td>Pais: </td><td>' . $ciudades['nombre'] . '</td></tr>';
-                            echo '<tr><td>Viaje: </td><td>' . $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']  . '</td></tr>';
-                            echo '<tr><td>Precio: </td><td> ' .'$'. $ciudades['precio'] . '</td></tr>';
+                            echo '<tr><td>Viaje: </td><td>' . $Continente->getNameContinente() . ' - ' . $Pais->getNamePais() .  '</td></tr>';
+                            echo '<tr><td>Precio: </td><td> ' . '$' . $ciudades['precio'] . '</td></tr>';
                             ?>
                         </tbody>
                     </table>
@@ -184,8 +153,8 @@
                                 <div class="col-sm-6 col-md-2">
                                     <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar">
                                     <?php
-                                        $Comentarios->setComentarios();
-                                        ?>
+                                    $Comentarios->setComentarios();
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -211,62 +180,45 @@
     </section>
 
     <!-- ACÁ DEVULVEN LOS COMENTARIOS -->
-
     <div class="testimonial_area">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <?php
-                    /*if (file_exists('json/comentarios.json')) {
-                        $comentarioJson = file_get_contents('json/comentarios.json');
-                        $comentarioArray = json_decode($comentarioJson, true);
-                        krsort($comentarioArray);*/
                     $cantidad = 0;
-                    foreach ($Comentarios->getComentarios() as $comentario) {
-                        if ($comentario['productos_id'] == $_GET['id']) {
-                            $cantidad++;
-                            if ($cantidad == 11) break;
-
-                            /*foreach ($comentarioArray as $comentario) {
-                            if ($comentario['producto_id'] == $_GET['id']) {
-                                $cantidad++;
-                                if ($cantidad == 11) break;*/
+                    foreach ($Comentarios->getComentarios($_GET) as $comentario) {
                     ?>
-                            <div class="row justify-content-center align-items-center">
-                                <div class="border p-4 shadow col-8 single_testmonial">
-                                    <p> <?php echo $comentario['comentario']; ?> </p>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="border p-4 shadow col-8 single_testmonial">
+                                <p> <?php echo $comentario['comentario']; ?> </p>
 
-                                    <div class="testmonial_author">
-                                        <h3>- <?php echo $comentario['email']; ?> </h3>
-                                    </div>
-
-                                    <h3 class="text-warning">
-                                        <?php
-                                        if ($comentario['calificacion'] == '1') {
-                                            echo '★';
-                                        } elseif ($comentario['calificacion'] == '2') {
-                                            echo '★★';
-                                        } elseif ($comentario['calificacion'] == '3') {
-                                            echo '★★★';
-                                        } elseif ($comentario['calificacion'] == '4') {
-                                            echo '★★★★';
-                                        } elseif ($comentario['calificacion'] == '5') {
-                                            echo '★★★★★';
-                                        }
-                                        //echo $comentario['calificacion']; 
-                                        ?>
-                                    </h3>
-
-                                    <small>
-                                        <i> <?php echo $comentario['fecha']; ?> </i>
-                                    </small>
+                                <div class="testmonial_author">
+                                    <h3>- <?php echo $comentario['email']; ?> </h3>
                                 </div>
-                            </div>
 
+                                <h3 class="text-warning">
+                                    <?php
+                                    if ($comentario['calificacion'] == '1') {
+                                        echo '★';
+                                    } elseif ($comentario['calificacion'] == '2') {
+                                        echo '★★';
+                                    } elseif ($comentario['calificacion'] == '3') {
+                                        echo '★★★';
+                                    } elseif ($comentario['calificacion'] == '4') {
+                                        echo '★★★★';
+                                    } elseif ($comentario['calificacion'] == '5') {
+                                        echo '★★★★★';
+                                    }
+                                    //echo $comentario['calificacion']; 
+                                    ?>
+                                </h3>
+                                <small>
+                                    <i> <?php echo $comentario['fecha']; ?> </i>
+                                </small>
+                            </div>
+                        </div>
                     <?php
-                        }
                     }
-                    //}
                     ?>
                 </div>
             </div>

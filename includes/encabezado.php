@@ -7,14 +7,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav nav-pills align-items-center">
             <li class="nav-brand px-4 py-2">
-                <a href="index.php" class="logomenu"> <img src="images/logo_cabecera.png" width="70" height="60" alt="Logo">
+                <a href="<?php echo RUTA_HOME ?>" class="logomenu"> <img src="images/logo_cabecera.png" width="70" height="60" alt="Logo">
                 </a>
             </li>
             <li <?php echo ($page == 'index') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
                 <a class="nav-link borde" href=<?php echo RUTA_HOME ?>>Inicio</a>
             </li>
             <li <?php echo ($page == 'catalogo') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href=<?php echo RUTA_CATALOGO ?>>Catálogo</a>
+                <a class="nav-link borde" href=<?php echo RUTA_CATALOGO . '?continente=&pais=&ciudad=' ?>>Catálogo</a>
             </li>
             <li <?php echo ($page == 'paquetes') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
                 <a class="nav-link borde" href=<?php echo RUTA_PAQUETES ?>>Paquetes</a>
