@@ -199,6 +199,23 @@ input[type="radio"]:checked ~ label {
   color: orange;
 }
 
+/* ----- Star rating ----- */
+
+.star-rating {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-family: Times;
+  line-height: 1;
+}
+
+.star-rating::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #fc0 var(--percent), rgb(200,200,200) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ----- iframe Google maps -----*/
 
 .google-maps {

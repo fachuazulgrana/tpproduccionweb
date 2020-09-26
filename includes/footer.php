@@ -54,10 +54,10 @@
             <div class="col-2 py-3">
                 <div class="row justify-content-center align-items-center flex-column">
                     <div>Mapa del sitio</div>
-                    <div><a href="index.php">Home</a></div>
-                    <div><a href="catalogo.php">Catálogo</a></div>
-                    <div><a href="paquetes.php">Paquetes</a></div>
-                    <div><a href="contacto.php">Contacto</a></div>
+                    <div><a href="<?php echo RUTA_HOME ?>">Home</a></div>
+                    <div><a href="<?php echo RUTA_CATALOGO ?>">Catálogo</a></div>
+                    <div><a href="<?php echo RUTA_PAQUETES ?>">Paquetes</a></div>
+                    <div><a href="<?php echo RUTA_CONTACTO ?>">Contacto</a></div>
                 </div>
             </div>
         </div>
