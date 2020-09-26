@@ -3,23 +3,12 @@
 
               <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id'] ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
 
-              
-              <?php 
-                //foreach ($Productos->getProductos() as $ciudades)
-                //echo '<img src="' .  $ciudades["url"] . '" class="card-img-top" alt="..." />'
-              ?>
-
                 <div class="card-body">
                   <h5 class="card-title1 font-weight-bold"><?php echo $ciudades["nombre"]; ?></h5>
                   <p class="card-text"><?php echo cortar($ciudades["descripcion"]); ?></p>
                   <div class="row justify-content-center pt-1 pb-3">
                     <h5>
                       <span class="card-text text-center badge badge-light">Acá va el promedio</span>
-
-                      <!-- 
-                        ESTO DEBERÍA IR ACÁ CUANDO ARREGLEMOS EL RANQUEO
-                        <span class="card-text text-center badge badge-light"><?php //$Comentarios->getRanqueo(); ?></span> 
-                      -->
 
                       <span class="card-text text-center badge badge-light">$<?php echo $ciudades["precio"]; ?></span>
                     </h5>

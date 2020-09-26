@@ -1,101 +1,73 @@
 <?php
 
-class Productos
-{
+class Productos {
 
 	private $con;
 
-	function __construct($con)
-	{
+	function __construct($con) {
 		$this->con = $con;
 	}
 
-	public function getProductos($filtro = array(), $orden)
-	{
-		/*
-		SELECT 
-		productos.id, 
-		productos.nombre, 
-		productos.descripcion, 
-		productos.detalle, 
-		productos.precio, 
-		productos.continentes_id, 
-		productos.paises_id
-		FROM productos
-        INNER JOIN continentes cont ON " . $filtro['continente'] . " = cont.id AND productos.activo = 1
-        INNER JOIN paises p ON " . $filtro['pais'] . " = p.id AND productos.activo = 1
-        INNER JOIN productos pro ON " . $filtro['ciudad'] . " = pro.id AND pro.activo = 1
-        WHERE productos.continentes_id = 1 AND productos.paises_id = 1 AND productos.id = 1
-		*/
-
+	public function getProductos($filtro = array()) {
 		$query = "SELECT 
 		productos.id, 
 		productos.nombre, 
-		productos.descripcion, 
-		productos.detalle, 
 		productos.precio, 
+		productos.descripcion, 
 		productos.continentes_id, 
-		productos.paises_id
-		FROM productos";
+		productos.paises_id, 
+		productos.activo, 
+		productos.detalle, 
+		productos.destacado 
+		FROM productos
+		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
+		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
+		WHERE productos.activo = 1 ";
 
 		$where = array();
+ 
+		// $_GET continente = ?
+		if (!empty($filtro['continente'])) {
+			$where[] = ' productos.continentes_id = ' . $filtro['continente'];
+		}
 
-		// Si $_GET continente pais y ciudad vacios, retorna todos los productos activos
-		if (empty($filtro['continente']) && empty($filtro['pais']) && empty($filtro['ciudad'])) {
-			$query .= ' WHERE productos.activo = 1';
-		} else {
-			// $_GET continente = ?
-			if (!empty($filtro['continente'])) {
-				$innerCont = " INNER JOIN continentes cont ON " . $filtro['continente'] . " = cont.id AND cont.activo = 1";
-				$query .= $innerCont;
-				$where[] = ' productos.continentes_id = ' . $filtro['continente'];
-			}
+		// $_GET pais = ?
+		if (!empty($filtro['pais'])) {
+			$where[] = ' productos.paises_id = ' . $filtro['pais'];
+		}
 
-			// $_GET pais = ?
-			if (!empty($filtro['pais'])) {
-				$innerPais = " INNER JOIN paises p ON " . $filtro['pais'] . " = p.id AND p.activo = 1";
-				$query .= $innerPais;
-				$where[] = ' productos.paises_id = ' . $filtro['pais'];
-			}
+		// $_GET ciudad = ?
+		if (!empty($filtro['ciudad'])) {
+			$where[] = ' productos.id = ' . $filtro['ciudad'];
+		}
 
-			// $_GET ciudad = ?
-			if (!empty($filtro['ciudad'])) {
-				$innerCiudad = " INNER JOIN productos pro ON " . $filtro['ciudad'] . " = pro.id AND pro.activo = 1";
-				$query .= $innerCiudad;
-				$where[] = ' productos.id = ' . $filtro['ciudad'];
-			}
-
-			// Union de array elements con un string
-			if (!empty($where)) {
-				$query .= ' WHERE ' . implode(' AND ', $where);
+		if (!empty($filtro['orden'])) {
+			if($filtro['orden'] == 1) {
+				$where[] = ' productos.destacado = ' . $filtro['orden'] ;
 			}
 		}
 
-		// Agregado a query final el ORDER BY
-		if (!empty($orden)) {
-			$query .= ' ORDER BY nombre ' . $orden;
-		} else {
-			$query .= ' ORDER BY nombre ASC';
+		// Union de array elements con un string
+		if (!empty($where)) {
+			$query .= ' AND ' . implode(' AND ', $where);
+		}
+
+		if (!empty($filtro['orden'])) {
+			if($filtro['orden'] != 1) {
+				$query .= ' ORDER BY nombre ' . $filtro['orden'];
+			}
 		}
 
 		return $this->con->query($query);
 	}
 
-
-
-
-
-	public function getProductosDestacados()
-	{
-
+	public function getProductosDestacados() {
 		$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
 		return $this->con->query($query);
 	}
 
 
-	public function getProductosFiltro($filtro = array())
-	{
-
+	public function getProductosFiltro($filtro = array()) {
 		$query = "SELECT * FROM productos ";
 
 		$where = array();
@@ -114,4 +86,46 @@ class Productos
 
 		return $this->con->query($query);
 	}
+
+
+
+	//ordenar A a Z, Z a A y destacado
+
+	public function getProductosAcomodamiento($filtro = array(), $orden, $activo) {
+
+		$query = "SELECT * FROM productos ";
+
+		$where = array();
+
+		if (!empty($filtro['continente'])) {
+			$where[] = ' continentes_id = ' . $filtro['continente'];
+		}
+
+		if (!empty($filtro['pais'])) {
+			$where[] = ' paises_id = ' . $filtro['pais'];
+		}
+
+		if (!empty($filtro['ciudad'])) {
+			$where[] = ' id = ' . $filtro['ciudad'];
+		}
+
+    if(!empty($where)){
+        $query .= ' WHERE '.implode(' AND ',$where);
+    }
+
+		// ORDER
+	  if (!empty($filtro['order'])){
+        if($filtro['order'] == 'AZ'){
+            $query .= ' ORDER BY nombre ASC';
+        }elseif($filtro['order'] == 'ZA'){
+            $query .= ' ORDER BY nombre DESC';
+        }else{
+            $query .= ' ORDER BY destacados ASC';
+        }
+  	} else {
+    		$query .= ' ORDER BY destacados ASC';
+    }
+			return $this->con->query($query);
+	}
 }
+?>

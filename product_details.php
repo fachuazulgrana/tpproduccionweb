@@ -62,7 +62,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-5">
                     <div class="imagen1">
-                        <a href="pruebas/img<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
+                        <a href="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" data-fancybox="gallery" data-caption="Caption for single image">
                             <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id']; ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
                         </a>
                     </div>
@@ -73,11 +73,12 @@
                     </h4>
                     <h5 class="pl-3">
                         <?php echo $Continente->getNameContinente() . ' - ' . $Pais->getNamePais();?> <br>
-                        <?php //echo $ciudades['continentes_id'] . ' - ' . $ciudades['paises_id']; ?> <br>
                         Precio: $<?php echo $ciudades['precio']; ?>
                     </h5>
-                    <h5 class="pl-3">
-                        Puntaje: <?php echo $Comentarios->getRanqueo(); ?>
+                    <h5 class="pl-3 d-flex">
+                        <p class="mr-2">Puntaje: </p> <br>
+                        <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo(); ?> </p>
+                        <div class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo(); ?>"></div>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>
