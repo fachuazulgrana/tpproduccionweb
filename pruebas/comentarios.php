@@ -52,7 +52,7 @@ class Comentarios
 
 	public function getRanqueo()
 	{
-		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE productos_id =" . $_GET['id'];
+		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $_GET['id'];
 		$resultado = $this->con->query($query)->fetch();
 		return bcdiv($resultado['ranking'], '1', 1);
 	}
