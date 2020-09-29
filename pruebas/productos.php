@@ -43,11 +43,11 @@ class Productos
 			$where[] = ' productos.id = ' . $filtro['ciudad'];
 		}
 
-		if (!empty($filtro['orden'])) {
+		/* if (!empty($filtro['orden'])) {
 			if ($filtro['orden'] == 1) {
-				$where[] = ' productos.destacado = ' . $filtro['orden'];
+				$where[] = ' ORDER BY destacado ASC ';
 			}
-		}
+		} */
 
 		// Union de array elements con un string
 		if (!empty($where)) {
@@ -57,6 +57,8 @@ class Productos
 		if (!empty($filtro['orden'])) {
 			if ($filtro['orden'] != 1) {
 				$query .= ' ORDER BY nombre ' . $filtro['orden'];
+			} else {
+				$query .= ' ORDER BY destacado DESC ';
 			}
 		}
 
