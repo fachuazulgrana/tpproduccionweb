@@ -12,16 +12,7 @@ class Productos
 
 	public function getProductos($filtro = array())
 	{
-		$query = "SELECT 
-		productos.id, 
-		productos.nombre, 
-		productos.precio, 
-		productos.descripcion, 
-		productos.continentes_id, 
-		productos.paises_id, 
-		productos.activo, 
-		productos.detalle, 
-		productos.destacado FROM productos
+		$query = "SELECT productos.* FROM productos
 		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
 		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
 		WHERE productos.activo = 1 ";
@@ -67,7 +58,11 @@ class Productos
 
 	public function getProductosDestacados()
 	{
-		$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
+		//$query = "SELECT * FROM productos WHERE destacado = 1 ORDER BY rand() LIMIT 6";
+		$query = "SELECT productos.* FROM productos
+		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
+		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
+		WHERE productos.activo = 1 AND productos.destacado = 1 ORDER BY rand() LIMIT 6";
 		return $this->con->query($query);
 	}
 }
