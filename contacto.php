@@ -7,9 +7,9 @@
     </head>
 
     <body>
-        <?php 
+        <?php
         $page = 'contacto';
-        require_once "includes/encabezado.php"; 
+        require_once "includes/encabezado.php";
         ?>
 
         <section class="formulario-contacto py-5">
@@ -41,8 +41,12 @@
                                             <input type="email" id="email" name="email" required class="form-control">
                                         </div>
                                         <div class="col-sm-12 col-md-6 py-2">
-                                            <label>Área de la empresa *</label>
-                                            <input type="text" name="AreaDeLaEmpresa" required class="form-control">
+                                            <label>Area De La Empresa *</label>
+                                            <select name="AreaDeLaEmpresa" class="custom-select">
+                                                <option value="rrhh@delfous.com">RRHH</option>
+                                                <option value="it@delfous.com">Tecnologia</option>
+                                                <option value="marketing@delfous.com">Marketing</option>
+                                            </select>
                                         </div>
                                         <div class="col-sm-12 col-md-6 py-2">
                                             <label for="phone">Teléfono</label>
@@ -71,16 +75,17 @@
                                 </div>
                             </div>
 
-                            <?php 
-                            if(!empty($_POST['AreaDeLaEmpresa'])){
-                                $para = $_POST['AreaDeLaEmpresa']. '@delfostour.com';
-                                $titulo = 'Consulta de '. $_POST['nombre'];
+                            <?php
+                            if (!empty($_POST['AreaDeLaEmpresa'])) {
+                                // $para = 'test.toyama1@gmail.com'; // para testeo
+                                $para = $_POST['AreaDeLaEmpresa'];
+                                $titulo = 'Consulta de ' . $_POST['nombre'];
                                 $mensaje = $_POST['comentario'];
-                                $cabeceras = 'From: '. $_POST['email'] . "\r\n" .
-                                    'Reply-To: '. $_POST['email'] . "\r\n" .
+                                $cabeceras = 'From: ' . $_POST['email'] . "\r\n" .
+                                    'Reply-To: ' . $_POST['email'] . "\r\n" .
                                     'X-Mailer: PHP/' . phpversion();
-    
-                                mail($para, $titulo, $mensaje, $cabeceras); 
+
+                                mail($para, $titulo, $mensaje, $cabeceras);
                             }
                             ?>
 
@@ -98,9 +103,9 @@
             </div>
         </section>
 
-        <?php 
+        <?php
         require_once "includes/linkinteresesyherramientas.php";
-        require_once "includes/footer.php"; 
+        require_once "includes/footer.php";
         ?>
 
     </body>
