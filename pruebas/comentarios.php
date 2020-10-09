@@ -54,7 +54,7 @@ class Comentarios
 	{
 		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $_GET['id'];
 		$resultado = $this->con->query($query)->fetch();
-		return bcdiv($resultado['ranking'], '1', 1);
+		return number_format($resultado['ranking'], 1);
 	}
 
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
