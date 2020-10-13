@@ -1,4 +1,4 @@
-<nav class="navbar shadow-sm navbar-expand-md navbar-dark bg-orangened">
+<nav class="navbar navbar-fixed-top shadow-sm navbar-expand-md navbar-dark bg-orangened">
     <a class="navbar-brand" href="images/iconolog.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
