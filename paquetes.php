@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once "includes/head.php"; ?>
-    <title>Document</title>
+    <title>Paquetes</title>
 </head>
 
 <body>

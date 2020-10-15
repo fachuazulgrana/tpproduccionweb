@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once "head.php" ?>
-    <title>BackEnd</title>
+    <title>Productos</title>
 </head>
 
 <body>

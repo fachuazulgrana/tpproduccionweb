@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once "includes/head.php"; ?>
-    <title>Delfos Tour</title>
+    <title>Catálogo</title>
 </head>
 
 <body>
