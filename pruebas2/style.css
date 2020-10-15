@@ -20,7 +20,7 @@ body {
     text-decoration: none;
   }
    
-  .sidebar a.active {
+  .sidebar li.active {
     background-color: #3e84e0;
     color: white;
   }

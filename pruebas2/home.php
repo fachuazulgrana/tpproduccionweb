@@ -9,25 +9,10 @@
 <body>
 
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand">
-    <img src="../images/logo_cabecera.png" alt="logo" style="width:40px;">
-   </a>
-   <a class="navbar-brand asd">Bienvenido al Panel BackEnd</a>
-</nav>
-
-
-<div class="sidebar">
-  <a class="active">Home</a>
-  <a href="productos.php">Productos</a>
-  <a href="promociones.php">Promociones</a>
-  <a href="noticias.php">Noticias</a>
-  <a href="usuarios.php">Usuarios</a>
-  <a href="perfiles.php">Perfiles</a>
-  <a href="logout.php">Logout</a>
-  <a href="export.php">Export</a>
-</div>
+<?php 
+$page = 'home';
+require_once "sidebar.php" 
+?>
 
 <div class="content">
   <h2>Responsive Sidebar Example</h2>
