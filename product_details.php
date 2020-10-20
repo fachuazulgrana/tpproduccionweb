@@ -48,8 +48,8 @@
                     </h5>
                     <h5 class="pl-3 d-flex">
                         <p class="mr-2">Puntaje: </p> <br>
-                        <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo(); ?> </p>
-                        <div class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo(); ?>"></div>
+                        <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo(''); ?> </p>
+                        <div class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo(''); ?>"></div>
                     </h5>
                     <?php echo '<p class="col-9 pt-4">' . $ciudades['descripcion'] . '</p>'; ?>
                 </div>

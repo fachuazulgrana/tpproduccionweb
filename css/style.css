@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   background-color: #f6f6f6 !important;
 }
 
@@ -26,7 +26,6 @@ body {
   color: white;
   margin-right: 1.5rem;
 }
-
 
 /* ----- Destinos Populares ----- */
 
@@ -181,7 +180,7 @@ footer {
 
 /* ----- Comienza el codigo cs para las estrellas ----- */
 
-input[type="radio"] {
+input[type='radio'] {
   display: none;
 }
 
@@ -192,11 +191,11 @@ input[type="radio"] {
 }
 
 .clasificacion label:hover,
-.clasificacion label:hover~label {
+.clasificacion label:hover ~ label {
   color: orange;
 }
 
-input[type="radio"]:checked~label {
+input[type='radio']:checked ~ label {
   color: orange;
 }
 
@@ -212,7 +211,11 @@ input[type="radio"]:checked~label {
 .star-rating::before {
   content: '★★★★★';
   letter-spacing: 3px;
-  background: linear-gradient(90deg, #fc0 var(--percent), rgb(200, 200, 200) var(--percent));
+  background: linear-gradient(
+    90deg,
+    #fc0 var(--percent),
+    rgb(200, 200, 200) var(--percent)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -279,21 +282,19 @@ col-xl ≥1200px
   width: 100%;
   display: block !important;
   height: 640px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
 .carousel-imagen1 {
-  background-image: url("../images/carousel-img1.jpeg");
+  background-image: url('../images/carousel-img1.jpeg');
 }
 
 .carousel-imagen2 {
-  background-image: url("../images/carousel-img2.jpg");
+  background-image: url('../images/carousel-img2.jpg');
 }
 
 .carousel-imagen3 {
-  background-image: url("../images/carousel-img3.jpeg");
+  background-image: url('../images/carousel-img3.jpeg');
 }
 
 #main-slider .item.active {
@@ -349,8 +350,6 @@ col-xl ≥1200px
     width: 100%;
     display: block !important;
     height: 420px;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
   }
 
@@ -402,10 +401,10 @@ col-xl ≥1200px
 }
 
 .titulo-carousel {
-  font-family: "Nothing You Could Do", cursive;
+  font-family: 'Nothing You Could Do', cursive;
 }
 
 .subtitulo-carousel {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-weight: bold;
 }

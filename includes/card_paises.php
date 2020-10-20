@@ -19,11 +19,13 @@
               } ?>
                   "><?php echo $ciudades["nombre"]; ?></h5>
                   <p class="card-text"><?php echo cortar($ciudades["descripcion"]); ?></p>
-                  <div class="row justify-content-center pt-1 pb-3">
+                  <div class="row justify-content-center align-items-center pt-1">
+                    <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo($ciudades['id']); ?> </p>
+                    <p class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo($ciudades['id']); ?>"></p>
+                  </div>
+                  <div class="row justify-content-center align-items-center pb-3">
                     <h5>
-                      <span class="card-text text-center badge badge-light">Acá va el promedio</span>
-
-                      <span class="card-text text-center badge badge-light">$<?php echo $ciudades["precio"]; ?></span>
+                      <span class="card-text text-center badge badge-light">$ <?php echo $ciudades["precio"]; ?></span>
                     </h5>
                   </div>
                   <div class="container d-flex justify-content-around">

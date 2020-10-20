@@ -24,10 +24,10 @@ class Comentarios
 
 		$producto_id = $_GET['id'];
 		$fecha = date("y/m/d");
-/* 		$fecha_disponible = date("y/m/d", strtotime($fecha . "- 1 days")); */
+		/* 		$fecha_disponible = date("y/m/d", strtotime($fecha . "- 1 days")); */
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$query = "SELECT * FROM comentarios WHERE comentarios.productos_id = '$producto_id' AND comentarios.ip = '$ip' AND comentarios.fecha >= '$fecha'";
-	
+
 		$res = $this->con->query($query);
 		$num_rows = $res->rowCount();
 
@@ -50,10 +50,15 @@ class Comentarios
 		}
 	}
 
-	public function getRanqueo()
+	public function getRanqueo($ciudades_id)
 	{
-		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $_GET['id'];
-		$resultado = $this->con->query($query)->fetch();
+		if ($ciudades_id) {
+			$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $ciudades_id;
+			$resultado = $this->con->query($query)->fetch();
+		} else {
+			$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $_GET['id'];
+			$resultado = $this->con->query($query)->fetch();
+		}
 		return number_format($resultado['ranking'], 1);
 	}
 
