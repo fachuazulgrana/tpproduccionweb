@@ -191,11 +191,11 @@ input[type='radio'] {
 }
 
 .clasificacion label:hover,
-.clasificacion label:hover ~ label {
+.clasificacion label:hover~label {
   color: orange;
 }
 
-input[type='radio']:checked ~ label {
+input[type='radio']:checked~label {
   color: orange;
 }
 
@@ -211,11 +211,9 @@ input[type='radio']:checked ~ label {
 .star-rating::before {
   content: '★★★★★';
   letter-spacing: 3px;
-  background: linear-gradient(
-    90deg,
-    #fc0 var(--percent),
-    rgb(200, 200, 200) var(--percent)
-  );
+  background: linear-gradient(90deg,
+      #fc0 var(--percent),
+      rgb(200, 200, 200) var(--percent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -407,4 +405,16 @@ col-xl ≥1200px
 .subtitulo-carousel {
   font-family: 'Rubik', sans-serif;
   font-weight: bold;
+}
+
+.badge-top {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  background: red;
+  color: #fff;
+  padding: 3px 10px;
 }
