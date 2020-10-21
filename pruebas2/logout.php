@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <?php require_once "head.php" ?>
+    <?php require_once "head_admin.php" ?>
     <title>Logout</title>
 </head>
 
