@@ -20,20 +20,20 @@ require_once "sidebar.php"
  
  <!--
     public function login($data){
-      $sql = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo,salt
+      $sql = "SELECT id_usuario,nombre,apellido,user,password,email,activo,salt
         FROM usuarios WHERE activo = 1 AND usuario = '".$data['usuario']."'";
       $datos = $this->con->query($sql)->fetch(PDO::FETCH_ASSOC);
       if(isset($datos['id_usuario'])){
         if($this->encrypt($data['clave'],$datos['salt']) == $datos['clave']){
           $_SESSION['usuario'] = $datos;
-          $query = "SELECT cod, seccion FROM permisos
-            INNER JOIN perfil_permisos ON (perfil_permisos.permiso_id = permisos.id)
-            INNER JOIN usuarios_perfiles ON (usuarios_perfiles.perfil_id = perfil_permisos.perfil_id)
+          $query = "SELECT code, seccion FROM permisos
+            INNER JOIN perfil_permiso ON (perfil_permiso.permiso_id = permisos.permisos_id)
+            INNER JOIN usuario_perfiles ON (usuario_perfiles.perfil_id = perfil_permiso.perfil_id)
             WHERE usuario_id = ".$datos['id_usuario'];
 
           $permisos = array();
           foreach($this->con->query($query) as $key => $value){
-            $permisos['cod'][$key] = $value['cod'];
+            $permisos['code'][$key] = $value['code'];
             $permisos['seccion'][$key] = $value['seccion'];
           }
 

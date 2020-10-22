@@ -16,8 +16,8 @@ require_once("sidebar.php");
 
 <div class="content">
   <h2>Inicio</h2>
-  <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-  <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
+  <p>Bienvenido al BackEnd</p>
+  <p>Desde este lugar usted podrá manejar toda la página y la base de datos.</p>
  
 </div>
 

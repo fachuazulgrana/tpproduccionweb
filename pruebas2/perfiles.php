@@ -5,14 +5,16 @@
   <?php
   require_once("head_admin.php");
   require_once('../app/Perfil.php');
-  require_once('../pruebas/mysql-login.php');
+  require_once '../pruebas/pdo.php';
+
+  /*require_once('../pruebas/mysql-login.php');
 
   try{
     $con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
   }catch (PDOException $e){
     print "¡Error!: " . $e->getMessage();
     die();
-  }
+  }*/
 
 
   $Perfil = new Perfil($con);
@@ -22,9 +24,8 @@
 
 </head>
 
-<?php require_once "sidebar.php"; ?>
+<?php require_once "sidebar.php"; 
 
-<?php
 if (isset($_POST['formulario-perfiles'])) {
   if ($_POST['id_perfil'] > 0) {
     $Perfil->edit($_POST);
@@ -63,8 +64,8 @@ if (isset($_GET['del'])) {
               <td><?php echo $perfil['id_perfil']; ?></td>
               <td><?php echo $perfil['nombre']; ?></td>
               <td>
-                <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button">M</button></a>
-                <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button">X</button></a>
+                <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button">Modificar</button></a>
+                <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button">Borrar</button></a>
               </td>
             </tr>
 
