@@ -3,7 +3,7 @@
 
 <head>
   <?php
-  require_once "head_admin.php";
+  require_once("head_admin.php");
   require_once('../app/Perfil.php');
   require_once('../pruebas/mysql-login.php');
 

@@ -17,3 +17,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 -->
+
+
+<!--
+        if(isset($_POST['login'])){
+        $user->login($_POST);
+    }
+
+    if(isset($_GET['login'])){
+        unset($_SESSION['usuario']);
+    }
+
+    if($user->notLogged()){
+        header('Location: login.php');
+    }
+-->

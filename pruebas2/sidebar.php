@@ -13,12 +13,18 @@
         <a href="home.php">Home</a>
     </li>
     
+    <!--
+        if(in_array('user',$_SESSION['usuario']['permisos']['seccion'])){
+            <li class="<?php echo isset($userMenu)?'active':''?>"><a href="usuarios.php"></a></li> 
+        }
+    -->
+
     <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
         <a href="productos.php">Productos</a>
     </li>
     
-    <li <?php echo ($page == 'promociones') ? "class=active" : ""; ?>>
-        <a href="promociones.php">Promociones</a>
+    <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
+        <a href="comentarios.php">Comentarios</a>
     </li>
     
     <li <?php echo ($page == 'noticias') ? "class=active" : ""; ?>>
@@ -33,8 +39,8 @@
         <a href="perfiles.php">Perfiles</a>
     </li>
     
-    <li <?php echo ($page == 'logout') ? "class=active" : ""; ?>>
-        <a href="logout.php">Logout</a>
+    <li <?php echo ($page == 'logout') ? "class=active" : ""; ?>> <!-- echo ($page == 'login') ? "unset($_SESSION['usuario'])" : ""; -->
+        <a href="logout.php">Logout</a> <!-- href="login.php" -->
     </li>
     
     <li <?php echo ($page == 'export') ? "class=active" : ""; ?>>

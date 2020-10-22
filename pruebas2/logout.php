@@ -10,7 +10,7 @@
 
 <?php 
 $page = 'logout';
-require_once "sidebar.php" 
+require_once("sidebar.php"); 
 ?>
 
 <div class="content">
