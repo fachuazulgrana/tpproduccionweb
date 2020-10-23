@@ -14,11 +14,41 @@ require_once("sidebar.php");
 ?>
 
 <div class="content">
-  <h2>Continentes</h2>
-  <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-  <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
- 
-</div>
+    <h1 class="page-header">Continentes</h1>
+    <h2 class="sub-header">Listado <a href=""><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($Continente->getCont() as $cont) {
+          ?> 
+            <tr>
+              <td><?php echo $cont['id']; ?></td>
+              <td><?php echo $cont['nombre']; ?></td>
+              <td><?php echo $cont['activo']; ?></td>
+
+
+              <td>
+                <a href=""><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href=""><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+              </td>
+
+            </tr>
+
+          <?php
+          }
+
+          ?>
+        </tbody>
+      </table>
 
 </body>
 </html>

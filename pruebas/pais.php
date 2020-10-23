@@ -29,6 +29,11 @@ class Pais{
 		//var_dump($resultado);
 		return $resultado['nombre'];
 	}
+
+	public function getPaises(){
+		$query = "SELECT * FROM paises";
+		return $this->con->query($query);
+	}
 }
 
 ?>

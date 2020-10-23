@@ -65,4 +65,10 @@ class Comentarios
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
 		VALUES ('email', '5', 'comentario', '2020', '127.0.0.1', '1')"; 
 		$this->con->exec($sql);*/
+		
+	public function getComent()
+	{
+		$query = 'SELECT * FROM comentarios';
+		return $this->con->query($query);
+	}
 }

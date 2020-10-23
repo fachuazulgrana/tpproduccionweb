@@ -30,4 +30,9 @@ class Continente
 		//var_dump($resultado);
 		return $resultado['nombre'];
 	}
+
+	public function getCont(){
+		$query = "SELECT * FROM continentes";
+		return $this->con->query($query);
+	}
 }

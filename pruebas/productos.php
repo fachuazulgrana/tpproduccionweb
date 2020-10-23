@@ -65,4 +65,12 @@ class Productos
 		WHERE productos.activo = 1 AND productos.destacado = 1 ORDER BY rand() LIMIT 6";
 		return $this->con->query($query);
 	}
+
+	
+	public function getProd()
+	{
+		$query = "SELECT * FROM productos";
+		return $this->con->query($query);
+	}
+
 }
