@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2020 a las 17:49:53
+-- Tiempo de generación: 23-10-2020 a las 03:01:59
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.3
 
@@ -139,6 +139,16 @@ CREATE TABLE `perfiles` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `perfiles`
+--
+
+INSERT INTO `perfiles` (`id_perfil`, `nombre`) VALUES
+(1, 'Administrador'),
+(2, 'Ventas'),
+(3, 'tester1'),
+(5, 'asd');
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +160,13 @@ CREATE TABLE `perfil_permiso` (
   `permiso_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `perfil_permiso`
+--
+
+INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -159,9 +176,35 @@ CREATE TABLE `perfil_permiso` (
 CREATE TABLE `permisos` (
   `permisos_id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `code` int(50) NOT NULL,
-  `seccion` int(50) NOT NULL
+  `code` varchar(50) NOT NULL,
+  `seccion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`permisos_id`, `nombre`, `code`, `seccion`) VALUES
+(1, 'Agregar usuarios', 'user.add', 'user'),
+(2, 'Modificar usuarios', 'user.edit', 'user'),
+(3, 'Borrar usuarios', 'user.del', 'user'),
+(4, 'Ver usuarios', 'user.see', 'user'),
+(5, 'Agregar productos', 'prod.add', 'prod'),
+(6, 'Modificar productos', 'prod.edit', 'prod'),
+(7, 'Borrar productos', 'prod.del', 'prod'),
+(8, 'Ver productos', 'prod.see', 'prod'),
+(9, 'Agregar paises', 'prod.add', 'prod'),
+(10, 'Modificar paises', 'prod.edit', 'prod'),
+(11, 'Borrar paises', 'prod.del', 'prod'),
+(12, 'Ver paises', 'prod.see', 'prod'),
+(13, 'Agregar continentes', 'prod.add', 'prod'),
+(14, 'Modificar continentes', 'prod.edit', 'prod'),
+(15, 'Borrar continentes', 'prod.del', 'prod'),
+(16, 'Ver continentes', 'prod.see', 'prod'),
+(17, 'Agregar comentarios', 'com.add', 'com'),
+(18, 'Modificar comentarios', 'com.edit', 'com'),
+(19, 'Borrar comentarios', 'com.del', 'com'),
+(20, 'Ver comentarios', 'com.see', 'com');
 
 -- --------------------------------------------------------
 
@@ -239,9 +282,22 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
   `user` varchar(50) NOT NULL,
-  `password` varchar(250) NOT NULL
+  `password` varchar(250) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
+  `salt` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `user`, `password`, `email`, `tipo`, `activo`, `salt`) VALUES
+(1, 'Admin', 'Sistema', 'admin', '12345', 'admin@carrito.com', 1, 1, 'salt');
 
 -- --------------------------------------------------------
 
@@ -253,6 +309,26 @@ CREATE TABLE `usuario_perfiles` (
   `usuario_id` int(11) NOT NULL,
   `perfil_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_tipo`
+--
+
+CREATE TABLE `usuario_tipo` (
+  `id` int(11) NOT NULL,
+  `tipo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario_tipo`
+--
+
+INSERT INTO `usuario_tipo` (`id`, `tipo`) VALUES
+(1, 'admin'),
+(2, 'ventas'),
+(3, 'tester');
 
 --
 -- Índices para tablas volcadas
@@ -319,7 +395,8 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `user` (`user`) USING BTREE;
+  ADD UNIQUE KEY `user` (`user`) USING BTREE,
+  ADD KEY `tipo` (`tipo`);
 
 --
 -- Indices de la tabla `usuario_perfiles`
@@ -327,6 +404,12 @@ ALTER TABLE `usuario`
 ALTER TABLE `usuario_perfiles`
   ADD PRIMARY KEY (`usuario_id`,`perfil_id`),
   ADD KEY `perfil_id` (`perfil_id`);
+
+--
+-- Indices de la tabla `usuario_tipo`
+--
+ALTER TABLE `usuario_tipo`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -360,7 +443,7 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -372,7 +455,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario_tipo`
+--
+ALTER TABLE `usuario_tipo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -402,6 +491,12 @@ ALTER TABLE `perfil_permiso`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`paises_id`) REFERENCES `paises` (`id`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `usuario_tipo` (`id`);
 
 --
 -- Filtros para la tabla `usuario_perfiles`
