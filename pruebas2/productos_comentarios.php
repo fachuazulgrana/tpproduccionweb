@@ -26,7 +26,8 @@ require_once "sidebar.php"
         </thead>
         <tbody>
           <?php
-          foreach ($Comentarios->getComent() as $coment) { //Acá hay que poner para que se vean todos los productos
+          foreach ($Comentarios->getComentProd($_GET) as $coment) {
+          //foreach ($Comentarios->getComent() as $coment) { //Acá hay que poner para que se vean todos los productos
           ?> 
             <tr>
               <td><?php echo $coment['fecha']; ?></td>

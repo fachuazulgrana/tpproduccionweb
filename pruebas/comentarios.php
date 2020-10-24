@@ -72,6 +72,14 @@ class Comentarios
 		return $this->con->query($query);
 	}
 
+	public function getComentProd($filtro = array())
+	{
+		if (!empty($filtro['id'])) {
+			$productos_id = $filtro['id'];
+			$query = "SELECT * FROM comentarios WHERE productos_id = $productos_id";
+			return $this->con->query($query);
+		}
+	}
 
 	public function get($id)
     {

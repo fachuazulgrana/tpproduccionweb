@@ -41,7 +41,7 @@ require_once "sidebar.php"
               <td><?php echo $prod['activo']; ?></td>
 
               <td>
-                <a href="productos_comentarios.php?edit=<?php echo $prod['id'] ?>"><button type="button">Acceder</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="productos_comentarios.php?id=<?php echo $prod['id'] ?>"><button type="button">Acceder</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
               <td>
