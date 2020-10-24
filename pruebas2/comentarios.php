@@ -13,7 +13,7 @@ $page = 'comentarios';
 require_once("sidebar.php");
 
 if (isset($_POST['formulario-comentario'])) {
-  if ($_POST['id'] = $_GET['id']) {
+  if ($_POST['id'] > 0) {
     $Comentarios->edit($_POST);
   } else {
     $Comentarios->save($_POST);

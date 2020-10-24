@@ -144,5 +144,11 @@ class Comentarios
         $sql = 'DELETE FROM comentarios WHERE id = ' .$id;
         $this->con->exec($sql);
 
+        $sql = '';
+
+        foreach ($data['id'] as $nose) {
+            $sql .= 'INSERT INTO comentarios VALUES (' . $id . ',' . $nose . ');';
+        }
+        $this->con->exec($sql);
     }
 }
