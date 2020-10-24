@@ -9,7 +9,7 @@
 
 
     if (isset($_GET['edit'])) {
-        $coment = $Comentarios->getComent($_GET['edit']);
+        $coment = $Comentarios->get($_GET['edit']);
     }
 
     ?>
@@ -35,35 +35,35 @@ require_once "sidebar.php";
             </div>
             <form action="comentarios.php" method="post" class="col-md-6 from-horizontal">
                 <div class="form-group">
-                    <label for="calificacion" class="col-sm-2 control-label">Calificacion</label>
+                    <label for="comentarios-calificacion" class="col-sm-2 control-label">Calificacion</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="calificacion" name="calificacion" value="<?php echo (isset($coment->calificacion) ? $coment->calificacion : ''); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="comentario" class="col-sm-2 control-label">Comentario</label>
+                    <label for="comentarios-comentario" class="col-sm-2 control-label">Comentario</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="comentario" name="comentario" value="<?php echo (isset($coment->comentario) ? $coment->comentario : ''); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="fecha" class="col-sm-2 control-label">Fecha</label>
+                    <label for="comentarios-fecha" class="col-sm-2 control-label">Fecha</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo (isset($coment->fecha) ? $coment->fecha : ''); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="productos_id" class="col-sm-2 control-label">Productos_id</label>
+                    <label for="comentarios-productos_id" class="col-sm-2 control-label">Productos_id</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="productos_id" name="productos_id" value="<?php echo (isset($coment->productos_id) ? $coment->productos_id : ''); ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="activo" class="col-sm-2 control-label">Activo</label>
+                    <label for="comentarios-activo" class="col-sm-2 control-label">Activo</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($coment->activo) ? $coment->activo : ''); ?>">
                     </div>
@@ -76,7 +76,7 @@ require_once "sidebar.php";
                         <button type="submit" class="btn btn-default" name="formulario-comentario">Guardar</button>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($coment->id)?$coment->id:'');?>">
+                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($coment->id) ? $coment->id : '');?>">
 
             </form>
         </div>

@@ -72,6 +72,13 @@ class Comentarios
 		return $this->con->query($query);
 	}
 
+	public function getProdName()
+	{
+		$query = "SELECT productos.nombre FROM productos INNER JOIN comentarios ON comentarios.productos_id = productos.id";
+		$resultado = $this->con->query($query)->fetch();
+		return $resultado['nombre'];
+	}
+
 	public function getComentProd($filtro = array())
 	{
 		if (!empty($filtro['id'])) {
@@ -84,13 +91,16 @@ class Comentarios
 	public function get($id)
     {
         $query = "SELECT * FROM comentarios WHERE id = " . $id;
-        return $this->con->query($query);
-        //$comentarios = $query->fetch(PDO::FETCH_OBJ);
-        //$sql = "SELECT perfil_id, permiso_id FROM perfil_permiso WHERE perfil_id = " . $perfil->id_perfil;
-        //foreach ($this->con->query($sql) as $permiso) {
-        //    $perfil->permisos[] = $permiso['permiso_id'];
-        //}
-        //return $perfil;
+        $query = $this->con->query($query);
+		
+		$comentarios = $query->fetch(PDO::FETCH_OBJ);
+
+		$sql = "SELECT id FROM comentarios WHERE id = " . $comentarios->id;
+		
+        foreach ($this->con->query($sql) as $commit) {
+            $comentarios->array[] = $commit['id'];
+        }
+        return $comentarios;
     }
 
     public function del($id)
@@ -139,16 +149,6 @@ class Comentarios
 
         $sql = "UPDATE comentarios SET " .implode(',',$columns)." WHERE id = " .$id;
 
-        $this->con->exec($sql);
-
-        $sql = 'DELETE FROM comentarios WHERE id = ' .$id;
-        $this->con->exec($sql);
-
-        $sql = '';
-
-        foreach ($data['id'] as $nose) {
-            $sql .= 'INSERT INTO comentarios VALUES (' . $id . ',' . $nose . ');';
-        }
         $this->con->exec($sql);
     }
 }
