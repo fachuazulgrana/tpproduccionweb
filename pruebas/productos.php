@@ -21,7 +21,7 @@ class Productos
 
 		// $_GET continente = ?
 		if (!empty($filtro['continente'])) {
-			$where[] = ' productos.continentes_id = ' . $filtro['continente'];
+			$where[] = ' paises.continentes_id = ' . $filtro['continente'];
 		}
 
 		// $_GET pais = ?

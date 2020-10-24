@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once "head_admin.php" ?>
-    <title>Promociones</title>
+    <title>Comentarios</title>
 </head>
 
 <body>
@@ -31,7 +31,24 @@ if (isset($_GET['del'])) {
 ?>
   <div class="content">
     <h1 class="page-header">Comentarios</h1>
-    <h2 class="sub-header">Listado <a href="comentarios_ae.php"><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+
+    <div class="row">
+      <h2 class="col-sm-1">Filtro</h2>
+
+      <form action="" method="GET" class="col-sm-2">
+      <?php
+      $opcion4 = 'Todo';
+      !empty($_GET['orden']) ? $opcion4 = $_GET['orden'] : $opcion4 = ""
+      ?>
+      <select name="orden" class="custom-select custom-select-lg" id="orden" onchange="this.form.submit()">
+          <option value="" <?php echo ($opcion4 == "") ? 'selected="selected"' : '' ?>> Mostrar Todo </option>
+          <option value="1" <?php echo ($opcion4 == "1") ? 'selected="selected"' : '' ?>> Solo Activos </option>
+          <option value="2" <?php echo ($opcion4 == "2") ? 'selected="selected"' : '' ?>> Solo Inactivos </option>
+      </select>
+      </form>
+    </div>
+
+    <!-- <h2 class="sub-header">Listado <a href="comentarios_ae.php"><button type="button">AGREGAR</button></a></h2> --> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>

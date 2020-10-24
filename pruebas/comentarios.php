@@ -10,6 +10,10 @@ class Comentarios
 		$this->con = $con;
 	}
 
+	// ***********************
+	//     FRONT END
+	// ***********************
+
 	public function getComentarios($filtro = array())
 	{
 		if (!empty($filtro['id'])) {
@@ -66,15 +70,27 @@ class Comentarios
 		VALUES ('email', '5', 'comentario', '2020', '127.0.0.1', '1')"; 
 		$this->con->exec($sql);*/
 		
+	// ***********************
+	//       BACK END
+	// ***********************
+
 	public function getComent()
 	{
-		$query = 'SELECT * FROM comentarios';
-		return $this->con->query($query);
+		if($_GET==null || $_GET['orden']==""){
+			$query = 'SELECT * FROM comentarios';
+			return $this->con->query($query);
+		}else if ($_GET['orden']=="1") {
+			$query = 'SELECT * FROM comentarios WHERE comentarios.activo = 1';
+			return $this->con->query($query);
+		}else if ($_GET['orden']=="2") {
+			$query = 'SELECT * FROM comentarios WHERE comentarios.activo = 0';
+			return $this->con->query($query);
+		}
 	}
 
 	public function getProdName()
 	{
-		$query = "SELECT productos.nombre FROM productos INNER JOIN comentarios ON comentarios.productos_id = productos.id";
+		$query = "SELECT productos.nombre AS nombre FROM productos INNER JOIN comentarios ON comentarios.productos_id = productos.id";
 		$resultado = $this->con->query($query)->fetch();
 		return $resultado['nombre'];
 	}

@@ -5,7 +5,7 @@
     <?php
     $page = 'comentarios';
     require_once("head_admin.php");
-    require_once('../app/Perfil.php');
+    //require_once('../app/Perfil.php');
 
 
     if (isset($_GET['edit'])) {
@@ -13,6 +13,7 @@
     }
 
     ?>
+    <title>Comentarios AddEdit</title>
 
 </head>
 
@@ -22,18 +23,18 @@ require_once "sidebar.php";
 ?>
 <div class="content">
         <div class="col-sm-9 col-md-10 main">
+        <!--
             <p class="visible-xs">
-                <!--
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
                     <i class="glyphicon glyphicon-chevron-left"></i>
                 </button>
-                -->
             </p>
+        -->
             <h1 class="page-header">Agregar / Editar Comentario</h1>
             <div class="col-md-2">
-
             </div>
             <form action="comentarios.php" method="post" class="col-md-6 from-horizontal">
+            <!--
                 <div class="form-group">
                     <label for="comentarios-calificacion" class="col-sm-2 control-label">Calificacion</label>
                     <div class="col-sm-10">
@@ -61,22 +62,28 @@ require_once "sidebar.php";
                         <input type="text" class="form-control" id="productos_id" name="productos_id" value="<?php echo (isset($coment->productos_id) ? $coment->productos_id : ''); ?>">
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="comentarios-activo" class="col-sm-2 control-label">Activo</label>
-                    <div class="col-sm-10">
+            -->
+                <div class="form-group row">
+                    <label for="comentarios-activo" class="col-sm-10 control-label">Activo</label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($coment->activo) ? $coment->activo : ''); ?>">
                     </div>
+
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-comentario">Guardar</button>
+                    </div>
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($coment->id) ? $coment->id : '');?>">
+
                 </div>
 
-
-
+            <!--
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-6">
                         <button type="submit" class="btn btn-default" name="formulario-comentario">Guardar</button>
                     </div>
                 </div>
                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($coment->id) ? $coment->id : '');?>">
+            -->
 
             </form>
         </div>

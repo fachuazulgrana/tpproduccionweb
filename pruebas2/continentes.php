@@ -10,12 +10,29 @@
 
 <?php 
 $page = 'continentes';
-require_once("sidebar.php"); 
+require_once("sidebar.php");
+
+if (isset($_POST['formulario-continente'])) {
+  if ($_POST['id'] > 0) {
+    $Continente->edit($_POST);
+  } else {
+    $Continente->save($_POST);
+  }
+  header('Location: continentes.php');
+}
+
+if (isset($_GET['del'])) {
+  $resp = $Continente->del($_GET['del']);
+  if ($resp == 1) {
+    header('Location: continentes.php');
+  }
+  echo '<script>alert("' . $resp . '");</script>';
+}
 ?>
 
 <div class="content">
     <h1 class="page-header">Continentes</h1>
-    <h2 class="sub-header">Listado <a href=""><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <a href="continentes_ae.php"><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -37,8 +54,8 @@ require_once("sidebar.php");
 
 
               <td>
-                <a href=""><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
-                <a href=""><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="continentes_ae.php?edit=<?php echo $cont['id'] ?>"><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="continentes.php?del=<?php echo $cont['id'] ?>"><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>
