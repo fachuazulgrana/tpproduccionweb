@@ -15,11 +15,11 @@
     ?>
 
 </head>
+
+<body>
 <?php
 require_once "sidebar.php";
 ?>
-
-<body>
 <div class="content">
         <div class="col-sm-9 col-md-10 main">
             <p class="visible-xs">

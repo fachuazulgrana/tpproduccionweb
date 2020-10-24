@@ -97,7 +97,7 @@ class Comentarios
     {
         $query = "SELECT count(1) as cantidad FROM comentarios WHERE id = " . $id;
 
-        $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+        $consulta = $this->con->query($query)->fetch();
 
         if ($consulta->cantidad == 0) {
             $query = "DELETE FROM comentarios WHERE id = " . $id;
