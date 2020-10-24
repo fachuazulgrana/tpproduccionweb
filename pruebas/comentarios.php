@@ -71,4 +71,70 @@ class Comentarios
 		$query = 'SELECT * FROM comentarios';
 		return $this->con->query($query);
 	}
+
+
+	public function get($id)
+    {
+        $query = "SELECT * FROM comentarios WHERE id = " . $id;
+        return $this->con->query($query);
+        //$comentarios = $query->fetch(PDO::FETCH_OBJ);
+        //$sql = "SELECT perfil_id, permiso_id FROM perfil_permiso WHERE perfil_id = " . $perfil->id_perfil;
+        //foreach ($this->con->query($sql) as $permiso) {
+        //    $perfil->permisos[] = $permiso['permiso_id'];
+        //}
+        //return $perfil;
+    }
+
+    public function del($id)
+    {
+        $query = "SELECT count(1) as cantidad FROM comentarios WHERE id = " . $id;
+
+        $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+
+        if ($consulta->cantidad == 0) {
+            $query = "DELETE FROM comentarios WHERE id = " . $id;
+
+            $this->con->exec($query);
+            return 1;
+        }
+
+        return "Comentario eliminado";
+    }
+
+    public function save($data)
+    {
+        foreach ($data as $key => $value) {
+            if (!is_array($value)) {
+                if ($value != null) {
+                    $columns[] = $key;
+                    $datos[] = $value;
+                }
+            }
+        }
+        $sql = "INSERT INTO comentarios(" . implode(',', $columns) . ") VALUES('" . implode("','", $datos) . "')";
+        $this->con->exec($sql);
+
+        $id = $this->con->lastInsertId();
+    }
+
+    public function edit($data){
+        $id = $data['id'];
+        unset($data['id']);
+
+        foreach ($data as $key => $value){
+            if(!is_array($value)){
+                if($value != null){
+                    $columns[]=$key." = '".$value."'";
+                }
+            }
+        }
+
+        $sql = "UPDATE comentarios SET " .implode(',',$columns)." WHERE id = " .$id;
+
+        $this->con->exec($sql);
+
+        $sql = 'DELETE FROM comentarios WHERE id = ' .$id;
+        $this->con->exec($sql);
+
+    }
 }

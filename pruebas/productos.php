@@ -73,4 +73,10 @@ class Productos
 		return $this->con->query($query);
 	}
 
+	public function getProdName()
+	{
+		$query = "SELECT productos.nombre FROM productos INNER JOIN comentarios ON comentarios.productos_id = productos.id";
+		$resultado = $this->con->query($query)->fetch();
+		return $resultado['nombre'];
+	}
 }
