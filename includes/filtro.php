@@ -92,6 +92,7 @@
                                             <option value="ASC" <?php echo ($opcion4 == "ASC") ? 'selected="selected"' : '' ?>> Ordenar A-Z </option>
                                             <option value="DESC" <?php echo ($opcion4 == "DESC") ? 'selected="selected"' : '' ?>> Ordenar Z-A </option>
                                             <option value="1" <?php echo ($opcion4 == "1") ? 'selected="selected"' : '' ?>> Destacados </option>
+                                            <option value="calificacion" <?php echo ($opcion4 == "calificacion") ? 'selected="selected"' : '' ?>> Mayor Rankeo </option>
 
                                         </select>
                                     </form>

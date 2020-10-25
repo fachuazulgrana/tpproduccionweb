@@ -66,6 +66,12 @@ class Comentarios
 		return number_format($resultado['ranking'], 1);
 	}
 
+	public function getRankeo(){
+		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios INNER JOIN productos ON productos.id = comentarios.productos_id AND comentarios.activo = 1";
+		$resultado = $this->con->query($query)->fetch();
+		return number_format($resultado['ranking'], 1);
+	}
+
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
 		VALUES ('email', '5', 'comentario', '2020', '127.0.0.1', '1')"; 
 		$this->con->exec($sql);*/

@@ -151,10 +151,35 @@
                                 <input type="hidden" class="input-xlarge" name="productos_id" value="<?php echo $_GET['id'] ?>" />
 
                                 <div class="col-sm-6 col-md-2">
-                                    <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar">
+                                    <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Enviar" name="comentar" data-toggle="modal" data-target="#myModal">
                                     <?php
                                     $Comentarios->setComentarios();
                                     ?>
+                                    
+                                    <div class="modal fade" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                <h4 class="modal-title">Comentario Enviado</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                Muchas gracias.
+                                                </div>
+                                                
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

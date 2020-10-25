@@ -39,6 +39,10 @@ class Productos
 				$where[] = ' ORDER BY destacado ASC ';
 			}
 		} */
+		//if(!empty($filtro['orden'])){
+		//	$where[] = ' productos.id = comentarios.productos_id';
+		//	$query .= ' ORDER BY AVG(comentarios.calificacion) '; //INNER JOIN comentarios ON comentarios.activo = 1 AND comentarios.productos_id = productos.id
+		//}
 
 		// Union de array elements con un string
 		if (!empty($where)) {
@@ -62,10 +66,9 @@ class Productos
 		$query = "SELECT productos.* FROM productos
 		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
 		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
-		WHERE productos.activo = 1 AND productos.destacado = 1 ORDER BY rand() LIMIT 6";
+		WHERE productos.activo = 1 AND productos.destacado = 1 "; //ORDER BY rand() LIMIT 6
 		return $this->con->query($query);
 	}
-
 	
 	public function getProd()
 	{
