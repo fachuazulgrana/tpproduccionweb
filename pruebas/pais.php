@@ -34,21 +34,22 @@ class Pais{
 		return $resultado['nombre'];
 	}
 
-	public function getPaises(){
-		$query = "SELECT * FROM paises";
-		return $this->con->query($query);
-	}
-
 	// ***********************
 	//       BACK END
 	// ***********************
 
+	public function getPaises(){
+		$query = "SELECT * FROM paises";
+		return $this->con->query($query);
+    }
+    
+	/*
 	public function getCont(){
 		$query = "SELECT * FROM continentes";
 		return $this->con->query($query);
 	}
 
-	/*public function getProdName()
+    public function getProdName()
 	{
 		$query = "SELECT productos.nombre AS nombre FROM productos INNER JOIN comentarios ON comentarios.productos_id = productos.id";
 		$resultado = $this->con->query($query)->fetch();

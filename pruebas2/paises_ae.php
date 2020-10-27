@@ -29,8 +29,8 @@
             <form action="paises.php" method="post" class="col-md-6 from-horizontal">
                 <div class="form-group row">
                     <label for="paises-nombre" class="col-sm-3 control-label">Nombre</label>
-                    <label for="paises-continente" class="col-sm-6 control-label">Continente</label>
-                    <label for="paises-activo" class="col-sm-3 control-label">Activo</label>
+                    <label for="paises-continente" class="col-sm-3 control-label">Continente</label>
+                    <label for="paises-activo" class="col-sm-6 control-label">Activo</label>
 
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo (isset($pais->nombre) ? $pais->nombre : ''); ?>">

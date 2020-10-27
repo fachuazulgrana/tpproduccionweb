@@ -47,6 +47,7 @@ if (isset($_GET['del'])) {
       </select>
       </form>
     </div>
+    <br>
 
     <!-- <h2 class="sub-header">Listado <a href="comentarios_ae.php"><button type="button">AGREGAR</button></a></h2> --> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
@@ -76,8 +77,8 @@ if (isset($_GET['del'])) {
 
 
               <td>
-                <a href="comentarios_ae.php?edit=<?php echo $coment['id'] ?>"><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
-                <a href="comentarios.php?del=<?php echo $coment['id'] ?>"><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="comentarios_ae.php?edit=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="comentarios.php?del=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>
