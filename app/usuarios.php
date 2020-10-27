@@ -29,16 +29,24 @@ class Usuario
     }
 
 
-
     public function get($id)
     {
         $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave` FROM `usuarios` WHERE `id_usuario` =" . $id;
         $query = $this->con->query($query);
+
         $usuario = $query->fetch(PDO::FETCH_OBJ);
 
+        $sql = 'SELECT perfil_id
+					  FROM usuario_perfiles  
+					  WHERE usuario_perfiles.usuario_id = ' . $usuario->id_usuario;
 
+        foreach ($this->con->query($sql) as $perfil) {
+            $usuario->perfiles[] = $perfil['perfil_id'];
+        }
         return $usuario;
     }
+
+
 
     public function del($id)
     {
@@ -72,6 +80,19 @@ class Usuario
         $pass = $this->con->query($query)->fetch(PDO::FETCH_ASSOC);
         $passw = $pass['clave'];
 
+        if ($password_old == null && $password1 == null && $password2 == null) {
+
+            $sql = 'DELETE FROM usuario_perfiles WHERE usuario_id = ' . $id;
+            $this->con->exec($sql);
+            $sql = '';
+            foreach ($data['perfil'] as $perfil) {
+                $sql .= 'INSERT INTO usuario_perfiles(usuario_id,perfil_id) 
+							VALUES (' . $id . ',' . $perfil . ');';
+            }
+            $this->con->exec($sql);
+            return 1;
+        }
+
         if (!(password_verify($password_old, $passw))) {
             return "La antigua contraseña es incorrecta";
         }
@@ -90,6 +111,17 @@ class Usuario
             $sql = "UPDATE usuarios SET `clave` = '$password' WHERE `id_usuario` = '$id'";
 
             $this->con->exec($sql);
+
+            $sql = 'DELETE FROM usuario_perfiles WHERE usuario_id = ' . $id;
+            $this->con->exec($sql);
+
+            $sql = '';
+            foreach ($data['perfil'] as $perfil) {
+                $sql .= 'INSERT INTO usuario_perfiles(usuario_id,perfil_id) 
+							VALUES (' . $id . ',' . $perfil . ');';
+            }
+            $this->con->exec($sql);
+
             return 1;
         }
     }

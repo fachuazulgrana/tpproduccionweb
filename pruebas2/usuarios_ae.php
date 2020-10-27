@@ -82,8 +82,8 @@ require_once "sidebar.php";
                         <select name="perfil[]" id="perfil" multiple='multiple'>
                             <?php foreach ($Perfil->getList() as $t) { ?>
                                 <option value="<?php echo $t['id_perfil'] ?>" <?php
-                                                                                if (isset($usuario->perfiles)) {
-                                                                                    if (in_array($t['id_perfil'], $usuario->perfiles)) {
+                                                                                if (isset($usuarios->perfiles)) {
+                                                                                    if (in_array($t['id_perfil'], $usuarios->perfiles)) {
                                                                                         echo ' selected="selected" ';
                                                                                     }
                                                                                 }
