@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2020 a las 03:01:59
+-- Tiempo de generación: 28-10-2020 a las 00:00:10
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.3
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `produccion_web`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `activo` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `password`, `tipo`, `activo`) VALUES
+(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '123456', 0, 0),
+(8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0),
+(9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0),
+(10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0),
+(11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -144,10 +171,10 @@ CREATE TABLE `perfiles` (
 --
 
 INSERT INTO `perfiles` (`id_perfil`, `nombre`) VALUES
-(1, 'Administrador'),
-(2, 'Ventas'),
-(3, 'tester1'),
-(5, 'asd');
+(1, 'administrador'),
+(2, 'gerencia'),
+(3, 'cliente'),
+(4, 'visitante');
 
 -- --------------------------------------------------------
 
@@ -165,7 +192,13 @@ CREATE TABLE `perfil_permiso` (
 --
 
 INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
-(1, 2);
+(1, 1),
+(1, 2),
+(2, 4),
+(3, 2),
+(3, 3),
+(4, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -277,27 +310,31 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `user` varchar(50) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `activo` tinyint(1) NOT NULL,
-  `salt` varchar(50) NOT NULL
+  `apellido` varchar(80) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `usuario` varchar(80) NOT NULL,
+  `clave` varchar(300) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `user`, `password`, `email`, `tipo`, `activo`, `salt`) VALUES
-(1, 'Admin', 'Sistema', 'admin', '12345', 'admin@carrito.com', 1, 1, 'salt');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`) VALUES
+(11, 'geren', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJ', 1),
+(20, 'otro', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJ', 1),
+(27, 'usuariox', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiV', 0),
+(38, 'admin', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1),
+(39, 'Mateo', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdeuST9q1.c3YQPvuBM2hrRudA9ZCs/pva', 0),
+(40, 'mateo', 'Porrc', 'mateo.porcar@live.com.ar', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdeKxG1ZfaZCOjh92OVQzqgA6MwHYGEaHa', 1),
+(41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0);
 
 -- --------------------------------------------------------
 
@@ -310,29 +347,26 @@ CREATE TABLE `usuario_perfiles` (
   `perfil_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `usuario_tipo`
+-- Volcado de datos para la tabla `usuario_perfiles`
 --
 
-CREATE TABLE `usuario_tipo` (
-  `id` int(11) NOT NULL,
-  `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuario_tipo`
---
-
-INSERT INTO `usuario_tipo` (`id`, `tipo`) VALUES
-(1, 'admin'),
-(2, 'ventas'),
-(3, 'tester');
+INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
+(40, 1),
+(40, 2),
+(41, 1),
+(41, 2);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `user` (`user`) USING BTREE;
 
 --
 -- Indices de la tabla `comentarios`
@@ -391,29 +425,28 @@ ALTER TABLE `productos`
   ADD KEY `paises_id` (`paises_id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `user` (`user`) USING BTREE,
-  ADD KEY `tipo` (`tipo`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- Indices de la tabla `usuario_perfiles`
 --
 ALTER TABLE `usuario_perfiles`
   ADD PRIMARY KEY (`usuario_id`,`perfil_id`),
-  ADD KEY `perfil_id` (`perfil_id`);
-
---
--- Indices de la tabla `usuario_tipo`
---
-ALTER TABLE `usuario_tipo`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `perfil_id` (`perfil_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -443,7 +476,7 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -452,16 +485,10 @@ ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `usuario_tipo`
---
-ALTER TABLE `usuario_tipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
@@ -493,17 +520,11 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`paises_id`) REFERENCES `paises` (`id`);
 
 --
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `usuario_tipo` (`id`);
-
---
 -- Filtros para la tabla `usuario_perfiles`
 --
 ALTER TABLE `usuario_perfiles`
-  ADD CONSTRAINT `usuario_perfiles_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`),
-  ADD CONSTRAINT `usuario_perfiles_ibfk_2` FOREIGN KEY (`perfil_id`) REFERENCES `perfiles` (`id_perfil`);
+  ADD CONSTRAINT `usuario_perfiles_ibfk_2` FOREIGN KEY (`perfil_id`) REFERENCES `perfiles` (`id_perfil`),
+  ADD CONSTRAINT `usuario_perfiles_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
