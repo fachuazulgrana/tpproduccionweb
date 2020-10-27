@@ -10,7 +10,7 @@
     <?php
     $page = 'iniciar_sesion';
     require_once "includes/encabezado.php";
-    include_once 'app/Inciar_Sesion.php';
+    include_once 'app/Iniciar_Sesion.php';
     ?>
 
     <section class="formulario-contacto py-5">
