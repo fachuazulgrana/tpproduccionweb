@@ -3,7 +3,7 @@
 
 <head>
     <?php require_once "includes/head.php" ?>
-    <title>Iniciar Sesion</title>
+    <title>Registrarse</title>
 </head>
 
 <body>

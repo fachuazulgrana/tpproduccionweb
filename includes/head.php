@@ -20,6 +20,8 @@ require_once('pruebas/continente.php');
 require_once('pruebas/pais.php');
 require_once('pruebas/productos.php');
 require_once('pruebas/comentarios.php');
+require_once('app/Registrar.php');
+require_once('app/Iniciar_Sesion.php');
 
 
 try{
@@ -34,4 +36,6 @@ $Continente = new Continente($con);
 $Pais = new Pais($con);
 $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
+$Registrar = new Registrar($con);
+$InciarSesion = new IniciarSesion($con);
 ?>

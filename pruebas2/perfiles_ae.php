@@ -7,15 +7,6 @@
     require_once("head_admin.php");
     require_once('../app/Perfil.php');
 
-    /*require_once '../pruebas/pdo.php';
-    require_once('../pruebas/mysql-login.php');
-
-    try {
-        $con = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';port=' . $puerto, $username, $password);
-    } catch (PDOException $e) {
-        print "¡Error!: " . $e->getMessage();
-        die();
-    }*/
 
     $Perfil = new Perfil($con);
 
@@ -41,7 +32,7 @@ require_once "sidebar.php";
                     <i class="glyphicon glyphicon-chevron-left"></i>
                 </button>
             </p>
-            <h1 class="page-header">Nuevo Perfil</h1>
+            <h1 class="page-header"><?php echo (isset($perfiles->nombre) ? 'Editar Perfil' : 'Nuevo Perfil'); ?></h1>
             <div class="col-md-2">
 
             </div>

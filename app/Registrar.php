@@ -17,8 +17,8 @@ class Registrar
             $usuario = $_POST['usuario'];
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
-            $query_email = "SELECT * FROM usuario WHERE usuario.email = '$email'";
-            $query_usuario = "SELECT * FROM usuario WHERE usuario.user = '$usuario'";
+            $query_email = "SELECT * FROM clientes WHERE clientes.email = '$email'";
+            $query_usuario = "SELECT * FROM clientes WHERE clientes.user = '$usuario'";
             $res_email = $this->con->query($query_email);
             $num_rows_email = $res_email->rowCount();
             $res_usuario = $this->con->query($query_usuario);
@@ -61,7 +61,7 @@ class Registrar
                     'salt' => "sdgsfgsdfksjfjs5245fdsfsdfjks"
                 ];
                 $password = password_hash($password1, PASSWORD_DEFAULT, $salt);
-                $sql = "INSERT INTO usuario (`nombre`, `apellido`, `email`, `user`, `password`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario','$password', 0)";
+                $sql = "INSERT INTO clientes (`nombre`, `apellido`, `email`, `user`, `password`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario','$password', 0)";
                 $this->con->exec($sql);
                 ?>
                 </div>
