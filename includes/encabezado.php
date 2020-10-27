@@ -25,6 +25,9 @@
             <li <?php echo ($page == 'registro') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
                 <a class="nav-link borde" href=<?php echo RUTA_REGISTRO ?>>Registro</a>
             </li>
+            <li <?php echo ($page == 'iniciar_sesion') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
+                <a class="nav-link borde" href=<?php echo RUTA_LOGIN ?>>Iniciar Sesion</a>
+            </li>
         </ul>
         <ul class="navbar-nav align-items-center ml-auto social_links">
             <li class="nav-item px-3 py-2"><a class="nav-link" href="#"> <i class="icon-fa fa fa-instagram"></i></a></li>
