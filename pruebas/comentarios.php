@@ -82,14 +82,14 @@ class Comentarios
 			$query = "SELECT AVG(calificacion) AS ranking FROM comentarios WHERE comentarios.activo = 1 AND productos_id =" . $_GET['id'];
 			$resultado = $this->con->query($query)->fetch();
 		}
-		return number_format($resultado['ranking'], 1);
+		return number_format($resultado['ranking'], 2);
 	}
 
 	public function getRankeo()
 	{
 		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios INNER JOIN productos ON productos.id = comentarios.productos_id AND comentarios.activo = 1";
 		$resultado = $this->con->query($query)->fetch();
-		return number_format($resultado['ranking'], 1);
+		return number_format($resultado['ranking'], 2);
 	}
 
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 

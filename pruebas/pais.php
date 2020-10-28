@@ -43,6 +43,13 @@ class Pais{
 		return $this->con->query($query);
     }
     
+	public function getPaisName($prodId)
+	{
+		$query = "SELECT paises.nombre AS nombre FROM paises WHERE id =". $prodId['paises_id'];
+		$resultado = $this->con->query($query)->fetch();
+		return $resultado['nombre'];
+	}
+    
 	/*
 	public function getCont(){
 		$query = "SELECT * FROM continentes";

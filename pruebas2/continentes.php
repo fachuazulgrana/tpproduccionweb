@@ -32,7 +32,7 @@ if (isset($_GET['del'])) {
 
 <div class="content">
     <h1 class="page-header">Continentes</h1>
-    <h2 class="sub-header">Listado <a href="continentes_ae.php"><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <a href="continentes_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -50,12 +50,12 @@ if (isset($_GET['del'])) {
             <tr>
               <td><?php echo $cont['id']; ?></td>
               <td><?php echo $cont['nombre']; ?></td>
-              <td><?php echo $cont['activo']; ?></td>
+              <td><?php echo ($cont['activo']) ? 'si' : 'no'; ?></td>
 
 
               <td>
-                <a href="continentes_ae.php?edit=<?php echo $cont['id'] ?>"><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
-                <a href="continentes.php?del=<?php echo $cont['id'] ?>"><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="continentes_ae.php?edit=<?php echo $cont['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="continentes.php?del=<?php echo $cont['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>

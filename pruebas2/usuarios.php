@@ -66,7 +66,7 @@ if (isset($_GET['del'])) {
 <body>
   <div class="content">
     <h1 class="page-header">Usuarios</h1>
-    <h2 class="sub-header">Listado <a href="usuarios_ae.php"><button type="button" class="btn btn-primary btn-xs">AGREGAR</button></a></h2>
+    <h2 class="sub-header">Listado <a href="usuarios_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>

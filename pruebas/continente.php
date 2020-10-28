@@ -42,6 +42,13 @@ class Continente
 	public function getCont(){
 		$query = "SELECT * FROM continentes";
 		return $this->con->query($query);
+    }
+    
+	public function getContName($conId)
+	{
+		$query = "SELECT continentes.nombre AS nombre FROM continentes WHERE continentes.id =". $conId['continentes_id'];
+		$resultado = $this->con->query($query)->fetch();
+		return $resultado['nombre'];
 	}
 
 	/*public function getProdName()

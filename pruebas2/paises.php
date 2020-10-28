@@ -32,14 +32,14 @@ if (isset($_GET['del'])) {
 
 <div class="content">
     <h1 class="page-header">Paises</h1>
-    <h2 class="sub-header">Listado <a href="paises_ae.php"><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <a href="paises_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
             <th>id</th>
             <th>Nombre</th>
-            <th>Continente_id</th>
+            <th>Continente</th>
             <th>Activo</th>
             <th>Acciones</th>
           </tr>
@@ -51,13 +51,13 @@ if (isset($_GET['del'])) {
             <tr>
               <td><?php echo $pais['id']; ?></td>
               <td><?php echo $pais['nombre']; ?></td>
-              <td><?php echo $pais['continentes_id']; ?></td>
-              <td><?php echo $pais['activo']; ?></td>
+              <td><?php echo $Continente->getContName($pais); ?></td>
+              <td><?php echo ($pais['activo']) ? 'si' : 'no'; ?></td>
 
 
               <td>
-                <a href="paises_ae.php?edit=<?php echo $pais['id'] ?>"><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
-                <a href="paises.php?del=<?php echo $pais['id'] ?>"><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="paises_ae.php?edit=<?php echo $pais['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="paises.php?del=<?php echo $pais['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>

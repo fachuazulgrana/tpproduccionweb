@@ -72,8 +72,8 @@ if (isset($_GET['del'])) {
               <td><?php echo $coment['calificacion']; ?></td>
               <td><?php echo $coment['comentario']; ?></td>
               <td><?php echo $coment['fecha']; ?></td>
-              <td><?php echo $Comentarios->getProdName(); ?></td>
-              <td><?php echo $coment['activo']; ?></td>
+              <td><?php echo $Productos->getProdName($coment); ?></td>
+              <td><?php echo ($coment['activo']) ? 'si' : 'no'; ?></td>
 
 
               <td>

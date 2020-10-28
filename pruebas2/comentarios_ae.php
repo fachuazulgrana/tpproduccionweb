@@ -70,7 +70,7 @@ require_once "sidebar.php";
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-6">
-                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-comentario">Guardar</button>
+                        <button type="submit" class="btn btn-success btn-xs" name="formulario-comentario">Guardar</button>
                     </div>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($coment->id) ? $coment->id : '');?>">
 

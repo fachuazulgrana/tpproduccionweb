@@ -61,7 +61,7 @@ require_once "sidebar.php";
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-perfiles">Guardar</button>
+                        <button type="submit" class="btn btn-success btn-xs" name="formulario-perfiles">Guardar</button>
                     </div>
                 </div>
                 <input type="hidden" class="form-control" id="id_perfil" name="id_perfil" value="<?php echo (isset($perfiles->id_perfil)?$perfiles->id_perfil:'');?>">
