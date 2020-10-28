@@ -25,18 +25,19 @@ class Comentarios
 
 	public function setComentarios()
 	{
+		if (isset($_POST['comentar'])) {
 
-		$producto_id = $_GET['id'];
-		$fecha = date("y/m/d");
-		/* 		$fecha_disponible = date("y/m/d", strtotime($fecha . "- 1 days")); */
-		$ip = $_SERVER['REMOTE_ADDR'];
-		$query = "SELECT * FROM comentarios WHERE comentarios.productos_id = '$producto_id' AND comentarios.ip = '$ip' AND comentarios.fecha >= '$fecha'";
+			$producto_id = $_GET['id'];
+			$fecha = date("y/m/d");
+			/* 		$fecha_disponible = date("y/m/d", strtotime($fecha . "- 1 days")); */
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$query = "SELECT * FROM comentarios WHERE comentarios.productos_id = '$producto_id' AND comentarios.ip = '$ip' AND comentarios.fecha >= '$fecha'";
 
-		$res = $this->con->query($query);
-		$num_rows = $res->rowCount();
+			$res = $this->con->query($query);
+			$num_rows = $res->rowCount();
 
-		if ($num_rows == 0) {
-			if (isset($_POST['comentar'])) {
+			if ($num_rows == 0) {
+
 				if (strlen($_POST['nombre']) >= 1 && strlen($_POST['email']) >= 1) {
 					$name = $_POST['nombre'];
 					$email = $_POST['email'];
@@ -49,8 +50,26 @@ class Comentarios
 					$producto_id = $_POST['productos_id'];
 					$sql = "INSERT INTO comentarios (`nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES ('$name', '$email', '$calificacion', '$comentario','$fechareg','$ip','$producto_id')";
 					$this->con->exec($sql);
+					?>
+					</div>
+					<div class="col-sm-12 col-md-12 py-2">
+						<div class='alert alert-success'>
+							Gracias por dejar su comentario! Será validado a la brevedad.
+						</div>
+					<?php
+					unset($_POST);
+					return; 
 				}
 			}
+					?>
+					</div>
+					<div class="col-sm-12 col-md-12 py-2">
+						<div class='alert alert-danger'>
+							No puede dejar mas de un comentario por día!
+						</div>
+					<?php
+			unset($_POST);
+			return;
 		}
 	}
 
@@ -66,7 +85,8 @@ class Comentarios
 		return number_format($resultado['ranking'], 1);
 	}
 
-	public function getRankeo(){
+	public function getRankeo()
+	{
 		$query = "SELECT AVG(calificacion) AS ranking FROM comentarios INNER JOIN productos ON productos.id = comentarios.productos_id AND comentarios.activo = 1";
 		$resultado = $this->con->query($query)->fetch();
 		return number_format($resultado['ranking'], 1);
@@ -75,20 +95,20 @@ class Comentarios
 	/* $sql = "INSERT INTO comentarios (email, ranqueo, comentario, fecha, ip, productos_id) 
 		VALUES ('email', '5', 'comentario', '2020', '127.0.0.1', '1')"; 
 		$this->con->exec($sql);*/
-		
+
 	// ***********************
 	//       BACK END
 	// ***********************
 
 	public function getComent()
 	{
-		if($_GET==null || $_GET['orden']==""){
+		if ($_GET == null || $_GET['orden'] == "") {
 			$query = 'SELECT * FROM comentarios';
 			return $this->con->query($query);
-		}else if ($_GET['orden']=="1") {
+		} else if ($_GET['orden'] == "1") {
 			$query = 'SELECT * FROM comentarios WHERE comentarios.activo = 1';
 			return $this->con->query($query);
-		}else if ($_GET['orden']=="2") {
+		} else if ($_GET['orden'] == "2") {
 			$query = 'SELECT * FROM comentarios WHERE comentarios.activo = 0';
 			return $this->con->query($query);
 		}
@@ -111,66 +131,67 @@ class Comentarios
 	}
 
 	public function get($id)
-    {
-        $query = "SELECT * FROM comentarios WHERE id = " . $id;
-        $query = $this->con->query($query);
-		
+	{
+		$query = "SELECT * FROM comentarios WHERE id = " . $id;
+		$query = $this->con->query($query);
+
 		$comentarios = $query->fetch(PDO::FETCH_OBJ);
 
 		$sql = "SELECT id FROM comentarios WHERE id = " . $comentarios->id;
-		
-        foreach ($this->con->query($sql) as $commit) {
-            $comentarios->array[] = $commit['id'];
-        }
-        return $comentarios;
-    }
 
-    public function del($id)
-    {
-        $query = "SELECT count(1) as cantidad FROM comentarios WHERE id = " . $id;
+		foreach ($this->con->query($sql) as $commit) {
+			$comentarios->array[] = $commit['id'];
+		}
+		return $comentarios;
+	}
 
-        $consulta = $this->con->query($query)->fetch();
+	public function del($id)
+	{
+		$query = "SELECT count(1) as cantidad FROM comentarios WHERE id = " . $id;
 
-        if ($consulta->cantidad == 0) {
-            $query = "DELETE FROM comentarios WHERE id = " . $id;
+		$consulta = $this->con->query($query)->fetch();
 
-            $this->con->exec($query);
-            return 1;
-        }
+		if ($consulta->cantidad == 0) {
+			$query = "DELETE FROM comentarios WHERE id = " . $id;
 
-        return "Comentario eliminado";
-    }
+			$this->con->exec($query);
+			return 1;
+		}
 
-    public function save($data)
-    {
-        foreach ($data as $key => $value) {
-            if (!is_array($value)) {
-                if ($value != null) {
-                    $columns[] = $key;
-                    $datos[] = $value;
-                }
-            }
-        }
-        $sql = "INSERT INTO comentarios(" . implode(',', $columns) . ") VALUES('" . implode("','", $datos) . "')";
-        $this->con->exec($sql);
+		return "Comentario eliminado";
+	}
 
-        $id = $this->con->lastInsertId();
-    }
+	public function save($data)
+	{
+		foreach ($data as $key => $value) {
+			if (!is_array($value)) {
+				if ($value != null) {
+					$columns[] = $key;
+					$datos[] = $value;
+				}
+			}
+		}
+		$sql = "INSERT INTO comentarios(" . implode(',', $columns) . ") VALUES('" . implode("','", $datos) . "')";
+		$this->con->exec($sql);
 
-    public function edit($data){
-        $id = $data['id'];
-        unset($data['id']);
+		$id = $this->con->lastInsertId();
+	}
 
-        foreach ($data as $key => $value){
-            if(!is_array($value)){
-                if($value != null){
-                    $columns[]=$key." = '".$value."'";
-                }
-            }
-        }
+	public function edit($data)
+	{
+		$id = $data['id'];
+		unset($data['id']);
 
-        $sql = "UPDATE comentarios SET " .implode(',',$columns)." WHERE id = " .$id;
+		foreach ($data as $key => $value) {
+			if (!is_array($value)) {
+				if ($value != null) {
+					$columns[] = $key . " = '" . $value . "'";
+				}
+			}
+		}
 
-        $this->con->exec($sql);
-    }
+		$sql = "UPDATE comentarios SET " . implode(',', $columns) . " WHERE id = " . $id;
+
+		$this->con->exec($sql);
+	}
 }
