@@ -27,10 +27,8 @@
                   <p class="card-text"><?php echo cortar($ciudades["descripcion"]); ?></p>
                   <div class="row justify-content-center pt-1 pb-3">
                     <h5>
-                      <span class="card-text text-center badge badge-light"><?php echo $Comentarios->getRankeo(); ?></span>
-                    
-                      <span class="star-rating" style="--rating: <?php echo $Comentarios->getRankeo(); ?>"></span>
-
+                    <p class="num-puntaje mr-2"> <?php echo $Comentarios->getRanqueo($ciudades['id']); ?> </p>
+                    <p class="star-rating" style="--rating: <?php echo $Comentarios->getRanqueo($ciudades['id']); ?>"></p>
                       <span class="card-text text-center badge badge-light">$<?php echo $ciudades["precio"]; ?></span>
                     </h5>
                   </div>

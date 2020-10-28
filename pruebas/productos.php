@@ -12,10 +12,11 @@ class Productos
 
 	public function getProductos($filtro = array())
 	{
-		$query = "SELECT productos.* FROM productos
+		$query = "SELECT productos.*, AVG(comentarios.calificacion) as avgcomentarios FROM productos
 		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
 		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
-		WHERE productos.activo = 1 ";
+		LEFT JOIN comentarios ON comentarios.activo = 1 AND comentarios.productos_id = productos.id
+		WHERE productos.activo = 1 GROUP BY productos.nombre";
 
 		$where = array();
 
@@ -34,26 +35,22 @@ class Productos
 			$where[] = ' productos.id = ' . $filtro['ciudad'];
 		}
 
-		/* if (!empty($filtro['orden'])) {
-			if ($filtro['orden'] == 1) {
-				$where[] = ' ORDER BY destacado ASC ';
-			}
-		} */
-		//if(!empty($filtro['orden'])){
-		//	$where[] = ' productos.id = comentarios.productos_id';
-		//	$query .= ' ORDER BY AVG(comentarios.calificacion) '; //INNER JOIN comentarios ON comentarios.activo = 1 AND comentarios.productos_id = productos.id
-		//}
-
 		// Union de array elements con un string
 		if (!empty($where)) {
 			$query .= ' AND ' . implode(' AND ', $where);
 		}
 
+		// Si orden NO esta vacio
 		if (!empty($filtro['orden'])) {
-			if ($filtro['orden'] != 1) {
-				$query .= ' ORDER BY nombre ' . $filtro['orden'];
-			} else {
+			// Si orden == 1 (destacado)
+			if ($filtro['orden'] == 1) {
 				$query .= ' ORDER BY destacado DESC ';
+				// Si orden NO es calificacion, ordena por nombre ASC o DESC pasado por parametro
+			} else if ($filtro['orden'] != 'calificacion') {
+				$query .= ' ORDER BY productos.nombre ' . $filtro['orden'];
+				// Si orden != 1 y != 'calificacion', ordena por promedio de calificacion de los productos DESC 
+			} else {
+				$query .= ' ORDER BY avgcomentarios DESC';
 			}
 		}
 
@@ -69,7 +66,7 @@ class Productos
 		WHERE productos.activo = 1 AND productos.destacado = 1 "; //ORDER BY rand() LIMIT 6
 		return $this->con->query($query);
 	}
-	
+
 	public function getProd()
 	{
 		$query = "SELECT * FROM productos";
@@ -78,7 +75,7 @@ class Productos
 
 	public function getProdName($comId)
 	{
-		$query = "SELECT productos.nombre AS nombre FROM productos WHERE productos.id =". $comId['productos_id'];
+		$query = "SELECT productos.nombre AS nombre FROM productos WHERE productos.id =" . $comId['productos_id'];
 		$resultado = $this->con->query($query)->fetch();
 		return $resultado['nombre'];
 	}
