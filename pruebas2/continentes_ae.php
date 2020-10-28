@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-4">
-                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-continente">Guardar</button>
+                        <button type="submit" class="btn btn-success btn-xs" name="formulario-continente">Guardar</button>
                     </div>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($cont->id) ? $cont->id : '');?>">
 

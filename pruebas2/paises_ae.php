@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-3">
-                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-pais">Guardar</button>
+                        <button type="submit" class="btn btn-success btn-xs" name="formulario-pais">Guardar</button>
                     </div>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($pais->id) ? $pais->id : '');?>">
 

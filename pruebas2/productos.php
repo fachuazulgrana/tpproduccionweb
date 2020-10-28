@@ -15,7 +15,7 @@ require_once "sidebar.php"
 
 <div class="content">
     <h1 class="page-header">Productos</h1>
-    <h2 class="sub-header">Listado <a href="productos_ae.php"><button type="button">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <a href="productos_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -41,12 +41,12 @@ require_once "sidebar.php"
               <td><?php echo $prod['activo']; ?></td>
 
               <td>
-                <a href="productos_comentarios.php?id=<?php echo $prod['id'] ?>"><button type="button">Acceder</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="productos_comentarios.php?id=<?php echo $prod['id'] ?>"><button type="button" class="btn btn-primary btn-xs">Acceder</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
               <td>
-                <a href="productos_ae.php?edit=<?php echo $prod['id'] ?>"><button type="button">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
-                <a href="productos.php?del=<?php echo $prod['id'] ?>"><button type="button">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="productos_ae.php?edit=<?php echo $prod['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="productos.php?del=<?php echo $prod['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>
