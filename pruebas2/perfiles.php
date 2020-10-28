@@ -47,7 +47,7 @@ if (isset($_GET['del'])) {
 <body>
   <div class="content">
     <h1 class="page-header">Perfiles</h1>
-    <h2 class="sub-header">Listado <a href="perfiles_ae.php"><button type="button">AGREGAR</button></a></h2>
+    <h2 class="sub-header">Listado <a href="perfiles_ae.php"><button type="button" class="btn btn-primary btn-xs">AGREGAR</button></a></h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -64,8 +64,8 @@ if (isset($_GET['del'])) {
               <td><?php echo $perfil['id_perfil']; ?></td>
               <td><?php echo $perfil['nombre']; ?></td>
               <td>
-                <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button">Modificar</button></a>
-                <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button">Borrar</button></a>
+                <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
+                <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
               </td>
             </tr>
 

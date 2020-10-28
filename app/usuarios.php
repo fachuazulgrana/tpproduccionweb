@@ -31,7 +31,7 @@ class Usuario
 
     public function get($id)
     {
-        $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave` FROM `usuarios` WHERE `id_usuario` =" . $id;
+        $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave`, `activo` FROM `usuarios` WHERE `id_usuario` =" . $id;
         $query = $this->con->query($query);
 
         $usuario = $query->fetch(PDO::FETCH_OBJ);
@@ -74,13 +74,20 @@ class Usuario
         $password_old = $data['password_old'];
         $password1 = $data['clave1'];
         $password2 = $data['clave2'];
+        $activo = $data['activo'];
+        $nombre = $data['nombre'];
+        $apellido = $data['apellido'];
         unset($data['id_usuario']);
 
         $query = "SELECT `clave` FROM `usuarios` WHERE `id_usuario` = " . $id;
         $pass = $this->con->query($query)->fetch(PDO::FETCH_ASSOC);
         $passw = $pass['clave'];
 
+        //SI QUIERE EDITAR CAMPOS PERO NO LA CONTRASEÑA
         if ($password_old == null && $password1 == null && $password2 == null) {
+
+            $consulta = "UPDATE usuarios SET `nombre` = '$nombre', `apellido` = '$apellido', `activo` = '$activo'  WHERE `id_usuario` = '$id'";
+            $this->con->exec($consulta);
 
             $sql = 'DELETE FROM usuario_perfiles WHERE usuario_id = ' . $id;
             $this->con->exec($sql);
@@ -93,13 +100,13 @@ class Usuario
             return 1;
         }
 
+        //SI QUIERE CAMBIAR LA CONTRASEÑA
         if (!(password_verify($password_old, $passw))) {
             return "La antigua contraseña es incorrecta";
         }
         if ($password1 != $password2) {
             return "Las contraseñas no coinciden.";
         }
-
         if ((password_verify($password_old, $passw)) && $password1 == $password2) {
 
             $salt = [
@@ -108,7 +115,7 @@ class Usuario
             ];
             $password = password_hash($password1, PASSWORD_DEFAULT, $salt);
 
-            $sql = "UPDATE usuarios SET `clave` = '$password' WHERE `id_usuario` = '$id'";
+            $sql = "UPDATE usuarios SET `nombre` = '$nombre', `apellido` = '$apellido', `clave` = '$password', `activo` = '$activo'  WHERE `id_usuario` = '$id'";
 
             $this->con->exec($sql);
 
@@ -160,6 +167,7 @@ class Usuario
         if ($num_rows_email == 0 && $num_rows_usuario == 0 && $clave1 == $clave2) {
             $nombre = $data['nombre'];
             $apellido = $data['apellido'];
+            $activo = $data['activo'];
 
             $salt = [
                 'cost' => 12,
@@ -167,7 +175,7 @@ class Usuario
             ];
             $password = password_hash($clave1, PASSWORD_DEFAULT, $salt);
 
-            $sql = "INSERT INTO `usuarios`(`nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$password', 1)";
+            $sql = "INSERT INTO `usuarios`(`nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$password', '$activo')";
             $this->con->exec($sql);
 
             $id_usuario = $this->con->lastInsertId();

@@ -66,7 +66,7 @@ if (isset($_GET['del'])) {
 <body>
   <div class="content">
     <h1 class="page-header">Usuarios</h1>
-    <h2 class="sub-header">Listado <a href="usuarios_ae.php"><button type="button">AGREGAR</button></a></h2>
+    <h2 class="sub-header">Listado <a href="usuarios_ae.php"><button type="button" class="btn btn-primary btn-xs">AGREGAR</button></a></h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -93,12 +93,12 @@ if (isset($_GET['del'])) {
               <td><?php echo isset($usuario['perfiles']) ? implode(', ', $usuario['perfiles']) : 'No tiene perfiles asignados'; ?></td>
               <td><?php echo ($usuario['activo']) ? 'si' : 'no'; ?></td>
               <td>
-                <a href="usuarios_ae.php?edit=<?php echo $usuario['id_usuario'] ?>"><button type="button">Modificar</button></a>
+                <a href="usuarios_ae.php?edit=<?php echo $usuario['id_usuario'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
 
               
 
 
-                <a href="usuarios.php?del=<?php echo $usuario['id_usuario'] ?>"><button type="button">Borrar</button></a>
+                <a href="usuarios.php?del=<?php echo $usuario['id_usuario'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
               </td>
             </tr>
           <?php

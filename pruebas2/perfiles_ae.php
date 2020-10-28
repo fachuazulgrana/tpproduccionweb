@@ -27,11 +27,6 @@ require_once "sidebar.php";
 <body>
 <div class="content">
         <div class="col-sm-9 col-md-10 main">
-            <p class="visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
-                    <i class="glyphicon glyphicon-chevron-left"></i>
-                </button>
-            </p>
             <h1 class="page-header"><?php echo (isset($perfiles->nombre) ? 'Editar Perfil' : 'Nuevo Perfil'); ?></h1>
             <div class="col-md-2">
 
@@ -66,7 +61,7 @@ require_once "sidebar.php";
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" name="formulario-perfiles">Guardar</button>
+                        <button type="submit" class="btn btn-primary btn-xs" name="formulario-perfiles">Guardar</button>
                     </div>
                 </div>
                 <input type="hidden" class="form-control" id="id_perfil" name="id_perfil" value="<?php echo (isset($perfiles->id_perfil)?$perfiles->id_perfil:'');?>">

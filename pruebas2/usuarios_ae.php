@@ -77,7 +77,7 @@ require_once "sidebar.php";
                 </div>
 
                 <div class="form-group">
-                    <label for="tipo" class="col-sm-2 control-label">Perfil</label>
+                    <label for="perfil" class="col-sm-2 control-label">Perfil</label>
                     <div class="col-sm-10">
                         <select name="perfil[]" id="perfil" multiple='multiple'>
                             <?php foreach ($Perfil->getList() as $t) { ?>
@@ -98,7 +98,7 @@ require_once "sidebar.php";
                 if (isset($usuarios->usuario)) {
                 ?>
                     <div class="form-group">
-                        <label for="usuario-tipo" class="col-sm-2 control-label">Contraseña Anterior</label>
+                        <label for="usuario-claveold" class="col-sm-2 control-label">Contraseña Anterior</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="password_old" name="password_old">
                         </div>
@@ -106,20 +106,26 @@ require_once "sidebar.php";
                 }
                     ?>
                     <div class="form-group">
-                        <label for="usuario-tipo" class="col-sm-2 control-label">Contraseña</label>
+                        <label for="usuario-clave1" class="col-sm-2 control-label">Contraseña</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="clave1" name="clave1">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="usuario-tipo" class="col-sm-2 control-label">Repetir Contraseña</label>
+                        <label for="usuario-clave2" class="col-sm-2 control-label">Repetir Contraseña</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="clave2" name="clave2">
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="usuario-activo" class="col-sm-2 control-label">Activo</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($usuarios->activo) ? $usuarios->activo : ''); ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default" name="formulario-usuarios">Guardar</button>
+                            <button type="submit" class="btn btn-primary btn-xs" name="formulario-usuarios">Guardar</button>
                         </div>
                     </div>
                     <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" value="<?php echo (isset($usuarios->id_usuario) ? $usuarios->id_usuario : ''); ?>">
