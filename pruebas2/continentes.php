@@ -50,7 +50,7 @@ if (isset($_GET['del'])) {
             <tr>
               <td><?php echo $cont['id']; ?></td>
               <td><?php echo $cont['nombre']; ?></td>
-              <td><?php echo $cont['activo']; ?></td>
+              <td><?php echo ($cont['activo']) ? 'si' : 'no'; ?></td>
 
 
               <td>

@@ -39,7 +39,7 @@ if (isset($_GET['del'])) {
           <tr>
             <th>id</th>
             <th>Nombre</th>
-            <th>Continente_id</th>
+            <th>Continente</th>
             <th>Activo</th>
             <th>Acciones</th>
           </tr>
@@ -51,8 +51,8 @@ if (isset($_GET['del'])) {
             <tr>
               <td><?php echo $pais['id']; ?></td>
               <td><?php echo $pais['nombre']; ?></td>
-              <td><?php echo $pais['continentes_id']; ?></td>
-              <td><?php echo $pais['activo']; ?></td>
+              <td><?php echo $Continente->getContName($pais); ?></td>
+              <td><?php echo ($pais['activo']) ? 'si' : 'no'; ?></td>
 
 
               <td>

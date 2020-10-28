@@ -21,8 +21,8 @@ require_once "sidebar.php"
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Paises_id</th>
+            <th>Descripción</th>
+            <th>País</th>
             <th>Precio</th>
             <th>Activo</th>
             <th>Comentarios</th>
@@ -36,9 +36,9 @@ require_once "sidebar.php"
             <tr>
               <td><?php echo $prod['nombre']; ?></td>
               <td><?php echo $prod['descripcion']; ?></td>
-              <td><?php echo $prod['paises_id']; ?></td>
+              <td><?php echo $Pais->getPaisName($prod);?></td>
               <td><?php echo $prod['precio']; ?></td>
-              <td><?php echo $prod['activo']; ?></td>
+              <td><?php echo ($prod['activo']) ? 'si' : 'no'; ?></td>
 
               <td>
                 <a href="productos_comentarios.php?id=<?php echo $prod['id'] ?>"><button type="button" class="btn btn-primary btn-xs">Acceder</button></a> <!-- Acá hay que hacer que funcione el botón -->
