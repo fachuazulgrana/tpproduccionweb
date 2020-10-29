@@ -22,10 +22,9 @@
     require_once "sidebar.php";
     ?>
     <div class="content">
-        <div class="col-sm-9 col-md-10 main">
+        <div class="col-12 main">
             <h1 class="page-header">Agregar / Editar Paises</h1>
-            <div class="col-md-2">
-            </div>
+            
             <form action="paises.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
                     <label for="paises-nombre" class="col-sm-3 control-label">Nombre</label>
