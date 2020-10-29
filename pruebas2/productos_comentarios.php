@@ -10,11 +10,15 @@
 
 <?php 
 $page = 'productos';
-require_once "sidebar.php" 
+require_once "sidebar.php" ;
+$id = $_GET['id'];
+$sql = "SELECT * FROM comentarios INNER JOIN productos ON (comentarios.productos_id = productos.id) WHERE comentarios.productos_id = '$id'";
+$query = $con->query($sql)->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <div class="content">
-    <h1 class="page-header">Comentarios de X</h1>
+    <h1 class="page-header">Comentarios de <?php echo $query['nombre'] ?></h1>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>

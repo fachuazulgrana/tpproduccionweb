@@ -27,7 +27,7 @@
 
 </head>
 
-<?php require_once "sidebar.php"; 
+<?php require_once "sidebar.php";
 
 if (isset($_POST['formulario-perfiles'])) {
   if ($_POST['id_perfil'] > 0) {
@@ -50,7 +50,7 @@ if (isset($_GET['del'])) {
 <body>
   <div class="content">
     <h1 class="page-header">Perfiles</h1>
-    <h2 class="sub-header">Listado <a href="perfiles_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2>
+    <h2 class="sub-header">Listado <?php if (in_array('perf.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="perfiles_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -67,8 +67,12 @@ if (isset($_GET['del'])) {
               <td><?php echo $perfil['id_perfil']; ?></td>
               <td><?php echo $perfil['nombre']; ?></td>
               <td>
-                <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
-                <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
+                <?php if (in_array('perf.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
+                  <a href="perfiles_ae.php?edit=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
+                <?php } ?>
+                <?php if (in_array('perf.del', $_SESSION['usuario']['permisos']['code'])) { ?>
+                  <a href="perfiles.php?del=<?php echo $perfil['id_perfil'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
+                <?php } ?>
               </td>
             </tr>
 

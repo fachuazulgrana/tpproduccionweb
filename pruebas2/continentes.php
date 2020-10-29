@@ -35,7 +35,7 @@ if (isset($_GET['del'])) {
 
 <div class="content">
     <h1 class="page-header">Continentes</h1>
-    <h2 class="sub-header">Listado <a href="continentes_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <?php if (in_array('cont.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="continentes_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -57,8 +57,12 @@ if (isset($_GET['del'])) {
 
 
               <td>
+              <?php if (in_array('cont.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
                 <a href="continentes_ae.php?edit=<?php echo $cont['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <?php } ?>
+                <?php if (in_array('cont.del', $_SESSION['usuario']['permisos']['code'])) { ?>
                 <a href="continentes.php?del=<?php echo $cont['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <?php } ?>
               </td>
 
             </tr>
