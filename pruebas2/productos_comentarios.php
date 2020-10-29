@@ -12,7 +12,7 @@
 $page = 'productos';
 require_once "sidebar.php" ;
 $id = $_GET['id'];
-$sql = "SELECT * FROM comentarios INNER JOIN productos ON (comentarios.productos_id = productos.id) WHERE comentarios.productos_id = '$id'";
+$sql = "SELECT nombre FROM productos WHERE id = '$id'";
 $query = $con->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 ?>
