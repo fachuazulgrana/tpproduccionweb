@@ -1,51 +1,59 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand">
-    <img src="../images/logo_cabecera.png" alt="logo" style="width:40px;">
-   </a>
-   <a class="navbar-brand asd">Bienvenido al Panel BackEnd</a>
+    <!-- Brand/logo -->
+    <a class="navbar-brand">
+        <img src="../images/logo_cabecera.png" alt="logo" style="width:40px;">
+    </a>
+    <a class="navbar-brand asd">Bienvenido al Panel BackEnd</a>
 </nav>
-
-
 
 <ul class="sidebar">
     <li <?php echo ($page == 'home') ? "class=active" : ""; ?>>
         <a href="home.php"><i class="fa fa-fw fa-home"></i>Home</a>
     </li>
-    
+
     <!--
         if(in_array('user',$_SESSION['usuario']['permisos']['seccion'])){
-            <li class="<?php echo isset($userMenu)?'active':''?>"><a href="usuarios.php"></a></li> 
+            <li class="<?php echo isset($userMenu) ? 'active' : '' ?>"><a href="usuarios.php"></a></li> 
         }
     -->
-    
-    <li <?php echo ($page == 'perfiles') ? "class=active" : ""; ?>>
-        <a href="perfiles.php"><i class="fa fa-fw fa-lock"></i>Perfiles</a>
-    </li>
-    
-    <li <?php echo ($page == 'usuarios') ? "class=active" : ""; ?>>
-        <a href="usuarios.php"><i class="fa fa-fw fa-user"></i>Usuarios</a>
-    </li>
 
-    <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
-        <a href="productos.php"><i class="fa fa-fw fa-shopping-cart"></i>Productos</a>
-    </li>
-    
-    <li <?php echo ($page == 'paises') ? "class=active" : ""; ?>>
-        <a href="paises.php"><i class="fa fa-fw fa-plane"></i>Paises</a>
-    </li>
-    
-    <li <?php echo ($page == 'continentes') ? "class=active" : ""; ?>>
-        <a href="continentes.php"><i class="fa fa-fw fa-globe"></i>Continentes</a>
-    </li>
-    
-    <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
-        <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a>
-    </li>
+    <?php if (in_array('user', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'perfiles') ? "class=active" : ""; ?>>
+            <a href="perfiles.php">Perfiles</a>
+        </li>
+    <?php } ?>
 
-    <li <?php echo ($page == 'logout') ? "class=active" : ""; ?>> <!-- echo ($page == 'login') ? "unset($_SESSION['usuario'])" : ""; -->
-        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i>Logout</a> <!-- href="login.php" <i class="fa fa-fw fa-sign-out"></i>-->
-    </li>
+    <?php if (in_array('user', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'usuarios') ? "class=active" : ""; ?>>
+            <a href="usuarios.php">Usuarios</a>
+        </li>
+    <?php } ?>
+
+    <?php if (in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
+            <a href="productos.php">Productos</a>
+        </li>
+    <?php } ?>
+
+    <?php if (in_array('pais', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'paises') ? "class=active" : ""; ?>>
+            <a href="paises.php">Paises</a>
+        </li>
+    <?php } ?>
+
+    <?php if (in_array('cont', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'continentes') ? "class=active" : ""; ?>>
+            <a href="continentes.php">Continentes</a>
+        </li>
+    <?php } ?>
+
+    <?php if (in_array('com', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
+            <a href="comentarios.php">Comentarios</a>
+        </li>
+    <?php } ?>
+
+    <li><a href="?logout">Logout</a></li>
 </ul>
 
 <!--

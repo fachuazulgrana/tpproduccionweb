@@ -1,4 +1,6 @@
-<?php require_once('../pruebas/mysql-login.php'); ?>
+<?php
+session_start();
+require_once('../pruebas/mysql-login.php'); ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,13 +19,14 @@ require_once('../pruebas/continente.php');
 require_once('../pruebas/pais.php');
 require_once('../pruebas/productos.php');
 require_once('../pruebas/comentarios.php');
+require_once('../app/Usuarios.php');
 
 
-try{
-	$con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
-}catch (PDOException $e){
-	print "¡Error!: " . $e->getMessage();
-	die();
+try {
+    $con = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';port=' . $puerto, $username, $password);
+} catch (PDOException $e) {
+    print "¡Error!: " . $e->getMessage();
+    die();
 }
 
 
@@ -31,19 +34,18 @@ $Continente = new Continente($con);
 $Pais = new Pais($con);
 $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
+$Usuario = new Usuario($con);
+
+if (isset($_POST['login'])) {
+    $Usuario->login($_POST);
+}
+
+ if (isset($_GET['logout'])) {
+    unset($_SESSION['usuario']);
+} 
+
+if ($Usuario->notLogged() && ($page != "login")) {
+    header('Location: login.php');
+}
+
 ?>
-
-
-<!--
-        if(isset($_POST['login'])){
-        $user->login($_POST);
-    }
-
-    if(isset($_GET['login'])){
-        unset($_SESSION['usuario']);
-    }
-
-    if($user->notLogged()){
-        header('Location: login.php');
-    }
--->

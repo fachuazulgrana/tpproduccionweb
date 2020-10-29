@@ -4,6 +4,10 @@
 <head>
     <?php require_once("head_admin.php") ?>
     <title>Productos</title>
+    <?php if (!in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) {
+    header('Location: home.php');
+  } ?>
+
 </head>
 
 <body>

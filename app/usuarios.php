@@ -13,7 +13,7 @@ class Usuario
 
     public function getUsuarios()
     {
-        $query = 'SELECT * FROM usuarios';
+        $query = 'SELECT * FROM usuarios WHERE `borrado` = 0';
         $resultado = array();
         foreach ($this->con->query($query) as $key => $usuario) {
             $resultado[$key] = $usuario;
@@ -31,7 +31,7 @@ class Usuario
 
     public function get($id)
     {
-        $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave`, `activo` FROM `usuarios` WHERE `id_usuario` =" . $id;
+        $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave`, `activo` FROM `usuarios` WHERE `id_usuario` = '$id' AND `borrado` = 0";
         $query = $this->con->query($query);
 
         $usuario = $query->fetch(PDO::FETCH_OBJ);
@@ -63,7 +63,7 @@ class Usuario
             return "Usuario Eliminado";
         } */
 
-        $query = "UPDATE `usuarios` SET `activo` = '0' WHERE `usuarios`.`id_usuario` = '$id'";
+        $query = "UPDATE `usuarios` SET `borrado` = '1', `activo` = '0'  WHERE `usuarios`.`id_usuario` = '$id'";
         $this->con->exec($query);
         return 1;
     }
@@ -175,7 +175,7 @@ class Usuario
             ];
             $password = password_hash($clave1, PASSWORD_DEFAULT, $salt);
 
-            $sql = "INSERT INTO `usuarios`(`nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$password', '$activo')";
+            $sql = "INSERT INTO `usuarios`(`nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`, `borrado`) VALUES ('$nombre', '$apellido', '$email', '$usuario', '$password', '$activo', 0)";
             $this->con->exec($sql);
 
             $id_usuario = $this->con->lastInsertId();
@@ -199,16 +199,15 @@ class Usuario
         $datos = $this->con->query($sql)->fetch(PDO::FETCH_ASSOC);
         if (isset($datos['id_usuario'])) {
 
-            $query = "SELECT `clave` FROM `usuarios` WHERE `id_usuario` = " . $data['id_usuario'];
+            $query = "SELECT `clave` FROM `usuarios` WHERE `id_usuario` = " . $datos['id_usuario'];
             $pass = $this->con->query($query)->fetch(PDO::FETCH_ASSOC);
             $passw = $pass['clave'];
 
-            if (!(password_verify($password, $passw))) {
-                return "Credenciales incorrectas";
-            } else {
+            if (password_verify($password, $passw)) {
+                unset($datos['clave']);
                 $_SESSION['usuario'] = $datos;
                 $query = "SELECT code, seccion FROM permisos
-                          INNER JOIN perfil_permiso ON (perfil_permiso.permiso_id = permisos.id)
+                          INNER JOIN perfil_permiso ON (perfil_permiso.permiso_id = permisos.permisos_id)
                           INNER JOIN usuario_perfiles ON (usuario_perfiles.perfil_id = perfil_permiso.perfil_id)
                           WHERE usuario_id = " . $datos['id_usuario'];
                 $permisos = array();
@@ -218,9 +217,13 @@ class Usuario
                 }
 
                 $_SESSION['usuario']['permisos'] = $permisos;
+                return;
+            } else {
+                return "Credenciales incorrectas";
             }
             return "Credenciales incorrectas";
         }
+        return "Credenciales incorrectas";
     }
 
     public function notLogged()

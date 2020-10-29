@@ -2,12 +2,11 @@
 <html lang="es">
 
 <?php
-session_start();
-require_once("head_admin.php");
-require_once('../app/Usuarios.php');
-
-$Usuario = new Usuario($con);
 $page = "login";
+require_once("head_admin.php");
+/* require_once('../app/Usuarios.php'); */
+
+
 ?>
 <title>Log In</title>
 

@@ -9,32 +9,11 @@
   $Usuario = new Usuario($con);
   $page = "usuarios";
 
-
-  /*   if (!in_array('user', $_SESSION['usuario']['permisos']['seccion'])) {
-    header('Location: index.php');
-  } */
-
-
-  /*   include('inc/side_bar.php'); */
-
-  /*   if (isset($_POST['submit'])) {
-    if ($_POST['id_usuario'] > 0) {
-      $user->edit($_POST);
-    } else {
-      $user->save($_POST);
-    }
-
-    header('Location: usuarios.php');
-  } */
-
-  /* 
-  if (isset($_GET['del']) and in_array('user.del', $_SESSION['usuario']['permiso']['cod'])) {
-    $user->del($_GET['del']);
-    header('Location: usuarios.php');
-  } */
-
   ?>
   <title>Usuarios</title>
+  <?php if (!in_array('user', $_SESSION['usuario']['permisos']['seccion'])) {
+    header('Location: home.php');
+  } ?>
 
 </head>
 <?php require_once "sidebar.php";

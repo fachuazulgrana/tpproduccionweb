@@ -4,6 +4,9 @@
 <head>
     <?php require_once "head_admin.php" ?>
     <title>Comentarios</title>
+    <?php if (!in_array('com', $_SESSION['usuario']['permisos']['seccion'])) {
+    header('Location: home.php');
+  } ?>
 </head>
 
 <body>
