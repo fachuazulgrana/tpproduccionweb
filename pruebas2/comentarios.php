@@ -77,7 +77,7 @@ if (isset($_GET['del'])) {
 
 
               <td>
-                <a href="comentarios_ae.php?edit=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                <a href="comentarios_ae.php?edit=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-warning btn-xs"><?php echo ($coment['activo']==1) ? 'Desactivar' : 'Activar';?></button></a> <!-- Acá hay que hacer que funcione el botón -->
                 <a href="comentarios.php?del=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
