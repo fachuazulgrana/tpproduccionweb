@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<?php echo RUTA_CSS ?>jquery.fancybox.min.css" />
 <script src="<?php echo RUTA_JS ?>jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <?php
 date_default_timezone_set('America/Argentina/Buenos_Aires');

@@ -161,7 +161,7 @@ class Comentarios
 		return "Comentario eliminado";
 	}
 
-	public function save($data)
+	/*public function save($data)
 	{
 		foreach ($data as $key => $value) {
 			if (!is_array($value)) {
@@ -175,11 +175,11 @@ class Comentarios
 		$this->con->exec($sql);
 
 		$id = $this->con->lastInsertId();
-	}
+	}*/
 
-	public function edit($data)
+	public function edit($id, $data)
 	{
-		$id = $data['id'];
+		/*$id = $data['id'];
 		unset($data['id']);
 
 		foreach ($data as $key => $value) {
@@ -188,10 +188,33 @@ class Comentarios
 					$columns[] = $key . " = '" . $value . "'";
 				}
 			}
+		}*/
+
+		//($data == 0){
+		//	$sql = "UPDATE comentarios SET activo = 1 WHERE id = " . $id;
+		//}else{
+		//	$sql = "UPDATE comentarios SET activo = 0 WHERE id = " . $id;
+		//}
+
+		//$this->con->exec($sql);
+
+		$query = "SELECT activo FROM comentarios WHERE id = " . $id;
+
+		$consulta = $this->con->query($query)->fetch();
+
+		if ($consulta['activo'] == 0) {
+			$query = "UPDATE comentarios SET activo = 1 WHERE id = " . $id;
+
+			$this->con->exec($query);
+			return 1;
 		}
+		if ($consulta['activo'] == 1) {
+			$query = "UPDATE comentarios SET activo = 0 WHERE id = " . $id;
 
-		$sql = "UPDATE comentarios SET " . implode(',', $columns) . " WHERE id = " . $id;
+			$this->con->exec($query);
+			return 1;
+		}
+		return "Comentario modificado";
 
-		$this->con->exec($sql);
 	}
 }

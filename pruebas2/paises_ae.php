@@ -26,7 +26,7 @@
             <h1 class="page-header">Agregar / Editar Paises</h1>
             <div class="col-md-2">
             </div>
-            <form action="paises.php" method="post" class="col-md-6 from-horizontal">
+            <form action="paises.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
                     <label for="paises-nombre" class="col-sm-3 control-label">Nombre</label>
                     <label for="paises-continente" class="col-sm-3 control-label">Continente</label>
@@ -38,13 +38,13 @@
 
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="continentes_id" name="continentes_id" value="<?php echo (isset($pais->continentes_id) ? $pais->continentes_id : ''); ?>">
-                    </div>
+                    </div> <!-- ACÁ TENGO QUE CAMBIAR -->
+
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="form-control" id="activo" name="activo" value="<?php echo (isset($pais->activo) ? $pais->activo : ''); ?>">
+                    </div> <!-- ACÁ TENGO QUE PONER EL CHECKBOX -->
 
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($pais->activo) ? $pais->activo : ''); ?>">
-                    </div>
-
-                    <div class="col-sm-offset-2 col-sm-3">
                         <button type="submit" class="btn btn-success btn-xs" name="formulario-pais">Guardar</button>
                     </div>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($pais->id) ? $pais->id : '');?>">

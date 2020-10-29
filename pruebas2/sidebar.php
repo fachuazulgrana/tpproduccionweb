@@ -10,7 +10,7 @@
 
 <ul class="sidebar">
     <li <?php echo ($page == 'home') ? "class=active" : ""; ?>>
-        <a href="home.php">Home</a>
+        <a href="home.php"><i class="fa fa-fw fa-home"></i>Home</a>
     </li>
     
     <!--
@@ -20,31 +20,31 @@
     -->
     
     <li <?php echo ($page == 'perfiles') ? "class=active" : ""; ?>>
-        <a href="perfiles.php">Perfiles</a>
+        <a href="perfiles.php"><i class="fa fa-fw fa-lock"></i>Perfiles</a>
     </li>
     
     <li <?php echo ($page == 'usuarios') ? "class=active" : ""; ?>>
-        <a href="usuarios.php">Usuarios</a>
+        <a href="usuarios.php"><i class="fa fa-fw fa-user"></i>Usuarios</a>
     </li>
 
     <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
-        <a href="productos.php">Productos</a>
+        <a href="productos.php"><i class="fa fa-fw fa-shopping-cart"></i>Productos</a>
     </li>
     
     <li <?php echo ($page == 'paises') ? "class=active" : ""; ?>>
-        <a href="paises.php">Paises</a>
+        <a href="paises.php"><i class="fa fa-fw fa-plane"></i>Paises</a>
     </li>
     
     <li <?php echo ($page == 'continentes') ? "class=active" : ""; ?>>
-        <a href="continentes.php">Continentes</a>
+        <a href="continentes.php"><i class="fa fa-fw fa-globe"></i>Continentes</a>
     </li>
     
     <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
-        <a href="comentarios.php">Comentarios</a>
+        <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a>
     </li>
 
     <li <?php echo ($page == 'logout') ? "class=active" : ""; ?>> <!-- echo ($page == 'login') ? "unset($_SESSION['usuario'])" : ""; -->
-        <a href="logout.php">Logout</a> <!-- href="login.php" -->
+        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i>Logout</a> <!-- href="login.php" <i class="fa fa-fw fa-sign-out"></i>-->
     </li>
 </ul>
 
