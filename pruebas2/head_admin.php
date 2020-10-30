@@ -5,7 +5,7 @@ require_once('../pruebas/mysql-login.php'); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Styles -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="backend-style.css">
 <link rel="stylesheet" href="<?php echo RUTA_CSS ?>bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo RUTA_CSS ?>jquery.fancybox.min.css" />
 <script src="<?php echo RUTA_JS ?>jquery-3.5.1.min.js"></script>

@@ -26,11 +26,9 @@
     require_once "sidebar.php";
     ?>
     <div class="content">
-        <div class="col-sm-9 col-md-10 main">
+        <div class="main container-fluid">
             <h1 class="page-header">Agregar / Editar Continentes</h1>
-            <div class="col-md-2">
-            </div>
-            <form action="continentes.php" method="post" class="col-md-6 from-horizontal">
+            <form action="continentes.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
                     <label for="continente-nombre" class="col-sm-4 control-label">Nombre</label>
                     <label for="continente-activo" class="col-sm-5 control-label">Activo</label>
