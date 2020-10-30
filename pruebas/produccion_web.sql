@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2020 a las 00:00:10
+-- Tiempo de generación: 30-10-2020 a las 21:50:39
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -35,19 +35,21 @@ CREATE TABLE `clientes` (
   `user` varchar(50) NOT NULL,
   `password` varchar(250) NOT NULL,
   `tipo` int(11) NOT NULL,
-  `activo` tinyint(4) NOT NULL
+  `activo` tinyint(4) NOT NULL,
+  `borrado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `password`, `tipo`, `activo`) VALUES
-(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '123456', 0, 0),
-(8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0),
-(9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0),
-(10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0),
-(11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 0);
+INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `password`, `tipo`, `activo`, `borrado`) VALUES
+(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '123456', 0, 0, 0),
+(8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
+(9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
+(10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0, 0),
+(11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 0, 0),
+(12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,11 @@ INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`
 (1, 'asd', 'asd@asd', 2, 'asd', '2019-09-20', '100.100.100', 1, 0),
 (2, 'sad', 'sad@sad', 5, 'sad', '2019-09-20', '100.100.100', 1, 0),
 (8, 'asd', 'sss@sss', 3, 'sasa', '2023-09-20', '::1', 1, 0),
-(9, 'asd', 'asd@asd', 5, 'asd', '2020-09-30', '::1', 9, 1);
+(9, 'asd', 'asd@asd', 5, 'asd', '2020-09-30', '::1', 9, 1),
+(10, 'nuevo', 'mateo.porcar@live.com.ar', 0, 'sdfsfsdf', '2020-10-28', '::1', 2, 0),
+(11, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'fasfafsdfs', '2020-10-28', '::1', 6, 0),
+(12, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'sfsdfsfs', '2020-10-28', '::1', 5, 0),
+(13, 'nuevo', 'mateo.mateo@gmail.com', 5, 'dvsfsfsdfs', '2020-10-28', '::1', 42, 0);
 
 -- --------------------------------------------------------
 
@@ -194,9 +200,41 @@ CREATE TABLE `perfil_permiso` (
 INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (1, 1),
 (1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
 (2, 4),
-(3, 2),
-(3, 3),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 10),
+(3, 11),
+(3, 12),
+(3, 14),
+(3, 15),
+(3, 16),
+(3, 18),
+(3, 19),
+(3, 20),
 (4, 2),
 (4, 3);
 
@@ -218,26 +256,30 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`permisos_id`, `nombre`, `code`, `seccion`) VALUES
-(1, 'Agregar usuarios', 'user.add', 'user'),
-(2, 'Modificar usuarios', 'user.edit', 'user'),
-(3, 'Borrar usuarios', 'user.del', 'user'),
-(4, 'Ver usuarios', 'user.see', 'user'),
+(1, 'Agregar Usuarios', 'user.add', 'user'),
+(2, 'Modificar Usuarios', 'user.edit', 'user'),
+(3, 'Borrar Usuarios', 'user.del', 'user'),
+(4, 'Ver Usuarios', 'user.see', 'user'),
 (5, 'Agregar productos', 'prod.add', 'prod'),
 (6, 'Modificar productos', 'prod.edit', 'prod'),
 (7, 'Borrar productos', 'prod.del', 'prod'),
 (8, 'Ver productos', 'prod.see', 'prod'),
-(9, 'Agregar paises', 'prod.add', 'prod'),
-(10, 'Modificar paises', 'prod.edit', 'prod'),
-(11, 'Borrar paises', 'prod.del', 'prod'),
-(12, 'Ver paises', 'prod.see', 'prod'),
-(13, 'Agregar continentes', 'prod.add', 'prod'),
-(14, 'Modificar continentes', 'prod.edit', 'prod'),
-(15, 'Borrar continentes', 'prod.del', 'prod'),
-(16, 'Ver continentes', 'prod.see', 'prod'),
+(9, 'Agregar paises', 'pais.add', 'pais'),
+(10, 'Modificar paises', 'pais.edit', 'pais'),
+(11, 'Borrar paises', 'pais.del', 'pais'),
+(12, 'Ver paises', 'pais.see', 'pais'),
+(13, 'Agregar continentes', 'cont.add', 'cont'),
+(14, 'Modificar continentes', 'cont.edit', 'cont'),
+(15, 'Borrar continentes', 'cont.del', 'cont'),
+(16, 'Ver continentes', 'cont.see', 'cont'),
 (17, 'Agregar comentarios', 'com.add', 'com'),
 (18, 'Modificar comentarios', 'com.edit', 'com'),
 (19, 'Borrar comentarios', 'com.del', 'com'),
-(20, 'Ver comentarios', 'com.see', 'com');
+(20, 'Ver comentarios', 'com.see', 'com'),
+(21, 'Agregar perfiles', 'perf.add', 'perf'),
+(22, 'Editar perfiles', 'perf.edit', 'perf'),
+(23, 'Borrar perfiles', 'perf.del', 'perf'),
+(24, 'Ver perfiles', 'perf.see', 'perf');
 
 -- --------------------------------------------------------
 
@@ -320,21 +362,19 @@ CREATE TABLE `usuarios` (
   `email` varchar(80) NOT NULL,
   `usuario` varchar(80) NOT NULL,
   `clave` varchar(300) NOT NULL,
-  `activo` tinyint(4) NOT NULL
+  `activo` tinyint(4) NOT NULL,
+  `borrado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`) VALUES
-(11, 'geren', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJ', 1),
-(20, 'otro', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJ', 1),
-(27, 'usuariox', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiV', 0),
-(38, 'admin', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1),
-(39, 'Mateo', '', '', '', '$2y$12$sdgsfgsdfksjfjs5245fdeuST9q1.c3YQPvuBM2hrRudA9ZCs/pva', 0),
-(40, 'mateo', 'Porrc', 'mateo.porcar@live.com.ar', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdeKxG1ZfaZCOjh92OVQzqgA6MwHYGEaHa', 1),
-(41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0);
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`, `borrado`) VALUES
+(40, 'mateo', 'Porrc', 'mateo.porcar@live.com.ar', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdeKxG1ZfaZCOjh92OVQzqgA6MwHYGEaHa', 1, 1),
+(41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0),
+(42, 'nuevo4443', 'Porcar', 'mateo.porcar2@live.com.ar', 'mateo2', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
+(43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -355,7 +395,9 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 (40, 1),
 (40, 2),
 (41, 1),
-(41, 2);
+(42, 1),
+(42, 2),
+(43, 1);
 
 --
 -- Índices para tablas volcadas
@@ -446,13 +488,13 @@ ALTER TABLE `usuario_perfiles`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -488,7 +530,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Restricciones para tablas volcadas
