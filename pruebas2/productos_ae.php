@@ -7,6 +7,10 @@
     require_once("head_admin.php");
     require_once('../app/Perfil.php');
 
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/productos.php")
+    {
+        header('Location:home.php');
+    }
 
     if (isset($_GET['edit'])) {
         $produ = $Productos->getProd($_GET['edit']);

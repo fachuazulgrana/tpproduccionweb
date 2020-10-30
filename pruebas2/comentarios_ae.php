@@ -5,7 +5,11 @@
     <?php
     $page = 'comentarios';
     require_once("head_admin.php");
-    //require_once('../app/Perfil.php');
+    
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/comentarios.php")
+    {
+        header('Location:home.php');
+    }
 
 
     if (isset($_GET['edit'])) {

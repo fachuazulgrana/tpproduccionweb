@@ -7,6 +7,11 @@
     require_once("head_admin.php");
     require_once('../app/Perfil.php');
 
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/perfiles.php")
+    {
+        header('Location:home.php');
+    }
+
 
     $Perfil = new Perfil($con);
 

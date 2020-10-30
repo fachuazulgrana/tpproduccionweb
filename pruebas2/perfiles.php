@@ -6,16 +6,6 @@
   require_once("head_admin.php");
   require_once('../app/Perfil.php');
 
-  /*require_once '../pruebas/pdo.php';
-  require_once('../pruebas/mysql-login.php');
-
-  try{
-    $con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
-  }catch (PDOException $e){
-    print "¡Error!: " . $e->getMessage();
-    die();
-  }*/
-
 
   $Perfil = new Perfil($con);
   $page = "perfiles";

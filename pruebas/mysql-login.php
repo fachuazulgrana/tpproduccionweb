@@ -17,6 +17,7 @@ define("RUTA_PAQUETES", SERVIDOR . "/paquetes.php");
 define("RUTA_CONTACTO", SERVIDOR . "/contacto.php");
 define("RUTA_REGISTRO", SERVIDOR . "/registro.php");
 define("RUTA_LOGIN", SERVIDOR . "/iniciar_sesion.php");
+define("RUTA_BACKEND", SERVIDOR . "/pruebas2");
 
 define("RUTA_CSS", SERVIDOR . "/css/");
 define("RUTA_JS", SERVIDOR . "/js/");

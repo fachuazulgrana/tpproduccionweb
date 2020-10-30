@@ -3,10 +3,14 @@
 
 <head>
     <?php
+
     $page = 'paises';
     require_once("head_admin.php");
-    //require_once('../app/Perfil.php');
 
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/paises.php")
+    {
+        header('Location:home.php');
+    }
 
     if (isset($_GET['edit'])) {
         $pais = $Pais->get($_GET['edit']);

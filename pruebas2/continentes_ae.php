@@ -5,7 +5,11 @@
     <?php
     $page = 'continentes';
     require_once("head_admin.php");
-    //require_once('../app/Perfil.php');
+    
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/continentes.php")
+    {
+        header('Location:home.php');
+    }
 
 
     if (isset($_GET['edit'])) {
