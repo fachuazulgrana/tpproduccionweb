@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2020 a las 21:50:39
+-- Tiempo de generación: 31-10-2020 a las 23:45:42
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,7 +45,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `password`, `tipo`, `activo`, `borrado`) VALUES
-(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '123456', 0, 0, 0),
+(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0, 0),
 (8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
 (9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
 (10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0, 0),
@@ -82,6 +83,31 @@ INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`
 (11, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'fasfafsdfs', '2020-10-28', '::1', 6, 0),
 (12, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'sfsdfsfs', '2020-10-28', '::1', 5, 0),
 (13, 'nuevo', 'mateo.mateo@gmail.com', 5, 'dvsfsfsdfs', '2020-10-28', '::1', 42, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios_dinamicos`
+--
+
+CREATE TABLE `comentarios_dinamicos` (
+  `id` int(11) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `opcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios_guardar`
+--
+
+CREATE TABLE `comentarios_guardar` (
+  `comentarios_id` int(11) NOT NULL,
+  `comentarios_dinamicos_id` int(11) NOT NULL,
+  `valor_ingresado` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -352,6 +378,30 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productos_comentarios_dinamicos`
+--
+
+CREATE TABLE `productos_comentarios_dinamicos` (
+  `productos_id` int(11) NOT NULL,
+  `comentarios_dinamicos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos_info`
+--
+
+CREATE TABLE `productos_info` (
+  `id` int(11) NOT NULL,
+  `productos_id` int(11) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `texto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -374,7 +424,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, 
 (40, 'mateo', 'Porrc', 'mateo.porcar@live.com.ar', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdeKxG1ZfaZCOjh92OVQzqgA6MwHYGEaHa', 1, 1),
 (41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0),
 (42, 'nuevo4443', 'Porcar', 'mateo.porcar2@live.com.ar', 'mateo2', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
-(43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0);
+(43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
+(44, 'fafa', 'fafa', 'asd@asd', 'asd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -397,7 +448,8 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 (41, 1),
 (42, 1),
 (42, 2),
-(43, 1);
+(43, 1),
+(44, 1);
 
 --
 -- Índices para tablas volcadas
@@ -416,6 +468,19 @@ ALTER TABLE `clientes`
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD KEY `productos_id` (`productos_id`);
+
+--
+-- Indices de la tabla `comentarios_dinamicos`
+--
+ALTER TABLE `comentarios_dinamicos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentarios_guardar`
+--
+ALTER TABLE `comentarios_guardar`
+  ADD KEY `comentarios_id` (`comentarios_id`,`comentarios_dinamicos_id`),
+  ADD KEY `comentarios_dinamicos_id` (`comentarios_dinamicos_id`);
 
 --
 -- Indices de la tabla `continentes`
@@ -467,6 +532,20 @@ ALTER TABLE `productos`
   ADD KEY `paises_id` (`paises_id`);
 
 --
+-- Indices de la tabla `productos_comentarios_dinamicos`
+--
+ALTER TABLE `productos_comentarios_dinamicos`
+  ADD KEY `productos_id` (`productos_id`,`comentarios_dinamicos_id`),
+  ADD KEY `comentarios_dinamicos_id` (`comentarios_dinamicos_id`);
+
+--
+-- Indices de la tabla `productos_info`
+--
+ALTER TABLE `productos_info`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productos_id` (`productos_id`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -497,10 +576,16 @@ ALTER TABLE `comentarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
+--
+ALTER TABLE `comentarios_dinamicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `continentes`
 --
 ALTER TABLE `continentes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `newsletter`
@@ -512,7 +597,7 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `perfiles`
@@ -527,10 +612,16 @@ ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
+-- AUTO_INCREMENT de la tabla `productos_info`
+--
+ALTER TABLE `productos_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Restricciones para tablas volcadas
@@ -541,6 +632,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `comentarios_guardar`
+--
+ALTER TABLE `comentarios_guardar`
+  ADD CONSTRAINT `comentarios_guardar_ibfk_1` FOREIGN KEY (`comentarios_id`) REFERENCES `comentarios` (`id`),
+  ADD CONSTRAINT `comentarios_guardar_ibfk_2` FOREIGN KEY (`comentarios_dinamicos_id`) REFERENCES `comentarios_dinamicos` (`id`);
 
 --
 -- Filtros para la tabla `paises`
@@ -560,6 +658,19 @@ ALTER TABLE `perfil_permiso`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`paises_id`) REFERENCES `paises` (`id`);
+
+--
+-- Filtros para la tabla `productos_comentarios_dinamicos`
+--
+ALTER TABLE `productos_comentarios_dinamicos`
+  ADD CONSTRAINT `productos_comentarios_dinamicos_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `productos_comentarios_dinamicos_ibfk_2` FOREIGN KEY (`comentarios_dinamicos_id`) REFERENCES `comentarios_dinamicos` (`id`);
+
+--
+-- Filtros para la tabla `productos_info`
+--
+ALTER TABLE `productos_info`
+  ADD CONSTRAINT `productos_info_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `usuario_perfiles`
