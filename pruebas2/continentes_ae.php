@@ -38,7 +38,18 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($cont->activo) ? $cont->activo : ''); ?>">
+                        <select name="activo" id="activo">
+                            <?php if(isset($cont->activo)){ ?>
+                                <option value="<?php  echo ($cont->activo == 1) ? 1 : 0; ?>"><?php echo ($cont->activo == 1) ? 'si' : 'no'; ?></option>
+                                <option value="<?php  echo ($cont->activo == 1) ? 0 : 1; ?>"><?php echo ($cont->activo == 1) ? 'no' : 'si'; ?></option>
+                            <?php }else{ ?>
+                                <option value="<?php  echo 1; ?>"><?php echo 'si'; ?></option>
+                                <option value="<?php  echo 0; ?>"><?php echo 'no'; ?></option>
+                            <?php } ?>
+                        </select>
+                        <!--
+                            <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($cont->activo) ? $cont->activo : ''); ?>">
+                        -->
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-4">

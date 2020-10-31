@@ -39,7 +39,7 @@ class Pais{
 	// ***********************
 
 	public function getPaises(){
-		$query = "SELECT * FROM paises";
+        $query = "SELECT * FROM paises";
 		return $this->con->query($query);
     }
     

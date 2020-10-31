@@ -40,11 +40,40 @@
                     </div>
 
                     <div class="col-sm-3">
+                        <select name="continentes_id" id="continentes_id">
+
+                                <option value="<?php echo (isset($pais->continentes_id) ? $pais->continentes_id : ''); ?>"><?php echo (isset($pais->continentes_id) ? $pais->continentes_id : 'continentes'); ?></option>
+                            
+                            <?php foreach ($Continente->getCont() as $continentes) : 
+                                /*
+                                 if(isset($pais->continentes_id)) { ?>
+                                    <option value="<?php echo (isset($pais->continentes_id) ? $pais->continentes_id : ''); ?>"><?php echo (isset($pais->continentes_id) ? $pais->continentes_id : 'continentes'); ?></option>
+                                <?php } */ ?>
+
+                                    <option value="<?php echo $continentes['id'] ?>">
+                                        <?php echo $continentes['nombre'] ?>
+                                    </option>
+                            <?php endforeach ?>
+                        </select>
+                        <!-- 
                         <input type="text" class="form-control" id="continentes_id" name="continentes_id" value="<?php echo (isset($pais->continentes_id) ? $pais->continentes_id : ''); ?>">
+                        -->
                     </div> <!-- ACÁ TENGO QUE CAMBIAR -->
 
                     <div class="col-sm-3">
-                        <input type="checkbox" class="form-control" id="activo" name="activo" value="<?php echo (isset($pais->activo) ? $pais->activo : ''); ?>">
+                        <select name="activo" id="activo">
+                            <?php if(isset($pais->activo)){ ?>
+                                <option value="<?php  echo ($pais->activo == 1) ? 1 : 0; ?>"><?php echo ($pais->activo == 1) ? 'si' : 'no'; ?></option>
+                                <option value="<?php  echo ($pais->activo == 1) ? 0 : 1; ?>"><?php echo ($pais->activo == 1) ? 'no' : 'si'; ?></option>
+                            <?php }else{ ?>
+                                <option value="<?php  echo 1; ?>"><?php echo 'si'; ?></option>
+                                <option value="<?php  echo 0; ?>"><?php echo 'no'; ?></option>
+                            <?php } ?>
+                        </select>
+
+                        <!-- 
+                            <input type="checkbox" class="form-control" id="activo" name="activo" value="<?php echo (isset($pais->activo) ? $pais->activo : ''); ?>">
+                        -->
                     </div> <!-- ACÁ TENGO QUE PONER EL CHECKBOX -->
 
                     <div class="col-sm-3">

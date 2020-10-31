@@ -73,15 +73,16 @@ require_once "sidebar.php";
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="perfil" class="col-7 control-label">Perfil</label>
+                    <label for="perfil" class="col-6 control-label">Perfil</label>
                     <?php
                     if (isset($usuarios->usuario)) {
                     ?>
-                    <label for="usuario-claveold" class="col-5 control-label">Contraseña Anterior</label>
+                    <label for="usuario-claveold" class="col-3 control-label">Contraseña Anterior</label>
                     <?php
                     }
                     ?>
-                    <div class="col-7">
+                    <div class="col-3"></div>
+                    <div class="col-6">
                         <select name="perfil[]" id="perfil" multiple='multiple'>
                             <?php foreach ($Perfil->getList() as $t) { ?>
                                 <option value="<?php echo $t['id_perfil'] ?>" <?php
