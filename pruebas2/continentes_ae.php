@@ -27,7 +27,7 @@
     ?>
     <div class="content">
         <div class="main container-fluid">
-            <h1 class="page-header">Agregar / Editar Continentes</h1>
+            <h1 class="page-header"><?php echo (isset($cont->nombre) ? 'Editar Continente' : 'Agregar Continente'); ?></h1>
             <form action="continentes.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
                     <label for="continente-nombre" class="col-sm-4 control-label">Nombre</label>

@@ -26,7 +26,7 @@ require_once "sidebar.php";
 <body>
 <div class="content">
         <div class="main container-fluid">
-            <h1 class="page-header">Agregar / Editar Producto</h1>
+            <h1 class="page-header"><?php echo (isset($produ->nombre) ? 'Editar Producto' : 'Agregar Producto'); ?></h1>
             <form action="productos.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
                     <label for="nombre" class="col-3 control-label">Nombre</label>
