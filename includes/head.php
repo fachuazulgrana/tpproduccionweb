@@ -1,4 +1,6 @@
-<?php require_once('pruebas/mysql-login.php'); ?>
+<?php 
+session_start();
+require_once('pruebas/mysql-login.php'); ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,4 +40,22 @@ $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Registrar = new Registrar($con);
 $InciarSesion = new IniciarSesion($con);
+
+if (isset($_POST['InciarSesion'])) {
+	$res = $InciarSesion->inciarSesion($_POST);
+	if ($res == 1) {
+		header('Location: index.php');
+	} else {
+		unset($_POST);
+	}
+}
+
+/*  if (isset($_SESSION['cliente']) && $_SERVER['HTTP_REFERER'] == RUTA_LOGIN) {
+    header('Location: index.php');
+  }  */
+
+ if (isset($_GET['logoutc'])) {
+    unset($_SESSION['cliente']);
+} 
+
 ?>
