@@ -79,4 +79,10 @@ class Productos
 		$resultado = $this->con->query($query)->fetch();
 		return $resultado['nombre'];
 	}
+
+	public function getCookies(){
+		$query = "SELECT * FROM productos";
+		return $this->con->query($query);
+
+	}
 }

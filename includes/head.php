@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require_once('pruebas/mysql-login.php'); ?>
 <meta charset="UTF-8">
@@ -26,9 +26,9 @@ require_once('app/Registrar.php');
 require_once('app/Iniciar_Sesion.php');
 
 
-try{
-	$con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
-}catch (PDOException $e){
+try {
+	$con = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';port=' . $puerto, $username, $password);
+} catch (PDOException $e) {
 	print "¡Error!: " . $e->getMessage();
 	die();
 }
@@ -50,12 +50,10 @@ if (isset($_POST['InciarSesion'])) {
 	}
 }
 
-/*  if (isset($_SESSION['cliente']) && $_SERVER['HTTP_REFERER'] == RUTA_LOGIN) {
-    header('Location: index.php');
-  }  */
+if (isset($_GET['logoutc'])) {
+	unset($_SESSION['cliente']);
+	header('Location: index.php');
+}
 
- if (isset($_GET['logoutc'])) {
-    unset($_SESSION['cliente']);
-} 
 
 ?>
