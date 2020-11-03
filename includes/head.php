@@ -39,16 +39,24 @@ $Pais = new Pais($con);
 $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Registrar = new Registrar($con);
-$InciarSesion = new IniciarSesion($con);
+$IniciarSesion = new IniciarSesion($con);
 
-if (isset($_POST['InciarSesion'])) {
-	$res = $InciarSesion->inciarSesion($_POST);
-	if ($res == 1) {
+/* if (isset($_GET['logok'])) {
 		header('Location: index.php');
 	} else {
 		unset($_POST);
-	}
-}
+	}  */
+
+	if (isset($_POST['IniciarSesion'])) {
+		$res = $IniciarSesion->iniciarSesion($_POST);
+		if ($res == 1) {
+			header('Location: index.php');
+		} else {
+			unset($_POST);
+		}
+	} 
+
+
 
 if (isset($_GET['logoutc'])) {
 	unset($_SESSION['cliente']);

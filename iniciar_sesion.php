@@ -46,7 +46,8 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-2 py-2">
-                                        <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Inicar Sesion" name="InciarSesion">
+                                        <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Inicar Sesion" name="IniciarSesion">
+
                                     </div>
 
                                 </div>

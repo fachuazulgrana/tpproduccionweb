@@ -10,7 +10,7 @@ class IniciarSesion
         $this->con = $con;
     }
 
-    public function inciarSesion($data)
+    public function iniciarSesion($data)
     {
         $usuario = $data['usuario'];
         $password = $data['password1'];
