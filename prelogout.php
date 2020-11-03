@@ -19,10 +19,10 @@
         <div class="container pt-5 pb-3 shadow-sm">
 
             <div class="text-center pb-3">
-                <h1>No te vayas! Sabemos que estos sitios te interesan.</h1>
+                <h1>¿Seguro que quieres irte? Estos productos podrían interesarte.</h1>
             </div>
             <div class="col-sm-12">
-                <a href="?logoutc"><button type="button" class="btn btn-danger btn-xs">Cerrar Sesion</button></a>
+                <a href="?logoutc"><button type="button" class="btn btn-danger btn-xs">Si, quiero irme.</button></a>
             </div>
 
         </div>
