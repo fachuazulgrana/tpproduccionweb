@@ -13,11 +13,6 @@
         <a href="home.php"><i class="fa fa-fw fa-home"></i>Home</a>
     </li>
 
-    <!--
-        if(in_array('user',$_SESSION['usuario']['permisos']['seccion'])){
-            <li class="<?php echo isset($userMenu) ? 'active' : '' ?>"><a href="usuarios.php"></a></li> 
-        }
-    -->
 
     <?php if (in_array('user', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'perfiles') ? "class=active" : ""; ?>>
