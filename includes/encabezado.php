@@ -30,11 +30,14 @@
                 <a class="nav-link borde" href=<?php echo RUTA_LOGIN ?>>Iniciar Sesion</a>
             </li>
             <?php } ?>
-            <?php if (isset($_SESSION['cliente'])) { ?>
+            <?php if (isset($_SESSION['cliente']) && (isset($_COOKIE['recomendados']))) { ?>
                 <!-- <li class="nav-item px-3 py-2"><a class="nav-link borde" href="?logoutc">Logout</a></li> -->
                 <li <?php echo ($page == 'prelogout') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
                 <a class="nav-link borde" href=<?php echo RUTA_LOGOUT ?>>Logout</a>
             </li>
+            <?php } ?>
+            <?php if (isset($_SESSION['cliente']) && (!isset($_COOKIE['recomendados']))) { ?>
+                <li class="nav-item px-3 py-2"><a class="nav-link borde" href="?logoutc">Logout</a></li>
             <?php } ?>
         </ul>
         <ul class="navbar-nav align-items-center ml-auto social_links">
