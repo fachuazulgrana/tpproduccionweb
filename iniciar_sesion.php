@@ -26,32 +26,31 @@
                 </svg>
             </div>
 
-            <div class="container">
+            <div class="col-6 container">
                 <form action="#" method="post" class="py-4">
                     <fieldset>
 
                         <div class="row">
-                            <div class="col-12">
-                                <div class="row">
 
-                                    <div class="col-sm-12 col-md-6 py-2">
+                                    <div class="col-2"></div> <!-- ESTO SOLO ES PARA CENTRAR LO SIGUIENTE -->
+                                    <div class="col-sm-12 col-lg-8 py-2">
                                         <label>Nombre de Usuario *</label>
                                         <input type="text" name="usuario" required class="form-control" placeholder="nombre_usuario">
                                     </div>
+                                    <div class="col-2"></div> <!-- ESTO SOLO ES PARA CENTRAR LO ANTERIOR -->
 
-
-                                    <div class="col-sm-12 col-md-6 py-2">
+                                    <div class="col-2"></div> <!-- ESTO SOLO ES PARA CENTRAR LO SIGUIENTE -->
+                                    <div class="col-sm-12 col-lg-8 py-2">
                                         <label>Contraseña *</label>
                                         <input type="password" name="password1" required class="form-control" placeholder="********">
                                     </div>
+                                    <div class="col-2"></div> <!-- ESTO SOLO ES PARA CENTRAR LO ANTERIOR -->
 
-                                    <div class="col-sm-12 col-md-2 py-2">
+                                    <div class="col-2"></div> <!-- ESTO SOLO ES PARA CENTRAR LO SIGUIENTE -->
+                                    <div class="col-sm-12 col-lg-4 py-2">
                                         <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Inicar Sesion" name="IniciarSesion">
-
                                     </div>
 
-                                </div>
-                            </div>
                         </div>
                     </fieldset>
                 </form>
