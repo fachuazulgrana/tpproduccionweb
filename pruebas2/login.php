@@ -8,7 +8,7 @@ require_once("head_admin.php");
 
 
 ?>
-<title>Log In</title>
+<title>Login</title>
 
 </head>
 
@@ -24,26 +24,20 @@ require_once("head_admin.php");
 
 <br>
 
-<div class="container box">
+<div class="box">
+    <img src="../pruebas/img/avatar-user.png" class="avatar">
     <h1>Login</h1>
     <form action="home.php" method="post" class="from-horizontal">
-        <div class="form-group row">
+        <div class="form-group">
             <!-- <label for="usuario" class="col-12 control-label">Usuario</label> -->
 
-            <div class="col-12">
                 <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="<?php echo isset($usuario->usuario) ? $usuario->usuario : ''; ?>">
-            </div>
-                        
+            
             <!-- <label for="calve" class="col-12 control-label">Clave</label> -->
 
-            <div class="col-12">
                 <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
-            </div>
-            
-            <div class="col-3"></div>
-            <div class="col-6">
+
                 <button type="submit" class="btn btn-primary btn-xs" name="login">Entrar</button>
-            </div>
         </div>
     </form>
 </div>

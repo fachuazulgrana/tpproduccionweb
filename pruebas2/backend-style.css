@@ -83,15 +83,16 @@ body {
   /* LOGIN */
 
   .box{
-    width: 300px;
-    height: 600px;
-    padding: 150px;
-    position: absolute;
+    width: 450px;
+    height: 500px;
+    padding: 100px;
     top: 50%;
     left: 50%;
+    position: absolute;
     transform: translate(-50%,-50%);
     background: #191919;
     text-align: center;
+    border-radius: 30px;
   }
   
   .box h1{
@@ -100,7 +101,7 @@ body {
     font-weight: 500;
   }
   
-  .box input[type = "text"],.box input[type = "password"]{
+  .box input[type = "text"] , .box input[type = "password"]{
     border: 0;
     background: none;
     display: block;
@@ -115,8 +116,8 @@ body {
     transition: 0.25s;
   }
   
-  .box button[type = "text"]:focus,.box input[type = "password"]:focus{
-    width: 280px;
+  .box input[type = "text"]:focus , .box input[type = "password"]:focus{
+    width: 250px;
     border-color: #2ecc71;
   }
 
@@ -134,7 +135,15 @@ body {
     cursor: pointer;
   }
   
-  .box [type = "submit"]:focus{
+  .box button[type = "submit"]:focus{
     background: #2ecc71;
+  }
+
+  .avatar{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -60px;
+    left: calc(50% - 50px);
   }
   
