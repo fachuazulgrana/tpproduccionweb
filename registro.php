@@ -26,46 +26,50 @@
                 </svg>
             </div>
 
-            <div class="container">
+            <div class="col-6 container">
                 <form action="#" method="post" class="py-4">
                     <fieldset>
-
                         <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6 py-2">
+
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label>Nombre *</label>
                                         <input type="text" name="nombre_registro" required class="form-control">
                                     </div>
-                                    <div class="col-sm-12 col-md-6 py-2">
+
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label>Apellido *</label>
                                         <input type="text" name="apellido_registro" required class="form-control">
                                     </div>
-                                    <div class="col-sm-12 col-md-6 py-2">
+                                    
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label for="email">Email *</label>
                                         <input type="email" id="email_registro" name="email_registro" required class="form-control" placeholder="usuario@email.com">
                                     </div>
-                                    <div class="col-sm-12 col-md-6 py-2">
+
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label>Nombre de Usuario *</label>
                                         <input type="text" name="usuario" required class="form-control" placeholder="nombre_usuario">
                                     </div>
-                                    <div class="col-sm-12 col-md-6 py-2">
+                                    
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label>Contraseña *</label>
                                         <input type="password" name="password1" required class="form-control" placeholder="********">
                                     </div>
-                                    <div class="col-sm-12 col-md-6 py-2">
+
+                                    <div class="col-sm-12 col-lg-6 py-2">
                                         <label>Repita la contraseña *</label>
                                         <input type="password" name="password2" required class="form-control" placeholder="********">
                                     </div>
-                                    <div class="col-sm-12 col-md-2 py-2">
+
+                                    <div class="col-md-4 col-lg-8"></div> <!-- ESTO SOLO ES PARA CENTRAR -->
+
+                                    <div class="col-sm-12 col-md-8 col-lg-4 py-2">
                                         <input class="text-white btn btn-md btn-block text-center newsletter-btn" type="submit" value="Crear Cuenta" name="CrearCuenta">
                                         <?php
                                         $Registrar->setRegistrar();
                                         ?>
                                     </div>
 
-                                </div>
-                            </div>
                         </div>
                     </fieldset>
                 </form>

@@ -3,7 +3,9 @@
     <a class="navbar-brand">
         <img src="../images/logo_cabecera.png" alt="logo" style="width:40px;">
     </a>
-    <a class="navbar-brand asd">Bienvenido al Panel BackEnd</a>
+    <?php if (isset($_SESSION['usuario'])) { ?>
+    <a class="navbar-brand asd">Bienvenido al Panel de Backend <?php echo $_SESSION['usuario']['nombre'] ?> </a>
+<?php } ?>
 </nav>
 
 <ul class="sidebar">
@@ -11,11 +13,6 @@
         <a href="home.php"><i class="fa fa-fw fa-home"></i>Home</a>
     </li>
 
-    <!--
-        if(in_array('user',$_SESSION['usuario']['permisos']['seccion'])){
-            <li class="<?php echo isset($userMenu) ? 'active' : '' ?>"><a href="usuarios.php"></a></li> 
-        }
-    -->
 
     <?php if (in_array('user', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'perfiles') ? "class=active" : ""; ?>>
@@ -50,6 +47,12 @@
     <?php if (in_array('com', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
             <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a>
+        </li>
+    <?php } ?>
+
+    <?php if (in_array('cli', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'clientes') ? "class=active" : ""; ?>>
+            <a href="clientes.php"><i class="fa fa-fw fa-user"></i>Clientes</a>
         </li>
     <?php } ?>
 

@@ -20,6 +20,7 @@ require_once('../pruebas/pais.php');
 require_once('../pruebas/productos.php');
 require_once('../pruebas/comentarios.php');
 require_once('../app/Usuarios.php');
+require_once('../app/Cliente.php');
 
 
 try {
@@ -35,6 +36,7 @@ $Pais = new Pais($con);
 $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Usuario = new Usuario($con);
+$Cliente = new Cliente($con);
 
 if (isset($_POST['login'])) {
     $Usuario->login($_POST);

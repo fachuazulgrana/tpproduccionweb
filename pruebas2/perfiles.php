@@ -11,7 +11,7 @@
   $page = "perfiles";
   ?>
   <title>Perfiles</title>
-  <?php if (!in_array('user', $_SESSION['usuario']['permisos']['seccion'])) {
+  <?php if (!in_array('perf', $_SESSION['usuario']['permisos']['seccion'])) {
     header('Location: home.php');
   } ?>
 

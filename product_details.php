@@ -2,7 +2,16 @@
 <html lang="es">
 
 <head>
-    <?php require_once "includes/head.php" ?>
+    <?php require_once "includes/head.php";
+    $i = 0;
+    if(isset($_COOKIE['cont'])){
+        $i = $_COOKIE['cont'] + 1;
+        setcookie('cont', $i, time()+84600);
+    } else{
+    $i = 0;
+    setcookie('cont', $i, time()+84600);
+}?>
+
     <title>Detalles</title>
 </head>
 
@@ -19,6 +28,9 @@
             if ($ciudades['id'] == $_GET['id']) break;
         }
         echo '<h1>' . $ciudades['nombre'] . '</h1>';
+        if(isset($_SESSION)){
+        setcookie("recomendados[$i]", $ciudades['id'], time()+84600);
+        }
         ?>
     </div>
 

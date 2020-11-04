@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2020 a las 23:45:42
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.3
+-- Tiempo de generación: 03-11-2020 a las 05:03:36
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -45,12 +44,13 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `password`, `tipo`, `activo`, `borrado`) VALUES
-(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0, 0),
-(8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
-(9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0),
+(1, 'Luis', 'Machin', 'mateo@gmail.com', 'pepito', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0, 1),
+(8, 'Mateo', 'Porcar', 'mateoporcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 1),
+(9, 'Mateo', 'Machin', 'mateo@mateo.com', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 1, 0),
 (10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0, 0),
-(11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 0, 0),
-(12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 0, 0);
+(11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 1, 0),
+(12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 1, 0),
+(13, 'Mateo', 'Porcar', 'mateo@gmail.com.ar', 'mateo10', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -206,7 +206,8 @@ INSERT INTO `perfiles` (`id_perfil`, `nombre`) VALUES
 (1, 'administrador'),
 (2, 'gerencia'),
 (3, 'cliente'),
-(4, 'visitante');
+(4, 'visitante'),
+(10, 'perfil_clientes');
 
 -- --------------------------------------------------------
 
@@ -248,7 +249,14 @@ INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (1, 22),
 (1, 23),
 (1, 24),
-(2, 4),
+(1, 25),
+(1, 26),
+(1, 27),
+(2, 5),
+(2, 6),
+(2, 9),
+(2, 11),
+(2, 12),
 (3, 6),
 (3, 7),
 (3, 8),
@@ -262,7 +270,14 @@ INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (3, 19),
 (3, 20),
 (4, 2),
-(4, 3);
+(4, 3),
+(10, 21),
+(10, 22),
+(10, 23),
+(10, 24),
+(10, 25),
+(10, 26),
+(10, 27);
 
 -- --------------------------------------------------------
 
@@ -305,7 +320,10 @@ INSERT INTO `permisos` (`permisos_id`, `nombre`, `code`, `seccion`) VALUES
 (21, 'Agregar perfiles', 'perf.add', 'perf'),
 (22, 'Editar perfiles', 'perf.edit', 'perf'),
 (23, 'Borrar perfiles', 'perf.del', 'perf'),
-(24, 'Ver perfiles', 'perf.see', 'perf');
+(24, 'Ver perfiles', 'perf.see', 'perf'),
+(25, 'Ver Clientes', 'cli.see', 'cli'),
+(26, 'Editar Clientes', 'cli.edit', 'cli'),
+(27, 'Borrar Clientes', 'cli.del', 'cli');
 
 -- --------------------------------------------------------
 
@@ -425,7 +443,9 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, 
 (41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0),
 (42, 'nuevo4443', 'Porcar', 'mateo.porcar2@live.com.ar', 'mateo2', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
 (43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
-(44, 'fafa', 'fafa', 'asd@asd', 'asd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1);
+(44, 'fafa', 'fafa', 'asd@asd', 'asd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1),
+(45, 'Perfiles', 'Clientes', 'perfcli@gmail.com', 'perf_cli', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
+(46, 'Geren', 'Ger', 'gerencia@gmail.com', 'geren', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -449,7 +469,9 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 (42, 1),
 (42, 2),
 (43, 1),
-(44, 1);
+(44, 1),
+(45, 10),
+(46, 2);
 
 --
 -- Índices para tablas volcadas
@@ -567,7 +589,7 @@ ALTER TABLE `usuario_perfiles`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -603,7 +625,7 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -621,7 +643,7 @@ ALTER TABLE `productos_info`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Restricciones para tablas volcadas

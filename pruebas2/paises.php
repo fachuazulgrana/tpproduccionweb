@@ -6,7 +6,7 @@
   <title>Paises</title>
   <?php if (!in_array('pais', $_SESSION['usuario']['permisos']['seccion'])) {
     header('Location: home.php');
-  } ?>
+  } ?> 
 </head>
 
 <body>

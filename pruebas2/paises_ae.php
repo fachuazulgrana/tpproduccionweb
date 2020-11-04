@@ -27,7 +27,7 @@
     ?>
     <div class="content">
         <div class="main container-fluid">
-            <h1 class="page-header">Agregar / Editar Paises</h1>
+            <h1 class="page-header"><?php echo (isset($pais->nombre) ? 'Editar Pais' : 'Agregar Pais'); ?></h1>
             
             <form action="paises.php" method="post" class="from-horizontal">
                 <div class="form-group row">

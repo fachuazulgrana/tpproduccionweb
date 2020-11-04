@@ -1,4 +1,6 @@
-<?php require_once('pruebas/mysql-login.php'); ?>
+<?php
+session_start();
+require_once('pruebas/mysql-login.php'); ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,9 +26,9 @@ require_once('app/Registrar.php');
 require_once('app/Iniciar_Sesion.php');
 
 
-try{
-	$con = new PDO('mysql:host='.$hostname.';dbname='.$database.';port='.$puerto, $username, $password);
-}catch (PDOException $e){
+try {
+	$con = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';port=' . $puerto, $username, $password);
+} catch (PDOException $e) {
 	print "¡Error!: " . $e->getMessage();
 	die();
 }
@@ -37,5 +39,29 @@ $Pais = new Pais($con);
 $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Registrar = new Registrar($con);
-$InciarSesion = new IniciarSesion($con);
+$IniciarSesion = new IniciarSesion($con);
+
+/* if (isset($_GET['logok'])) {
+		header('Location: index.php');
+	} else {
+		unset($_POST);
+	}  */
+
+	if (isset($_POST['IniciarSesion'])) {
+		$res = $IniciarSesion->iniciarSesion($_POST);
+		if ($res == 1) {
+			header('Location: index.php');
+		} else {
+			unset($_POST);
+		}
+	} 
+
+
+
+if (isset($_GET['logoutc'])) {
+	unset($_SESSION['cliente']);
+	header('Location: index.php');
+}
+
+
 ?>

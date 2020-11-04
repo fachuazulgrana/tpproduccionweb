@@ -8,7 +8,7 @@ require_once("head_admin.php");
 
 
 ?>
-<title>Log In</title>
+<title>Login</title>
 
 </head>
 
@@ -22,30 +22,22 @@ require_once("head_admin.php");
 
 <body>
 
-    <div class="container-fluid">
-        <br>
-        <div class="col-sm-12 col-md-12">
-            <div class="col-sm-6 col-md-6">
-                <form action="home.php" method="post" class=" from-horizontal">
-                    <div class="form-group">
-                        <label for="usuario" class="col-sm-2 control-label">Usuario</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="" value="<?php echo isset($usuario->usuario) ? $usuario->usuario : ''; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="calve" class="col-sm-2 control-label">Clave</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="clave" name="clave" placeholder="">
-                        </div>
-                    </div>
+<br>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-xs" name="login">Entrar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+<div class="box">
+    <img src="../pruebas/img/avatar-user.png" class="avatar">
+    <h1>Login</h1>
+    <form action="home.php" method="post" class="from-horizontal">
+        <div class="form-group">
+            <!-- <label for="usuario" class="col-12 control-label">Usuario</label> -->
+
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="<?php echo isset($usuario->usuario) ? $usuario->usuario : ''; ?>">
+            
+            <!-- <label for="calve" class="col-12 control-label">Clave</label> -->
+
+                <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
+
+                <button type="submit" class="btn btn-primary btn-xs" name="login">Entrar</button>
         </div>
-    </div>
+    </form>
+</div>
