@@ -2,40 +2,44 @@
 <html lang="es">
 
 <head>
-    <?php require_once "head_admin.php" ?>
-    <title>Continentes</title>
-    <?php if (!in_array('cont', $_SESSION['usuario']['permisos']['seccion'])) {
+<?php require_once "head_admin.php" ?>
+<title>Continentes</title>
+<?php if (!in_array('cont', $_SESSION['usuario']['permisos']['seccion'])) {
     header('Location: home.php');
-  } ?>
+} ?>
 </head>
 
 <body>
 
-<?php 
+<?php
 $page = 'continentes';
 require_once("sidebar.php");
 
 if (isset($_POST['formulario-continente'])) {
-  if ($_POST['id'] > 0) {
-    $Continente->edit($_POST);
-  } else {
-    $Continente->save($_POST);
-  }
-  header('Location: continentes.php');
+    if ($_POST['id'] > 0) {
+        $Continente->edit($_POST);
+    } else {
+        $Continente->save($_POST);
+    }
+    header('Location: continentes.php');
 }
 
 if (isset($_GET['del'])) {
-  $resp = $Continente->del($_GET['del']);
-  if ($resp == 1) {
-    header('Location: continentes.php');
-  }
-  echo '<script>alert("' . $resp . '");</script>';
+    $resp = $Continente->del($_GET['del']);
+    if ($resp == 1) {
+        header('Location: continentes.php');
+    }
+    echo '<script>alert("' . $resp . '");</script>';
 }
 ?>
 
 <div class="content">
     <h1 class="page-header">Continentes</h1>
-    <h2 class="sub-header">Listado <?php if (in_array('cont.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="continentes_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <?php if (in_array('cont.add', $_SESSION['usuario']['permisos']['code'])) { ?>
+      <a href="continentes_ae.php">
+        <button button type="button" class="btn btn-success btn-xs">AGREGAR</button>
+      </a><?php } ?>
+    </h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -49,7 +53,7 @@ if (isset($_GET['del'])) {
         <tbody>
           <?php
           foreach ($Continente->getCont() as $cont) {
-          ?> 
+              ?> 
             <tr>
               <td><?php echo $cont['id']; ?></td>
               <td><?php echo $cont['nombre']; ?></td>

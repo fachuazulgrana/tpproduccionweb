@@ -2,11 +2,9 @@
 
 class Perfil
 {
-
     private $con;
 
-
-    function __construct($con)
+    public function __construct($con)
     {
         $this->con = $con;
     }
@@ -71,19 +69,20 @@ class Perfil
         $this->con->exec($sql);
     }
 
-    public function edit($data){
+    public function edit($data)
+    {
         $id = $data['id_perfil'];
         unset($data['id_perfil']);
 
-        foreach ($data as $key => $value){
-            if(!is_array($value)){
-                if($value != null){
+        foreach ($data as $key => $value) {
+            if (!is_array($value)) {
+                if ($value != null) {
                     $columns[]=$key." = '".$value."'";
                 }
             }
         }
 
-        $sql = "UPDATE perfiles SET " .implode(',',$columns)." WHERE id_perfiles = " .$id;
+        $sql = "UPDATE perfiles SET " .implode(',', $columns)." WHERE id_perfiles = " .$id;
 
         $this->con->exec($sql);
 
@@ -96,6 +95,5 @@ class Perfil
             $sql .= 'INSERT INTO perfil_permiso(perfil_id, permiso_id) VALUES (' . $id . ',' . $permisos . ');';
         }
         $this->con->exec($sql);
-
     }
 }

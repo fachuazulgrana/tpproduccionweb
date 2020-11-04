@@ -46,8 +46,6 @@ class Usuario
         return $usuario;
     }
 
-
-
     public function del($id)
     {
         /*         $query = "SELECT count(1) as cantidad FROM usuario_perfiles WHERE usuario_id = " . $id;

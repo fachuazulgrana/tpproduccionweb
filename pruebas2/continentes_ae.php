@@ -6,11 +6,9 @@
     $page = 'continentes';
     require_once("head_admin.php");
     
-    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/continentes.php")
-    {
+    if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/continentes.php") {
         header('Location:home.php');
     }
-
 
     if (isset($_GET['edit'])) {
         $cont = $Continente->get($_GET['edit']);
@@ -34,28 +32,28 @@
                     <label for="continente-activo" class="col-sm-5 control-label">Activo</label>
 
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo (isset($cont->nombre) ? $cont->nombre : ''); ?>">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo(isset($cont->nombre) ? $cont->nombre : ''); ?>">
                     </div>
 
                     <div class="col-sm-4">
                         <select name="activo" id="activo">
-                            <?php if(isset($cont->activo)){ ?>
+                            <?php if (isset($cont->activo)) { ?>
                                 <option value="<?php  echo ($cont->activo == 1) ? 1 : 0; ?>"><?php echo ($cont->activo == 1) ? 'si' : 'no'; ?></option>
                                 <option value="<?php  echo ($cont->activo == 1) ? 0 : 1; ?>"><?php echo ($cont->activo == 1) ? 'no' : 'si'; ?></option>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <option value="<?php  echo 1; ?>"><?php echo 'si'; ?></option>
                                 <option value="<?php  echo 0; ?>"><?php echo 'no'; ?></option>
                             <?php } ?>
                         </select>
                         <!--
-                            <input type="text" class="form-control" id="activo" name="activo" value="<?php echo (isset($cont->activo) ? $cont->activo : ''); ?>">
+                            <input type="text" class="form-control" id="activo" name="activo" value="<?php echo(isset($cont->activo) ? $cont->activo : ''); ?>">
                         -->
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-4">
                         <button type="submit" class="btn btn-success btn-xs" name="formulario-continente">Guardar</button>
                     </div>
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo (isset($cont->id) ? $cont->id : '');?>">
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo(isset($cont->id) ? $cont->id : '');?>">
 
                 </div>
 

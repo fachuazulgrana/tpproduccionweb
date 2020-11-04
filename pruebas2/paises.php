@@ -35,7 +35,11 @@
 
   <div class="content">
     <h1 class="page-header">Paises</h1>
-    <h2 class="sub-header">Listado <?php if (in_array('pais.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="paises_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2> <!-- Acá hay que hacer que funcione el botón -->
+    <h2 class="sub-header">Listado <?php if (in_array('pais.add', $_SESSION['usuario']['permisos']['code'])) { ?>
+      <a href="paises_ae.php">
+        <button type="button" class="btn btn-success btn-xs">AGREGAR</button>
+      </a><?php } ?>
+    </h2> <!-- Acá hay que hacer que funcione el botón -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -56,7 +60,6 @@
               <td><?php echo $pais['nombre']; ?></td>
               <td><?php echo $Continente->getContName($pais); ?></td>
               <td><?php echo ($pais['activo']) ? 'si' : 'no'; ?></td>
-
 
               <td>
                 <?php if (in_array('pais.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
