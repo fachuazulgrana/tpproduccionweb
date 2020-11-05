@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <select name="continentes_id" id="continentes_id">
+                        <select style="width:400px;height:35px" name="continentes_id" id="continentes_id">
 
                                 <option value="<?php echo (isset($pais->continentes_id) ? $pais->continentes_id : ''); ?>"><?php echo (isset($pais->continentes_id) ? $pais->continentes_id : 'continentes'); ?></option>
                             
@@ -61,7 +61,7 @@
                     </div> <!-- ACÁ TENGO QUE CAMBIAR -->
 
                     <div class="col-sm-3">
-                        <select name="activo" id="activo">
+                        <select style="width:400px;height:35px" name="activo" id="activo">
                             <?php if(isset($pais->activo)){ ?>
                                 <option value="<?php  echo ($pais->activo == 1) ? 1 : 0; ?>"><?php echo ($pais->activo == 1) ? 'si' : 'no'; ?></option>
                                 <option value="<?php  echo ($pais->activo == 1) ? 0 : 1; ?>"><?php echo ($pais->activo == 1) ? 'no' : 'si'; ?></option>

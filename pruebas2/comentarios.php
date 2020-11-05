@@ -69,6 +69,7 @@
             <th>Producto</th>
             <th>Activo</th>
             <th>Acciones</th>
+            <th>Campo dinámico</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +92,10 @@
                 <?php if (in_array('com.del', $_SESSION['usuario']['permisos']['code'])) { ?>
                   <a href="comentarios.php?del=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
                 <?php } ?>
+              </td>
+
+              <td>
+                  <a href="comentarios_dinamicos.php"><button type="button" class="btn btn-success btn-xs"><?php echo 'Agregar'; ?></button></a> <!-- Acá hay que hacer que funcione el botón -->
               </td>
 
             </tr>
