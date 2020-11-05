@@ -12,16 +12,16 @@ class Productos
 
 	public function getProductos($filtro = array())
 	{
-		$query = "SELECT productos.* FROM productos
+		/*$query = "SELECT productos.* FROM productos
 		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
 		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
-		WHERE productos.activo = 1 ";
+		WHERE productos.activo = 1 ";*/
 
-		$query2 = "SELECT productos.*, AVG(comentarios.calificacion) as avgcomentarios FROM productos
+		$query = "SELECT productos.*, AVG(comentarios.calificacion) as avgcomentarios FROM productos
 		INNER JOIN paises ON paises.activo = 1 AND productos.paises_id = paises.id
 		INNER JOIN continentes ON continentes.activo = 1 AND paises.continentes_id = continentes.id
 		LEFT JOIN comentarios ON comentarios.activo = 1 AND comentarios.productos_id = productos.id
-		WHERE productos.activo = 1 GROUP BY productos.nombre";
+		WHERE productos.activo = 1"; // GROUP BY productos.nombre
 
 		$where = array();
 
@@ -49,15 +49,16 @@ class Productos
 		if (!empty($filtro['orden'])) {
 			// Si orden == 1 (destacado)
 			if ($filtro['orden'] == 1) {
-				$query2 .= ' ORDER BY destacado DESC ';
+				$query .= ' GROUP BY productos.nombre ORDER BY destacado DESC ';
 				// Si orden NO es calificacion, ordena por nombre ASC o DESC pasado por parametro
 			} else if ($filtro['orden'] != 'calificacion') {
-				$query2 .= ' ORDER BY productos.nombre ' . $filtro['orden'];
+				$query .= ' GROUP BY productos.nombre ORDER BY productos.nombre ' . $filtro['orden'];
 				// Si orden != 1 y != 'calificacion', ordena por promedio de calificacion de los productos DESC 
 			} else {
-				$query2 .= ' ORDER BY avgcomentarios DESC';
+				$query .= ' GROUP BY productos.nombre ORDER BY avgcomentarios DESC';
 			}
-			return $this->con->query($query2);
+		}else{
+			$query .= ' GROUP BY productos.id ASC ';
 		}
 
 		return $this->con->query($query);
