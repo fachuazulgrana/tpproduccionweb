@@ -28,7 +28,8 @@
 
     <?php if (in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
-            <a href="productos.php"><i class="fa fa-fw fa-shopping-cart"></i>Productos</a>
+            <a href="productos.php?page=1&orden=&limit="><i class="fa fa-fw fa-shopping-cart"></i>Productos</a>
+            <!-- <a href="productos.php?page=&orden=&limit="><i class="fa fa-fw fa-shopping-cart"></i>Productos</a> -->
         </li>
     <?php } ?>
 
