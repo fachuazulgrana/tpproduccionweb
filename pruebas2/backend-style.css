@@ -28,6 +28,7 @@ body {
   .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
+    text-decoration: none;
   }
   
   div.content {
@@ -146,4 +147,3 @@ body {
     top: -60px;
     left: calc(50% - 50px);
   }
-  

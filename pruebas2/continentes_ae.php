@@ -36,8 +36,8 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <select name="activo" id="activo">
-                            <?php if (isset($cont->activo)) { ?>
+                        <select style="width:500px;height:35px" name="activo" id="activo">
+                            <?php if(isset($cont->activo)){ ?>
                                 <option value="<?php  echo ($cont->activo == 1) ? 1 : 0; ?>"><?php echo ($cont->activo == 1) ? 'si' : 'no'; ?></option>
                                 <option value="<?php  echo ($cont->activo == 1) ? 0 : 1; ?>"><?php echo ($cont->activo == 1) ? 'no' : 'si'; ?></option>
                             <?php } else { ?>

@@ -39,18 +39,18 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <select name="continentes_id" id="continentes_id">
+                        <select style="width:400px;height:35px" name="continentes_id" id="continentes_id">
+
                             <?php foreach ($Continente->getCont() as $continentes) : ?>
                                     <option value="<?php echo $continentes['id'] ?>" <?php echo (isset($pais->continentes_id) ? (($pais->continentes_id==$continentes['id']) ? 'selected' : '' ) : ''); ?> >
                                         <?php echo $continentes['nombre'] ?>
                                     </option>
                             <?php endforeach ?>
                         </select>
-
-                    </div> <!-- ACÁ TENGO QUE CAMBIAR -->
+                    </div>
 
                     <div class="col-sm-3">
-                        <select name="activo" id="activo">
+                        <select style="width:400px;height:35px" name="activo" id="activo">
                             <?php if(isset($pais->activo)){ ?>
                                 <option value="<?php  echo ($pais->activo == 1) ? 1 : 0; ?>"><?php echo ($pais->activo == 1) ? 'si' : 'no'; ?></option>
                                 <option value="<?php  echo ($pais->activo == 1) ? 0 : 1; ?>"><?php echo ($pais->activo == 1) ? 'no' : 'si'; ?></option>

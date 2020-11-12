@@ -161,48 +161,19 @@ class Comentarios
 		return "Comentario eliminado";
 	}
 
-	/*public function save($data)
-	{
-		foreach ($data as $key => $value) {
-			if (!is_array($value)) {
-				if ($value != null) {
-					$columns[] = $key;
-					$datos[] = $value;
-				}
-			}
-		}
-		$sql = "INSERT INTO comentarios(" . implode(',', $columns) . ") VALUES('" . implode("','", $datos) . "')";
-		$this->con->exec($sql);
-
-		$id = $this->con->lastInsertId();
-	}*/
-
 	public function edit($id, $data)
 	{
-		/*$id = $data['id'];
-		unset($data['id']);
 
-		foreach ($data as $key => $value) {
-			if (!is_array($value)) {
-				if ($value != null) {
-					$columns[] = $key . " = '" . $value . "'";
-				}
-			}
-		}*/
+		//$query = "SELECT activo FROM comentarios WHERE id = " . $id;
 
-		//($data == 0){
-		//	$sql = "UPDATE comentarios SET activo = 1 WHERE id = " . $id;
-		//}else{
-		//	$sql = "UPDATE comentarios SET activo = 0 WHERE id = " . $id;
-		//}
+		//$consulta = $this->con->query($query)->fetch();
 
-		//$this->con->exec($sql);
+		$query = "UPDATE comentarios SET activo = NOT activo WHERE id = " . $id;
 
-		$query = "SELECT activo FROM comentarios WHERE id = " . $id;
+		$this->con->exec($query);
+		return 1;
 
-		$consulta = $this->con->query($query)->fetch();
-
-		if ($consulta['activo'] == 0) {
+		/*if ($consulta['activo'] == 0) {
 			$query = "UPDATE comentarios SET activo = 1 WHERE id = " . $id;
 
 			$this->con->exec($query);
@@ -214,7 +185,7 @@ class Comentarios
 			$this->con->exec($query);
 			return 1;
 		}
-		return "Comentario modificado";
+		return "Comentario modificado";*/
 
 	}
 }
