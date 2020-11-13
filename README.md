@@ -2,8 +2,6 @@
 
 Proyecto Educativo grupo 5
 
-
-
 Participantes:
 
 Alberto Bossio

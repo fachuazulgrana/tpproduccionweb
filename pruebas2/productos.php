@@ -15,6 +15,7 @@
 <?php
 $page = 'productos';
 require_once "sidebar.php";
+include './functions/func.php';
 
 if (isset($_POST['formulario-productos'])) {
     if ($_POST['id'] > 0) {
@@ -48,7 +49,7 @@ $next = $pageNumber + 1;
     <div class="row justify-content-between my-4">
       <div class="col-6">
         <h2 class="sub-header">Listado<?php if (in_array('prod.add', $_SESSION['usuario']['permisos']['code'])) { ?>
-          <a href="productos_ae.php?page="<?php $_GET['page'] ?> >
+          <a href="productos_ae.php?page="<?php isset($_GET['page']) ? $_GET['page'] : '' ?> >
             <button type="button" class="btn btn-success btn-xs">AGREGAR</button>
           </a><?php } ?>
         </h2>
