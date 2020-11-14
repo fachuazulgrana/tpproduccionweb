@@ -11,11 +11,6 @@
         header('Location:home.php');
     }
 
-
-    if (isset($_GET['edit'])) {
-        $cont = $Continente->get($_GET['edit']);
-    }
-
     ?>
     <title>Comentarios Dinamicos</title>
 
@@ -43,9 +38,10 @@
 <script>
     $(document).ready(function(){
         $(".add-row").click(function(){
-            var name = $("#name").val();
-            var email = $("#email").val();
-            var markup = "<tr><td><input type='checkbox' name='record'></td> <td><input type='text' name='info[][label]' value='"+name+"'></td> <td><input type='text' name='info[][text]' value='"+name+"'></td> <td><input type='text' name='info[][text]' value='"+name+"'></td> <td><input type='checkbox' name='record'></td></tr>";
+            var nombre = $("#nombre").val();
+            var tipo = $("#tipo").val();
+            var texto = $("#texto").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td> <td><input style='width:400px;height:35px' type='text' name='info[][label]' value='ingrese nombre del campo'></td> <td><select type='select' style='width:400px;height:35px'> <option value='1'>Text</option><option value='2'>Checkbox</option><option value='3'>Select</option> </select></td> <td><input style='width:400px;height:35px' type='text' name='info[][text]' value='ingrese contenido del campo'></td></tr>";
             $("table tbody").append(markup);
         });
         
@@ -71,15 +67,15 @@
             
             <form>
                 <input type="button" class="add-row btn btn-success btn-xs" value="Add Row">
+                <button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
             </form>
             <table>
                 <thead>
                     <tr>
                         <th>Select</th>
-                        <th>Texto del Campo</th>
+                        <th>Nombre del Campo</th>
                         <th>Tipo de Campo</th>
-                        <th>Validación</th>
-                        <th>¿Es Obligatorio?</th>
+                        <th>Contenido de Campo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +83,6 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
 
         </div>
     </div>

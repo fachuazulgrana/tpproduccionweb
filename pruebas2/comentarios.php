@@ -62,14 +62,12 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>producto_id</th>
+            <th>Producto</th>
             <th>Calificacion</th>
             <th>Comentario</th>
             <th>Fecha</th>
-            <th>Producto</th>
             <th>Activo</th>
             <th>Acciones</th>
-            <th>Campo dinámico</th>
           </tr>
         </thead>
         <tbody>
@@ -77,11 +75,10 @@
           foreach ($Comentarios->getComent() as $coment) {
           ?>
             <tr>
-              <td><?php echo $coment['productos_id']; ?></td>
+              <td><?php echo $Productos->getProdName($coment); ?></td>
               <td><?php echo $coment['calificacion']; ?></td>
               <td><?php echo $coment['comentario']; ?></td>
               <td><?php echo $coment['fecha']; ?></td>
-              <td><?php echo $Productos->getProdName($coment); ?></td>
               <td><?php echo ($coment['activo']) ? 'si' : 'no'; ?></td>
 
 
@@ -94,9 +91,6 @@
                 <?php } ?>
               </td>
 
-              <td>
-                  <a href="comentarios_dinamicos.php"><button type="button" class="btn btn-success btn-xs"><?php echo 'Agregar'; ?></button></a> <!-- Acá hay que hacer que funcione el botón -->
-              </td>
 
             </tr>
 
@@ -106,6 +100,8 @@
           ?>
         </tbody>
       </table>
+
+      <a href="comentarios_dinamicos.php"><button type="button" class="btn btn-success btn-xs"><?php echo 'Agregar Campo Dinámico'; ?></button></a>
 
 </body>
 
