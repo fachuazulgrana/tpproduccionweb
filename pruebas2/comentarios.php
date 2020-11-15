@@ -15,14 +15,14 @@
   $page = 'comentarios';
   require_once("sidebar.php");
 
-  //if (isset($_POST['formulario-comentario'])) {
-  //  if ($_POST['id'] > 0) {
-  //    $Comentarios->edit($_POST);
-  //  } else {
-  //    $Comentarios->save($_POST);
-  //  }
-  //  header('Location: comentarios.php');
-  //}
+  /*if (isset($_POST['formulario-comentario'])) {
+    if ($_POST['id'] > 0) {
+      $Comentarios->edit($_POST);
+    } else {
+      $Comentarios->save($_POST);
+    }
+    header('Location: comentarios.php');
+  }
   if (isset($_GET['edit'])) {
     $Comentarios->edit($_GET['edit'], $coment['activo']);
     header('Location: comentarios.php');
@@ -34,7 +34,7 @@
       header('Location: comentarios.php');
     }
     echo '<script>alert("' . $resp . '");</script>';
-  }
+  }*/
   ?>
   <div class="content">
     <h1 class="page-header">Comentarios</h1>

@@ -110,39 +110,6 @@ function cortar_palabras($texto, $limite, $break = ' ', $pad = '...')
   return $texto;
 }
 
-//Funcion para cortar textos
-function cortar($string, $maximo = 80)
-{
-  $cantidad = strlen($string);
-
-
-  if ($cantidad > $maximo) {
-    $maximo = $maximo - 3;
-    $a = cut_html(substr($string, 0, $maximo));
-    $a .= "...";
-    return $a;
-  } else {
-    return $string;
-  }
-}
-
-//Funcion para evitar que se cortan caracteres html
-function cut_html($string)
-{
-  $a = $string;
-
-  while ($a = strstr($a, '&')) {
-    $b = strstr($a, ';');
-    if (!$b) {
-
-      $nb = strlen($a);
-      return substr($string, 0, strlen($string) - $nb);
-    }
-    $a = substr($a, 1, strlen($a) - 1);
-  }
-  return $string;
-}
-
 
 function obtener_archivos($ruta)
 {
@@ -176,19 +143,6 @@ function obtener_imagenes($ruta)
     closedir($directorio);
   }
   return $galeria;
-}
-
-//funcion para rellenar numeros
-function rellenar_izq($long_total, $valor = '', $relleno = ' ')
-{
-  $cadena = '';
-  $long_actual = strlen($valor);
-  $long_resto = $long_total - $long_actual;
-  for ($i = 0; $i < $long_resto; $i++) {
-    $cadena .= $relleno;
-  }
-  $cadena .= $valor;
-  return $cadena;
 }
 
 
