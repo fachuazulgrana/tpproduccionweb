@@ -24,6 +24,7 @@ require_once('pruebas/productos.php');
 require_once('pruebas/comentarios.php');
 require_once('app/Registrar.php');
 require_once('app/Iniciar_Sesion.php');
+require_once('pruebas/comentarios_dinamicos.php');
 
 
 try {
@@ -40,6 +41,7 @@ $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Registrar = new Registrar($con);
 $IniciarSesion = new IniciarSesion($con);
+$ComentariosDinamicos = new ComentariosDinamicos($con);
 
 /* if (isset($_GET['logok'])) {
 		header('Location: index.php');

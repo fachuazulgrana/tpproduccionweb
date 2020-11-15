@@ -42,7 +42,7 @@
                         <tr>
                             <th>Nombre del Campo</th>
                             <th>Tipo de Campo</th>
-                            <th>Contenido de Campo</th>
+                            <th>Requerido</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>

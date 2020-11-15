@@ -142,6 +142,16 @@
                                     <textarea class="form-control comentario-textarea" name="comentario" required rows="3"></textarea>
                                 </div>
                             </div>
+
+                            <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
+                                <div class="row">
+                                    <div class="col-12 form-group">
+                                        <label><?php echo $comdin['label'] ?></label>
+                                        <input type="<?php $comdin['tipo'] ?>" id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                    </div>
+                                </div>
+                            <?php } ?>
+
                             <div class="row">
                                 <div class="col-sm-6 col-md-10">
                                     <div class="form1">
