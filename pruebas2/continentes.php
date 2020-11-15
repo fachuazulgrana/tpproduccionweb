@@ -5,8 +5,8 @@
     <?php require_once "head_admin.php" ?>
     <title>Continentes</title>
     <?php if (!in_array('cont', $_SESSION['usuario']['permisos']['seccion'])) {
-    header('Location: home.php');
-  } ?>
+      header('Location: home.php');
+    } ?>
 </head>
 
 <body>

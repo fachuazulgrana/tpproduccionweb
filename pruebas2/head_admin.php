@@ -21,6 +21,7 @@ require_once('../pruebas/productos.php');
 require_once('../pruebas/comentarios.php');
 require_once('../app/Usuarios.php');
 require_once('../app/Cliente.php');
+require_once('../pruebas/comentarios_dinamicos.php');
 
 
 try {
@@ -37,6 +38,7 @@ $Productos = new Productos($con);
 $Comentarios = new Comentarios($con);
 $Usuario = new Usuario($con);
 $Cliente = new Cliente($con);
+$ComentariosDinamicos = new ComentariosDinamicos($con);
 
 if (isset($_POST['login'])) {
     $Usuario->login($_POST);
