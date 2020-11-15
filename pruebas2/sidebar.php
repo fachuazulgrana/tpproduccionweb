@@ -1,3 +1,28 @@
+<style>
+.dropdown-btn {
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.dropdown-container {
+  display: none;
+  padding-left: 8px;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+</style>
+
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand/logo -->
     <a class="navbar-brand">
@@ -46,7 +71,13 @@
 
     <?php if (in_array('com', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
-            <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a>
+            <!-- <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a> -->
+
+            <button class="dropdown-btn"><i class="fa fa-fw fa-comments-o"></i>Comentarios<i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-container">
+                <a href="comentarios.php">Listado</a>
+                <a href="comentarios_dinamicos.php">Campos Dinámicos</a>
+            </div>
         </li>
     <?php } ?>
 
@@ -59,39 +90,19 @@
     <li><a href="?logout"><i class="fa fa-fw fa-power-off"></i>Logout</a></li>
 </ul>
 
-<!--
-<div class="sidebar">
-  <a href="home.php">Home</a>
-  <a href="productos.php">Productos</a>
-  <a href="promociones.php">Promociones</a>
-  <a href="noticias.php">Noticias</a>
-  <a href="usuarios.php">Usuarios</a>
-  <a href="perfiles.php">Perfiles</a>
-  <a href="logout.php">Logout</a>
-  <a href="export.php">Export</a>
-</div>
+<script>
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
 
-
-<ul class="navbar-nav nav-pills align-items-center">
-    <li class="nav-brand px-4 py-2">
-        <a href="<?php echo RUTA_HOME ?>" class="logomenu"> <img src="images/logo_cabecera.png" width="70" height="60" alt="Logo"></a>
-    </li>
-
-    <li <?php echo ($page == 'index') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-        <a class="nav-link borde" href=<?php echo RUTA_HOME ?>>Inicio</a>
-    </li>
-
-    <li <?php echo ($page == 'catalogo') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-        <a class="nav-link borde" href=<?php echo RUTA_CATALOGO . '?continente=&pais=&ciudad=' ?>>Catálogo</a>
-    </li>
-
-    <li <?php echo ($page == 'paquetes') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-        <a class="nav-link borde" href=<?php echo RUTA_PAQUETES ?>>Paquetes</a>
-    </li>
-
-    <li <?php echo ($page == 'contacto') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-        <a class="nav-link borde" href=<?php echo RUTA_CONTACTO ?>>Contacto</a>
-    </li>
-</ul>
-
--->
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+    } else {
+        dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>

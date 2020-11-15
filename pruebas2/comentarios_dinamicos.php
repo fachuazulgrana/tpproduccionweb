@@ -51,7 +51,7 @@
                             <tr>
                                 <td><?php echo $comdin['label']; ?></td>
                                 <td><?php echo $comdin['tipo']; ?></td>
-                                <td><?php echo $comdin['opcion']; ?></td>
+                                <td><?php echo ($comdin['opcion'] == 1) ? 'si' : 'no'; ?></td>
                                 <td>
                                     <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
                                         <a href="comentarios_dinamicos_ae.php?edit=<?php echo $comdin['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->

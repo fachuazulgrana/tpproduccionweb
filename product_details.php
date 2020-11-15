@@ -146,8 +146,23 @@
                             <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
                                 <div class="row">
                                     <div class="col-12 form-group">
-                                        <label><?php echo $comdin['label'] ?></label>
-                                        <input type="<?php $comdin['tipo'] ?>" id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                        <label><?php echo $comdin['label'] ?><?php echo ($comdin['opcion'] == 1) ? ' *' : ''; ?></label>
+                                        <?php if($comdin['tipo'] == 1){ ?>
+                                            <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                        <?php } ?>
+
+                                        <?php if($comdin['tipo'] == 2){ ?>
+                                            
+                                            <input type="checkbox" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                        <?php } ?>
+
+                                        <?php if($comdin['tipo'] == 3){ ?>
+                                            <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="<?php $comdin['label'] ?>" id="<?php $comdin['label'] ?>" class="form-control">
+                                                <option value="1">Valor 1</option>
+                                                <option value="2">Valor 2</option>
+                                                <option value="3">Valor 3</option>
+                                            </select>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             <?php } ?>
