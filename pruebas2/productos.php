@@ -84,20 +84,6 @@ $next = $pageNumber + 1;
               </select> 
             <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
           </form>
-
-          <form action="" method="GET" class="mr-3">
-            <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>">
-            <input type="hidden" name="orden" value="<?php echo isset($_GET['orden']) ? $_GET['orden'] : '' ?>">
-            <input type="hidden" name="limit" value="<?php echo isset($_GET['limit']) ? $_GET['limit'] : '' ?>">
-              <?php
-              !empty($_GET['ordenPor']) ? $ordenPor = $_GET['ordenPor'] : $ordenPor = ""
-              ?>
-              <select name="ordenPor" class="custom-select custom-select-lg" id="ordenPor" onchange="this.form.submit()">
-                <option value="" <?php echo ($ordenPor == "") ? 'selected="selected"' : '' ?>> Orden </option>
-                <option value="ASC" <?php echo ($ordenPor == "ASC") ? 'selected="selected"' : '' ?>> A-Z </option>
-                <option value="DESC" <?php echo ($ordenPor == "DESC") ? 'selected="selected"' : '' ?>> Z-A </option>
-              </select>
-          </form>
         </div>
       </div>
       
@@ -125,7 +111,7 @@ $next = $pageNumber + 1;
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($Productos->getProd($limit, $pagStart, $ordenPor) as $prod) { ?> 
+          <?php foreach ($Productos->getProd($limit, $pagStart) as $prod) { ?> 
             <tr>
               <td><?php echo $prod['id']; ?></td>
               <td><?php echo $prod['nombre']; ?></td>

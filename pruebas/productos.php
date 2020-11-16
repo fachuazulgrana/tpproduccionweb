@@ -181,7 +181,7 @@ class Productos
         return $this->con->query($query);
     }
 
-    public function getProd($limit, $pagStart, $ordenPor)
+    public function getProd($limit, $pagStart)
     {
         $query = "SELECT * FROM productos";
 
@@ -193,7 +193,7 @@ class Productos
             }
         }
 
-        $query .= " ORDER BY nombre $ordenPor LIMIT $pagStart, $limit";
+        $query .= " ORDER BY id LIMIT $pagStart, $limit";
 
         return $this->con->query($query);
     }

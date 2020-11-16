@@ -30,7 +30,7 @@
     </a>
     <?php if (isset($_SESSION['usuario'])) { ?>
     <a class="navbar-brand asd">Bienvenido al Panel de Backend <?php echo $_SESSION['usuario']['nombre'] ?> </a>
-<?php } ?>
+    <?php } ?>
 </nav>
 
 <ul class="sidebar">
@@ -54,7 +54,6 @@
     <?php if (in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'productos') ? "class=active" : ""; ?>>
             <a href="productos.php?page=1&orden=&limit="><i class="fa fa-fw fa-shopping-cart"></i>Productos</a>
-            <!-- <a href="productos.php?page=&orden=&limit="><i class="fa fa-fw fa-shopping-cart"></i>Productos</a> -->
         </li>
     <?php } ?>
 
