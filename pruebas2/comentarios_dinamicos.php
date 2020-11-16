@@ -50,7 +50,8 @@
                         <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
                             <tr>
                                 <td><?php echo $comdin['label']; ?></td>
-                                <td><?php echo $comdin['tipo']; ?></td>
+                                <td><?php echo ($comdin['tipo'] == 1) ? 'Input' : (($comdin['tipo'] == 2) ? 'Checkbox' : 'Select'); ?></td>
+                                
                                 <td><?php echo ($comdin['opcion'] == 1) ? 'si' : 'no'; ?></td>
                                 <td>
                                     <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
