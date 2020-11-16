@@ -38,11 +38,31 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="tipo" name="tipo" value="<?php echo (isset($comdin->tipo) ? $comdin->tipo : ''); ?>">
+                        <select style="width:400px;height:35px" name="tipo" id="tipo">
+                            <?php if(isset($comdin->tipo)){ ?>
+                                <option value="<?php  echo 1; ?>" <?php echo ($comdin->tipo == 1) ? 'selected' : ''; ?>> <?php echo 'Input'; ?> </option>
+                                <option value="<?php  echo 2; ?>" <?php echo ($comdin->tipo == 2) ? 'selected' : ''; ?>> <?php echo 'Checkbox'; ?> </option>
+                                <option value="<?php  echo 3; ?>" <?php echo ($comdin->tipo == 3) ? 'selected' : ''; ?>> <?php echo 'Select'?> </option>
+                            <?php }else{ ?>
+                                <option value="<?php  echo 1; ?>"><?php echo 'Input'; ?></option>
+                                <option value="<?php  echo 2; ?>"><?php echo 'Checkbox'; ?></option>
+                                <option value="<?php  echo 3; ?>"><?php echo 'Select'; ?></option>
+                            <?php } ?>
+                        </select>
+
+                        
                     </div>
 
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="opcion" name="opcion" value="<?php echo (isset($comdin->opcion) ? $comdin->opcion : ''); ?>">
+                        <select style="width:400px;height:35px" name="opcion" id="opcion">
+                            <?php if(isset($comdin->opcion)){ ?>
+                                <option value="<?php  echo ($comdin->opcion == 1) ? 1 : 0; ?>"><?php echo ($comdin->opcion == 1) ? 'si' : 'no'; ?></option>
+                                <option value="<?php  echo ($comdin->opcion == 1) ? 0 : 1; ?>"><?php echo ($comdin->opcion == 1) ? 'no' : 'si'; ?></option>
+                            <?php }else{ ?>
+                                <option value="<?php  echo 1; ?>"><?php echo 'si'; ?></option>
+                                <option value="<?php  echo 0; ?>"><?php echo 'no'; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-3">
