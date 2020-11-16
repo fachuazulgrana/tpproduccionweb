@@ -75,8 +75,8 @@
 
             <button class="dropdown-btn"><i class="fa fa-fw fa-comments-o"></i>Comentarios<i class="fa fa-caret-down"></i></button>
             <div class="dropdown-container">
-                <a href="comentarios.php">Listado</a>
-                <a href="comentarios_dinamicos.php">Campos Dinámicos</a>
+                <a href="comentarios.php"><i class="fa fa-fw fa-list"></i>Listado</a>
+                <a href="comentarios_dinamicos.php"><i class="fa fa-fw fa-plus"></i>Campos Dinámicos</a>
             </div>
         </li>
     <?php } ?>
