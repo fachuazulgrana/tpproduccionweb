@@ -29,9 +29,21 @@
             <h1 class="page-header"><?php echo (isset($comdin->label) ? 'Editar Campo' : 'Agregar Campo'); ?></h1>
             <form action="comentarios_dinamicos.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
+                <label for="comentarios_dinamicos-label" class="col-sm-3 control-label">Producto</label>
                     <label for="comentarios_dinamicos-label" class="col-sm-3 control-label">Texto</label>
                     <label for="comentarios_dinamicos-tipo" class="col-sm-3 control-label">Tipo</label>
-                    <label for="comentarios_dinamicos-opcion" class="col-sm-6 control-label">Opción</label>
+                    <label for="comentarios_dinamicos-opcion" class="col-sm-3 control-label">Opción</label>
+
+                    <div class="col-sm-3">
+							<select name="productos_id" id="productos_id" class="form-control">
+								<?php foreach ($Productos->getCookies() as $prod) { ?> 
+                                    <option value="<?php echo $prod['id'] ?>" <?php echo (isset($comdin->productos) ? (($comdin->productos[0] == $prod['id']) ? 'selected = "selected"' : '') : ''); ?>>
+										<?php echo $prod['nombre'] ?>
+									</option>
+
+								<?php } ?>
+							</select>
+					</div>
 
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="label" name="label" value="<?php echo (isset($comdin->label) ? $comdin->label : ''); ?>">

@@ -82,7 +82,7 @@ require_once "sidebar.php";
                     ?>
                     <div class="col-3"></div>
                     <div class="col-6">
-                        <select name="perfil[]" id="perfil" multiple='multiple'>
+                        <select name="perfil[]" id="perfil" multiple='multiple'> 
                             <?php foreach ($Perfil->getList() as $t) { ?>
                                 <option value="<?php echo $t['id_perfil'] ?>" <?php
                                                                                 if (isset($usuarios->perfiles)) {

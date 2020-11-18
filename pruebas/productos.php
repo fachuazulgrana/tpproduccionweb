@@ -22,13 +22,58 @@ class Productos
         foreach ($this->con->query($sql) as $producto) {
             $productos->array[] = $producto['id'];
         }
+
+        $query = 'SELECT comentarios_dinamicos_id
+        FROM productos_comentarios_dinamicos  
+        WHERE productos_comentarios_dinamicos.productos_id = ' . $productos->id;
+
+        foreach ($this->con->query($query) as $com) {
+            $productos->comentarios[] = $com['comentarios_dinamicos_id'];
+        }
+
+        $consult = 'SELECT campo_dinamico_id
+        FROM productos_campos_dinamicos  
+        WHERE productos_campos_dinamicos.productos_id = ' . $productos->id;
+
+
+        foreach ($this->con->query($consult) as $camp) {
+            $productos->campos[] = $camp['campo_dinamico_id'];
+        }
         return $productos;
     }
+
+
+    /* 
+    public function getNO($id)
+    {
+        $query = "SELECT `id_usuario`,`nombre`, `apellido`, `email`, `usuario`,`clave`, `activo` FROM `usuarios` WHERE `id_usuario` = '$id' AND `borrado` = 0";
+        $query = $this->con->query($query);
+
+        $usuario = $query->fetch(PDO::FETCH_OBJ);
+
+        $sql = 'SELECT perfil_id
+					  FROM usuario_perfiles  
+					  WHERE usuario_perfiles.usuario_id = ' . $usuario->id_usuario;
+
+        foreach ($this->con->query($sql) as $perfil) {
+            $usuario->perfiles[] = $perfil['perfil_id'];
+        }
+        return $usuario;
+    } */
+
+
+
+
+
 
     public function edit($data)
     {
         $id = $data['id'];
         unset($data['id']);
+/*         $campos[] = $data['campos'];
+        unset($data['campos']);
+        $comentarios[] = $data['comentarios'];
+        unset($data['comentarios']); */
 
         foreach ($data as $key => $value) {
             if (!is_array($value)) {
@@ -39,7 +84,28 @@ class Productos
         }
         $sql = "UPDATE productos SET " . implode(',', $columns) . " WHERE id = " . $id;
         $this->con->exec($sql);
-        
+
+        $sql = '';
+        $sql = 'DELETE FROM productos_campos_dinamicos WHERE productos_id = ' . $id;
+        $this->con->exec($sql);
+
+        $sql = '';
+        foreach ($data['cualidad'] as $campo) {
+            $sql .= 'INSERT INTO productos_campos_dinamicos(productos_id,campo_dinamico_id) 
+                        VALUES (' . $id . ',' . $campo . ');';
+        }
+        $this->con->exec($sql);
+
+        $sql = '';
+        $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
+        $this->con->exec($sql);
+        $sql = '';
+        foreach ($data['comentario'] as $comentario) {
+            $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
+                        VALUES (' . $id . ',' . $comentario . ');';
+        }
+        $this->con->exec($sql);
+
         // save image
         if (isset($_FILES['imagen'])) {
             $sizes = array(
@@ -57,6 +123,8 @@ class Productos
 
     public function save($data)
     {
+        $campo_id[] = $data['campos'];
+        $comentarios_id[] = $data['comentarios'];
         foreach ($data as $key => $value) {
             if (!is_array($value)) {
                 if ($value != null) {
@@ -83,6 +151,17 @@ class Productos
 
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
         }
+
+        foreach ($data['campos'] as $campo) {
+            $sql .= 'INSERT INTO productos_campos_dinamicos(productos_id,campo_dinamico_id) 
+                        VALUES (' . $id . ',' . $campo . ');';
+        }
+
+        foreach ($data['comentarios'] as $comentario) {
+            $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
+                        VALUES (' . $id . ',' . $comentario . ');';
+        }
+        $this->con->exec($sql);
     }
 
     public function del($id)

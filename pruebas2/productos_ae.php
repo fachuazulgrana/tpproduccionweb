@@ -68,8 +68,37 @@ require_once "sidebar.php";
 						</div>
 
 						<div class="col-4 mt-3">
+							<label for="detalle" class="control-label">Comentarios Dinamicos</label>
+							<select name="comentario[]" id="comentario"  multiple='multiple' class="form-control">
+							<?php foreach ($ComentariosDinamicos->getList() as $t) { ?>
+                                <option value="<?php echo $t['id'] ?>" <?php
+                                                                                if (isset($produ->comentarios)) {
+                                                                                    if (in_array($t['id'], $produ->comentarios)) {
+                                                                                        echo ' selected="selected" ';
+                                                                                    }
+                                                                                }
+
+                                                                                ?>><?php echo $t['label'] ?></option>
+                            <?php } ?>
+							</select>
+						</div>
+						<div class="col-4 mt-3">
+							<label for="detalle" class="control-label">Cualidades Dinamicas</label>
+							<select name="cualidad[]" id="cualidad" multiple='multiple' class="form-control">
+							<?php foreach ($CamposDinamicos->getList() as $j) { ?>
+                                <option value="<?php echo $j['id'] ?>" <?php
+                                                                                if (isset($produ->campos)) {
+                                                                                    if (in_array($j['id'], $produ->campos)) {
+                                                                                        echo ' selected="selected" ';
+                                                                                    }
+                                                                                }
+                                                                                ?>><?php echo $j['label'] ?></option>
+                            <?php } ?>
+							</select>
+						</div>
+						<div class="col-4 mt-3">
 							<label for="activo" class="control-label">Activo</label>
-							<select name="activo" id="activo" class="form-control">
+							<select name="activo" id="activo" class="form-control" >
 								<?php if (isset($produ->activo)) { ?>
 									<option value="<?php echo ($produ->activo == 1) ? 1 : 0; ?>"><?php echo ($produ->activo == 1) ? 'si' : 'no'; ?></option>
 									<option value="<?php echo ($produ->activo == 1) ? 0 : 1; ?>"><?php echo ($produ->activo == 1) ? 'no' : 'si'; ?></option>

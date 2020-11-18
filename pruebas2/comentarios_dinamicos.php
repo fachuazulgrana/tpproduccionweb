@@ -40,6 +40,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Producto</th>
                             <th>Nombre del Campo</th>
                             <th>Tipo de Campo</th>
                             <th>Requerido</th>
@@ -47,8 +48,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
+                        <?php foreach($ComentariosDinamicos->getDinamicos() as $comdin){ ?>
                             <tr>
+                            <td><?php echo isset($comdin['productos']) ? implode(', ', $comdin['productos']) : 'No tiene producto asignado'; ?></td>
                                 <td><?php echo $comdin['label']; ?></td>
                                 <td><?php echo ($comdin['tipo'] == 1) ? 'Input' : (($comdin['tipo'] == 2) ? 'Checkbox' : 'Select'); ?></td>
                                 
