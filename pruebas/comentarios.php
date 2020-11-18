@@ -177,7 +177,7 @@ class Comentarios
 		return "Comentario eliminado";
 	}
 
-	public function edit($id, $data)
+	public function edit($id) //, $data
 	{
 
 		//$query = "SELECT activo FROM comentarios WHERE id = " . $id;
@@ -185,7 +185,6 @@ class Comentarios
 		//$consulta = $this->con->query($query)->fetch();
 
 		$query = "UPDATE comentarios SET activo = NOT activo WHERE id = " . $id;
-
 		$this->con->exec($query);
 		return 1;
 

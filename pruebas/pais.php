@@ -38,9 +38,12 @@ class Pais{
 	//       BACK END
 	// ***********************
 
-	public function getPaises($limit, $pagStart){
-        //$query = "SELECT * FROM paises";
-		//return $this->con->query($query);
+	public function getPaises(){
+        $query = "SELECT * FROM paises";
+		return $this->con->query($query);
+    }
+
+	public function getPaisesPaginados($limit, $pagStart){
         $query = "SELECT * FROM paises";
 
         if (!empty($_GET['orden'])) {

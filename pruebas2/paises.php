@@ -62,7 +62,7 @@
                 <option value="2" <?php echo ($opcion4 == "2") ? 'selected="selected"' : '' ?>> Solo Inactivos </option>
               </select>
               <input type="hidden" name="limit" value="<?php echo isset($_GET['limit']) ? $_GET['limit'] : '' ?>">
-              <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+              <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
 
           <form action="" method="GET" class="mr-3">
@@ -77,7 +77,7 @@
                 <option value="20" <?php echo ($limit == "20") ? 'selected="selected"' : '' ?>>Mostrar 20 </option>
                 <option value="30" <?php echo ($limit == "30") ? 'selected="selected"' : '' ?>>Mostrar 30 </option>
               </select> 
-            <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+            <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
         </div>
       </div>
@@ -100,7 +100,7 @@
         </thead>
         <tbody>
           <?php
-          foreach ($Pais->getPaises($limit, $pagStart) as $pais) {
+          foreach ($Pais->getPaisesPaginados($limit, $pagStart) as $pais) {
           ?>
             <tr>
               <td><?php echo $pais['id']; ?></td>
@@ -117,7 +117,7 @@
                 <?php if (in_array('pais.del', $_SESSION['usuario']['permisos']['code'])) { ?>
                   <a href="paises.php?del=<?php echo $pais['id'] ?>">
                     <button type="button" class="btn btn-danger btn-xs">Borrar</button>
-                  </a> <!-- Acá hay que hacer que funcione el botón -->
+                  </a>
                 <?php } ?>
               </td>
 

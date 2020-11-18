@@ -15,6 +15,19 @@
   $page = 'comentarios';
   require_once("sidebar.php");
 
+  if (isset($_GET['edit'])) {
+    $Comentarios->edit($_GET['edit'], $coment['activo']);
+    header('Location: comentarios.php?page=1&orden=&limit=');
+  }
+
+  if (isset($_GET['del'])) {
+    $resp = $Comentarios->del($_GET['del']);
+    if ($resp == 1) {
+      header('Location: comentarios.php?page=1&orden=&limit=');
+    }
+    echo '<script>alert("' . $resp . '");</script>';
+  }
+
   $pageNumber = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
   $prev = $pageNumber - 1;
   $next = $pageNumber + 1;
@@ -23,8 +36,10 @@
     <h1 class="page-header">Comentarios</h1>
 
     <div class="row justify-content-between">
+      <div class="col-1">
         <h2 class="sub-header">Filtro</h2>
-
+      </div>
+        <div class="col-3">
           <form action="" method="GET" class="mr-3">
             <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>">
               <?php
@@ -36,8 +51,9 @@
                 <option value="2" <?php echo ($opcion4 == "2") ? 'selected="selected"' : '' ?>> Solo Inactivos </option>
               </select>
               <input type="hidden" name="limit" value="<?php echo isset($_GET['limit']) ? $_GET['limit'] : '' ?>">
-              <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+              <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
+        </div>
 
       <div class="col-6">
         <div class="row flex-row justify-content-end">
@@ -54,7 +70,7 @@
                 <option value="20" <?php echo ($limit == "20") ? 'selected="selected"' : '' ?>>Mostrar 20 </option>
                 <option value="30" <?php echo ($limit == "30") ? 'selected="selected"' : '' ?>>Mostrar 30 </option>
               </select> 
-            <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+            <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
 
         </div>
@@ -93,7 +109,7 @@
 
               <td>
                 <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
-                  <a href="comentarios.php?edit=<?php echo $coment['id'] ?>">
+                  <a href="comentarios.php?edit=<?php echo $coment['id'] . "&page=" . $_GET['page'] ?>">
                     <button type="button" class="btn btn-warning btn-xs"><?php echo ($coment['activo'] == 1) ? 'Desactivar' : 'Activar'; ?></button>
                   </a>
                 <?php } ?>
@@ -120,13 +136,13 @@
         <ul class="pagination justify-content-center">
           <li class="page-item <?php if ($pageNumber <= 1) {
               echo 'disabled';
-          } ?>">
+              } ?>">
               <a class="page-link" 
               href="<?php if ($pageNumber <= 1) {
-              echo '#';
-          } else {
-              echo "?page=" . $prev . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'];
-          } ?>"
+                  echo '#';
+              } else {
+                  echo "?page=" . $prev . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'];
+              } ?>"
               >
                 Previous
               </a>
@@ -156,7 +172,7 @@
             </a>
           </li>
         </ul>
-        </nav>
+      </nav>
 </body>
 
 </html>
