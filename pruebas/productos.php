@@ -123,8 +123,6 @@ class Productos
 
     public function save($data)
     {
-        $campo_id[] = $data['campos'];
-        $comentarios_id[] = $data['comentarios'];
         foreach ($data as $key => $value) {
             if (!is_array($value)) {
                 if ($value != null) {
@@ -152,12 +150,17 @@ class Productos
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
         }
 
-        foreach ($data['campos'] as $campo) {
+        $this->con->exec($sql);
+
+        $sql = '';
+        foreach ($data['cualidad'] as $campo) {
             $sql .= 'INSERT INTO productos_campos_dinamicos(productos_id,campo_dinamico_id) 
                         VALUES (' . $id . ',' . $campo . ');';
         }
+        $this->con->exec($sql);
 
-        foreach ($data['comentarios'] as $comentario) {
+        $sql = '';
+        foreach ($data['comentario'] as $comentario) {
             $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
                         VALUES (' . $id . ',' . $comentario . ');';
         }
@@ -168,6 +171,22 @@ class Productos
     {
         $query = "SELECT count(1) as cantidad FROM productos WHERE id = " . $id;
         $consulta = $this->con->query($query)->fetch();
+        
+        $sql = 'SELECT count(1) as comentarios FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
+        $comentarios = $this->con->query($sql)->fetch();
+
+        if($comentarios->comentarios == 0){
+            $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
+            $this->con->exec($sql);
+        }
+        $sql = '';
+        $sql = 'SELECT count(1) as campos FROM productos_campos_dinamicos WHERE productos_id = ' . $id;
+        $campos_din = $this->con->query($sql)->fetch();
+
+        if($campos_din->campos == 0){
+            $sql = 'DELETE FROM productos_campos_dinamicos WHERE productos_id = ' . $id;
+            $this->con->exec($sql);
+        }
 
         if ($consulta->cantidad == 0) {
             $query = "DELETE FROM productos WHERE id = " . $id;
@@ -178,7 +197,6 @@ class Productos
 
         return "País eliminado";
     }
-
 
     public function getPagination()
     {
