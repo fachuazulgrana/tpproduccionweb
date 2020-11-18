@@ -7,7 +7,7 @@
     $page = 'paises';
     require_once("head_admin.php");
 
-    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/paises.php")
+    if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/paises.php" && !(isset($_GET['page'])))
     {
         header('Location:home.php');
     }

@@ -4,9 +4,11 @@
 <head>
     <?php require_once("head_admin.php") ?>
     <title>Productos</title>
-    <?php if (!in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) {
-    header('Location: home.php');
-} ?>
+    <?php
+    if (!in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) {
+        header('Location: home.php');
+    }
+    ?>
 
 </head>
 
@@ -40,13 +42,13 @@ $next = $pageNumber + 1;
 ?>
 
 <div class="content">
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="page-header display-3 my-4">Productos</h1>
+  <div class=""> <!-- container-fluid -->
+    <div class="row">
+      <div class="col-12">
+        <h1 class="page-header">Productos</h1> <!--  display-3 my-4 -->
+      </div>
     </div>
-    </div>
-    <div class="row justify-content-between my-4">
+    <div class="row justify-content-between"> <!--  my-4 -->
       <div class="col-6">
         <h2 class="sub-header">Listado<?php if (in_array('prod.add', $_SESSION['usuario']['permisos']['code'])) { ?>
           <a href="productos_ae.php?page="<?php isset($_GET['page']) ? $_GET['page'] : '' ?> >
@@ -56,6 +58,7 @@ $next = $pageNumber + 1;
       </div>
       <div class="col-6">
         <div class="row flex-row justify-content-end">
+          <h2 class="sub-header">Filtro</h2>
           <form action="" method="GET" class="mr-3">
             <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>">
               <?php
@@ -67,7 +70,7 @@ $next = $pageNumber + 1;
                 <option value="2" <?php echo ($opcion4 == "2") ? 'selected="selected"' : '' ?>> Solo Inactivos </option>
               </select>
               <input type="hidden" name="limit" value="<?php echo isset($_GET['limit']) ? $_GET['limit'] : '' ?>">
-              <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+              <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
 
           <form action="" method="GET" class="mr-3">
@@ -82,7 +85,7 @@ $next = $pageNumber + 1;
                 <option value="20" <?php echo ($limit == "20") ? 'selected="selected"' : '' ?>>Mostrar 20 </option>
                 <option value="30" <?php echo ($limit == "30") ? 'selected="selected"' : '' ?>>Mostrar 30 </option>
               </select> 
-            <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>">
+            <!-- <input type="hidden" name="ordenPor" value="<?php echo isset($_GET['ordenPor']) ? $_GET['ordenPor'] : '' ?>"> -->
           </form>
         </div>
       </div>

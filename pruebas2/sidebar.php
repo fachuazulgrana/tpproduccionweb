@@ -59,7 +59,7 @@
 
     <?php if (in_array('pais', $_SESSION['usuario']['permisos']['seccion'])) { ?>
         <li <?php echo ($page == 'paises') ? "class=active" : ""; ?>>
-            <a href="paises.php"><i class="fa fa-fw fa-plane"></i>Paises</a>
+            <a href="paises.php?page=1&orden=&limit="><i class="fa fa-fw fa-plane"></i>Paises</a>
         </li>
     <?php } ?>
 
@@ -75,7 +75,7 @@
 
             <button class="dropdown-btn"><i class="fa fa-fw fa-comments-o"></i>Comentarios<i class="fa fa-caret-down"></i></button>
             <div class="dropdown-container">
-                <a href="comentarios.php"><i class="fa fa-fw fa-list"></i>Listado</a>
+                <a href="comentarios.php?page=1&orden=&limit="><i class="fa fa-fw fa-list"></i>Listado</a>
                 <a href="comentarios_dinamicos.php"><i class="fa fa-fw fa-plus"></i>Campos Dinámicos</a>
             </div>
         </li>

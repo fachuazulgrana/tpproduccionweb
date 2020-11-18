@@ -100,7 +100,7 @@ class Comentarios
 	//       BACK END
 	// ***********************
 
-	public function getComent()
+	/*public function getComent()
 	{
 		if ($_GET == null || $_GET['orden'] == "") {
 			$query = 'SELECT * FROM comentarios';
@@ -112,7 +112,23 @@ class Comentarios
 			$query = 'SELECT * FROM comentarios WHERE comentarios.activo = 0';
 			return $this->con->query($query);
 		}
-	}
+	}*/
+    public function getComent($limit, $pagStart)
+    {
+        $query = "SELECT * FROM comentarios";
+
+        if (!empty($_GET['orden'])) {
+            if ($_GET['orden'] == "1") {
+                $query .= ' WHERE comentarios.activo = 1';
+            } else {
+                $query .= ' WHERE comentarios.activo = 0';
+            }
+        }
+
+        $query .= " ORDER BY id LIMIT $pagStart, $limit";
+
+        return $this->con->query($query);
+    }
 
 	public function getProdName()
 	{
@@ -161,7 +177,7 @@ class Comentarios
 		return "Comentario eliminado";
 	}
 
-	public function edit($id, $data)
+	public function edit($id) //, $data
 	{
 
 		//$query = "SELECT activo FROM comentarios WHERE id = " . $id;
@@ -169,7 +185,6 @@ class Comentarios
 		//$consulta = $this->con->query($query)->fetch();
 
 		$query = "UPDATE comentarios SET activo = NOT activo WHERE id = " . $id;
-
 		$this->con->exec($query);
 		return 1;
 
@@ -188,4 +203,20 @@ class Comentarios
 		return "Comentario modificado";*/
 
 	}
+
+    public function getPagination()
+    {
+        $query = "SELECT count(id) AS id FROM comentarios";
+
+        if (!empty($_GET['orden'])) {
+            if ($_GET['orden'] == "1") {
+                $query .= ' WHERE comentarios.activo = 1';
+            } else {
+                $query .= ' WHERE comentarios.activo = 0';
+            }
+        }
+
+        $resultado = $this->con->query($query)->fetch();
+        return $resultado['id'];
+    }
 }

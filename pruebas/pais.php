@@ -42,6 +42,22 @@ class Pais{
         $query = "SELECT * FROM paises";
 		return $this->con->query($query);
     }
+
+	public function getPaisesPaginados($limit, $pagStart){
+        $query = "SELECT * FROM paises";
+
+        if (!empty($_GET['orden'])) {
+            if ($_GET['orden'] == "1") {
+                $query .= ' WHERE paises.activo = 1';
+            } else {
+                $query .= ' WHERE paises.activo = 0';
+            }
+        }
+
+        $query .= " ORDER BY id LIMIT $pagStart, $limit";
+
+        return $this->con->query($query);
+    }
     
 	public function getPaisName($prodId)
 	{
@@ -125,6 +141,22 @@ class Pais{
         $sql = "UPDATE paises SET " .implode(',',$columns)." WHERE id = " .$id;
 
         $this->con->exec($sql);
+    }
+
+    public function getPagination()
+    {
+        $query = "SELECT count(id) AS id FROM paises";
+
+        if (!empty($_GET['orden'])) {
+            if ($_GET['orden'] == "1") {
+                $query .= ' WHERE paises.activo = 1';
+            } else {
+                $query .= ' WHERE paises.activo = 0';
+            }
+        }
+
+        $resultado = $this->con->query($query)->fetch();
+        return $resultado['id'];
     }
 }
 
