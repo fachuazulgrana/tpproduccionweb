@@ -29,7 +29,6 @@ if (isset($_POST['formulario-usuarios'])) {
       header('Location: usuarios.php');
     }
   }
-  /* header('Location: usuarios.php'); */
 }
 if (isset($_GET['del'])) {
   $resp = $Usuario->del($_GET['del']);

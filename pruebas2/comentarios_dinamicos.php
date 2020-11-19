@@ -35,7 +35,7 @@
     <div class="content">
         <div class="main container-fluid">
             <h1 class="page-header">Comentarios Dinámicos</h1>
-            <h2 class="sub-header">Listado <?php if (in_array('com.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="comentarios_dinamicos_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2> <!-- Acá hay que hacer que funcione el botón -->
+            <h2 class="sub-header">Listado <?php if (in_array('com.add', $_SESSION['usuario']['permisos']['code'])) { ?><a href="comentarios_dinamicos_ae.php"><button type="button" class="btn btn-success btn-xs">AGREGAR</button></a><?php } ?></h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -55,10 +55,10 @@
                                 <td><?php echo ($comdin['opcion'] == 1) ? 'si' : 'no'; ?></td>
                                 <td>
                                     <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
-                                        <a href="comentarios_dinamicos_ae.php?edit=<?php echo $comdin['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                                        <a href="comentarios_dinamicos_ae.php?edit=<?php echo $comdin['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
                                     <?php } ?>
                                     <?php if (in_array('com.del', $_SESSION['usuario']['permisos']['code'])) { ?>
-                                        <a href="comentarios_dinamicos.php?del=<?php echo $comdin['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a> <!-- Acá hay que hacer que funcione el botón -->
+                                        <a href="comentarios_dinamicos.php?del=<?php echo $comdin['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
                                     <?php } ?>
                                 </td>
                             </tr>

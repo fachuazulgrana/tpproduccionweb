@@ -60,10 +60,7 @@
                             <?php } ?>
                         </select>
 
-                        <!-- 
-                            <input type="checkbox" class="form-control" id="activo" name="activo" value="<?php echo (isset($pais->activo) ? $pais->activo : ''); ?>">
-                        -->
-                    </div> <!-- ACÁ TENGO QUE PONER EL CHECKBOX -->
+                    </div>
 
                     <div class="col-sm-3">
                         <button type="submit" class="btn btn-success btn-xs" name="formulario-pais">Guardar</button>

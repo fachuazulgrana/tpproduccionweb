@@ -78,7 +78,7 @@
     </div>
       <?php
         $pagStart = ($pageNumber - 1) * $limit;
-        $pagesPerCom = ceil($Comentarios->getPagination() / $limit); //acá
+        $pagesPerCom = ceil($Comentarios->getPagination() / $limit);
       ?>
 
     <br>

@@ -45,9 +45,6 @@
                                 <option value="<?php  echo 0; ?>"><?php echo 'no'; ?></option>
                             <?php } ?>
                         </select>
-                        <!--
-                            <input type="text" class="form-control" id="activo" name="activo" value="<?php echo(isset($cont->activo) ? $cont->activo : ''); ?>">
-                        -->
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-4">

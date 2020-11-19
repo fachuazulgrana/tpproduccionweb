@@ -45,7 +45,7 @@
           <a href="paises_ae.php?page="<?php isset($_GET['page']) ? $_GET['page'] : '' ?> >
             <button type="button" class="btn btn-success btn-xs">AGREGAR</button>
           </a><?php } ?>
-        </h2> <!-- Acá hay que hacer que funcione el botón -->
+        </h2>
       </div>
 
       <div class="col-6">
@@ -84,7 +84,7 @@
     </div>
       <?php
         $pagStart = ($pageNumber - 1) * $limit;
-        $pagesPerPais = ceil($Pais->getPagination() / $limit); //acá
+        $pagesPerPais = ceil($Pais->getPagination() / $limit);
       ?>
 
     <div class="table-responsive">

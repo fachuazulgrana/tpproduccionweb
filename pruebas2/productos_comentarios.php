@@ -31,7 +31,6 @@ $query = $con->query($sql)->fetch(PDO::FETCH_ASSOC);
         <tbody>
           <?php
           foreach ($Comentarios->getComentProd($_GET) as $coment) {
-          //foreach ($Comentarios->getComent() as $coment) { //Acá hay que poner para que se vean todos los productos
           ?> 
             <tr>
               <td><?php echo $coment['fecha']; ?></td>
