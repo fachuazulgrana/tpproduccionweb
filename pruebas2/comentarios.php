@@ -17,13 +17,13 @@
 
   if (isset($_GET['edit'])) {
     $Comentarios->edit($_GET['edit'], $coment['activo']);
-    header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit']); // . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] 
+    header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit']);
   }
 
   if (isset($_GET['del'])) {
     $resp = $Comentarios->del($_GET['del']);
     if ($resp == 1) {
-      header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] ); // . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] 
+      header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] );
     }
     echo '<script>alert("' . $resp . '");</script>';
   }
