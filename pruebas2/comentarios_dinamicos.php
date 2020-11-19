@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
+                        <?php foreach($ComentariosDinamicos->getDinamicos() as $comdin){ ?>
                             <tr>
                                 <td><?php echo $comdin['label']; ?></td>
                                 <td><?php echo ($comdin['tipo'] == 1) ? 'Input' : (($comdin['tipo'] == 2) ? 'Checkbox' : 'Select'); ?></td>
