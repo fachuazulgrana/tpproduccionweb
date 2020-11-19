@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2020 a las 05:03:36
+-- Tiempo de generación: 19-11-2020 a las 03:43:28
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `produccion_web`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campos_dinamicos`
+--
+
+CREATE TABLE `campos_dinamicos` (
+  `id` int(11) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `valores` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `campos_dinamicos`
+--
+
+INSERT INTO `campos_dinamicos` (`id`, `label`, `tipo`, `valores`) VALUES
+(1, 'Hola mundo', 1, ''),
+(4, 'Nuevo Campo tipo Check', 2, '');
 
 -- --------------------------------------------------------
 
@@ -50,7 +71,8 @@ INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `pa
 (10, 'Usuario2', 'user', 'mateoporcar@gmail.com.ar', 'user2', '', 0, 0, 0),
 (11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 1, 0),
 (12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 1, 0),
-(13, 'Mateo', 'Porcar', 'mateo@gmail.com.ar', 'mateo10', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1, 0);
+(13, 'Mateo', 'Porcar', 'mateo@gmail.com.ar', 'mateo10', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1, 0),
+(14, 'Mateo', 'fsdfssfds', 'sdfsf@gmail.com', 'sdfsfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -96,6 +118,14 @@ CREATE TABLE `comentarios_dinamicos` (
   `tipo` varchar(50) NOT NULL,
   `opcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios_dinamicos`
+--
+
+INSERT INTO `comentarios_dinamicos` (`id`, `label`, `tipo`, `opcion`) VALUES
+(2, 'Campo Dinamico Input', '1', '1'),
+(6, 'Nuevo Comentario tipo Input', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -253,7 +283,7 @@ INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (1, 26),
 (1, 27),
 (2, 5),
-(2, 6),
+(2, 7),
 (2, 9),
 (2, 11),
 (2, 12),
@@ -347,7 +377,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, `precio`, `activo`, `destacado`) VALUES
-(1, 'Madrid', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.\r\n   ', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 58900, 0, 0),
+(1, 'Madrid', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.\r\n   ', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 58900, 1, 0),
 (2, 'Santiago de Compostela', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 60000, 1, 0),
 (3, 'Covadonga', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 55000, 1, 0),
 (4, 'La Manjoya', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 53200, 1, 0),
@@ -396,13 +426,41 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productos_campos_dinamicos`
+--
+
+CREATE TABLE `productos_campos_dinamicos` (
+  `id` int(11) NOT NULL,
+  `productos_id` int(11) NOT NULL,
+  `campo_dinamico_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `productos_campos_dinamicos`
+--
+
+INSERT INTO `productos_campos_dinamicos` (`id`, `productos_id`, `campo_dinamico_id`) VALUES
+(3, 2, 1),
+(6, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos_comentarios_dinamicos`
 --
 
 CREATE TABLE `productos_comentarios_dinamicos` (
+  `id` int(11) NOT NULL,
   `productos_id` int(11) NOT NULL,
   `comentarios_dinamicos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `productos_comentarios_dinamicos`
+--
+
+INSERT INTO `productos_comentarios_dinamicos` (`id`, `productos_id`, `comentarios_dinamicos_id`) VALUES
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -476,6 +534,12 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `campos_dinamicos`
+--
+ALTER TABLE `campos_dinamicos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -554,9 +618,18 @@ ALTER TABLE `productos`
   ADD KEY `paises_id` (`paises_id`);
 
 --
+-- Indices de la tabla `productos_campos_dinamicos`
+--
+ALTER TABLE `productos_campos_dinamicos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productos_id` (`productos_id`),
+  ADD KEY `campo_dinamico_id` (`campo_dinamico_id`);
+
+--
 -- Indices de la tabla `productos_comentarios_dinamicos`
 --
 ALTER TABLE `productos_comentarios_dinamicos`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `productos_id` (`productos_id`,`comentarios_dinamicos_id`),
   ADD KEY `comentarios_dinamicos_id` (`comentarios_dinamicos_id`);
 
@@ -586,10 +659,16 @@ ALTER TABLE `usuario_perfiles`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `campos_dinamicos`
+--
+ALTER TABLE `campos_dinamicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -601,7 +680,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
 --
 ALTER TABLE `comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -631,7 +710,19 @@ ALTER TABLE `perfiles`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT de la tabla `productos_campos_dinamicos`
+--
+ALTER TABLE `productos_campos_dinamicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `productos_comentarios_dinamicos`
+--
+ALTER TABLE `productos_comentarios_dinamicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_info`
@@ -680,6 +771,13 @@ ALTER TABLE `perfil_permiso`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`paises_id`) REFERENCES `paises` (`id`);
+
+--
+-- Filtros para la tabla `productos_campos_dinamicos`
+--
+ALTER TABLE `productos_campos_dinamicos`
+  ADD CONSTRAINT `productos_campos_dinamicos_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `productos_campos_dinamicos_ibfk_2` FOREIGN KEY (`campo_dinamico_id`) REFERENCES `campos_dinamicos` (`id`);
 
 --
 -- Filtros para la tabla `productos_comentarios_dinamicos`
