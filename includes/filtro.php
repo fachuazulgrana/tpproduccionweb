@@ -25,6 +25,8 @@
                                                 </option>
                                             <?php endforeach ?>
                                         </select>
+                                        <input type="hidden" name="pais" value="<?php echo isset($_GET['pais']) ? $_GET['pais'] : '' ?>">
+                                        <input type="hidden" name="ciudad" value="<?php echo isset($_GET['ciudad']) ? $_GET['ciudad'] : '' ?>">
                                         <input type="hidden" name="orden" value="<?php echo isset($_GET['orden']) ? $_GET['orden'] : '' ?>">
                                     </form>
                                 </div>
@@ -35,6 +37,7 @@
                                         $opcion2 = 'Todo';
                                         !empty($_GET['pais']) ? $opcion2 = $_GET['pais'] : $opcion2 = ""
                                         ?>
+                                        
                                         <input type="hidden" name="continente" value="<?php echo isset($_GET['continente']) ? $_GET['continente'] : '' ?>">
 
                                         <select name="pais" class="custom-select custom-select-lg" id="pais" onchange="this.form.submit()">
@@ -47,6 +50,7 @@
                                                 </option>
                                             <?php endforeach ?>
                                         </select>
+                                        <input type="hidden" name="ciudad" value="<?php echo isset($_GET['ciudad']) ? $_GET['ciudad'] : '' ?>">
                                         <input type="hidden" name="orden" value="<?php echo isset($_GET['orden']) ? $_GET['orden'] : '' ?>">
                                     </form>
                                 </div>

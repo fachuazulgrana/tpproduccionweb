@@ -14,7 +14,7 @@
                 <a class="nav-link borde" href=<?php echo RUTA_HOME ?>>Inicio</a>
             </li>
             <li <?php echo ($page == 'catalogo') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
-                <a class="nav-link borde" href=<?php echo RUTA_CATALOGO . '?continente=&pais=&ciudad=' ?>>Catálogo</a>
+                <a class="nav-link borde" href=<?php echo RUTA_CATALOGO . '?continente=&pais=&ciudad=&orden=' ?>>Catálogo</a>
             </li>
             <li <?php echo ($page == 'paquetes') ? "class='nav-item active px-3 py-2'" : ""; ?> class="nav-item px-3 py-2">
                 <a class="nav-link borde" href=<?php echo RUTA_PAQUETES ?>>Paquetes</a>
