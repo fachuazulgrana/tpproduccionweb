@@ -40,25 +40,21 @@ class ComentariosDinamicos
 
 		$comentarios = $query->fetch(PDO::FETCH_OBJ);
 
-/* 		$sql = "SELECT id FROM comentarios_dinamicos WHERE id = " . $comentarios->id; */
-
-		$sql = 'SELECT productos_id
-		FROM productos_comentarios_dinamicos  
-		WHERE productos_comentarios_dinamicos.comentarios_dinamicos_id = ' . $comentarios->id;
-		$sql = $this->con->query($sql);
-		$qu = $sql->fetch(PDO::FETCH_OBJ);
-
-		$comentarios->productos[] = $qu->productos_id;
-		
-		/* 
-		foreach ($this->con->query($sql) as $comdi) {
-			$comentarios->array[] = $comdi['id'];
-		} */
 		return $comentarios;
 	}
 
 	public function del($id)
 	{
+
+		$sql = "SELECT count(1) as comentario FROM productos_comentarios_dinamicos WHERE comentarios_dinamicos_id = " . $id;
+		$comentarioDin = $this->con->query($sql)->fetch();
+
+		if ($comentarioDin->campo == 0) {
+			$sql = '';
+			$sql = "DELETE FROM productos_comentarios_dinamicos WHERE comentarios_dinamicos_id = " . $id;
+			$this->con->exec($sql);
+		}
+
 		$query = "SELECT count(1) as cantidad FROM comentarios_dinamicos WHERE id = " . $id;
 
 		$consulta = $this->con->query($query)->fetch();
@@ -75,8 +71,6 @@ class ComentariosDinamicos
 
 	public function save($data)
 	{
-		$prod_id = $data['productos_id'];
-		unset($data['productos_id']);
 		foreach ($data as $key => $value) {
 			if (!is_array($value)) {
 				if ($value != null) {
@@ -87,11 +81,6 @@ class ComentariosDinamicos
 		}
 		$sql = "INSERT INTO comentarios_dinamicos(" . implode(',', $columns) . ") VALUES('" . implode("','", $datos) . "')";
 		$this->con->exec($sql);
-
-		$id = $this->con->lastInsertId();
-
-		$query = "INSERT INTO productos_comentarios_dinamicos (`productos_id`, `comentarios_dinamicos_id`) VALUES ($prod_id,$id)";
-		$this->con->exec($query);
 	}
 
 	public function edit($data)
@@ -112,14 +101,11 @@ class ComentariosDinamicos
 		$sql = "UPDATE comentarios_dinamicos SET " . implode(',', $columns) . " WHERE id = " . $id;
 
 		$this->con->exec($sql);
-
-		$query = "UPDATE productos_comentarios_dinamicos SET `productos_id` = $prod_id WHERE `comentarios_dinamicos_id` = $id";
-		$this->con->exec($query);
 	}
 
 	public function getList()
-    {
-        $query = 'SELECT * FROM comentarios_dinamicos';
-        return $this->con->query($query);
-    }
+	{
+		$query = 'SELECT * FROM comentarios_dinamicos';
+		return $this->con->query($query);
+	}
 }

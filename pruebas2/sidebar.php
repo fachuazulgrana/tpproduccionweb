@@ -87,6 +87,12 @@
         </li>
     <?php } ?>
 
+    <?php if (in_array('prod', $_SESSION['usuario']['permisos']['seccion'])) { ?>
+        <li <?php echo ($page == 'campos_dinamicos') ? "class=active" : ""; ?>>
+            <a href="campos_dinamicos.php"><i class="fa fa-fw fa-user"></i>Campos Dinamicos</a>
+        </li>
+    <?php } ?>
+
     <li><a href="?logout"><i class="fa fa-fw fa-power-off"></i>Logout</a></li>
 </ul>
 
