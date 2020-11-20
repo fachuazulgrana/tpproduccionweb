@@ -30,32 +30,32 @@ class IniciarSesion
                 return 1;
             } else {
 ?>
-                </div>
-                <div class="col-sm-12 col-md-12 py-2">
+                <div class="col-12 py-2">
                     <div class='alert alert-danger'>
                         Credenciales incorrectas.
                     </div>
+                </div>
                 <?php
                 return 0;
             }
                 ?>
+            <div class="col-12 py-2">
+                <div class='alert alert-danger'>
+                    Credenciales incorrectas.
                 </div>
-                <div class="col-sm-12 col-md-12 py-2">
-                    <div class='alert alert-danger'>
-                        Credenciales incorrectas.
-                    </div>
-                <?php
-                return 0;
-            }
-                ?>
-                </div>
-                <div class="col-sm-12 col-md-12 py-2">
-                    <div class='alert alert-danger'>
-                        Credenciales incorrectas.
-                    </div>
+            </div>
             <?php
             return 0;
         }
-    }
-
             ?>
+        <div class="col-12 py-2">
+            <div class='alert alert-danger'>
+                Credenciales incorrectas.
+            </div>
+        </div>
+        <?php
+        return 0;
+    }
+}
+
+        ?>
