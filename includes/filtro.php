@@ -25,8 +25,8 @@
                                                 </option>
                                             <?php endforeach ?>
                                         </select>
-                                        <input type="hidden" name="pais" value="<?php echo isset($_GET['pais']) ? $_GET['pais'] : '' ?>">
-                                        <input type="hidden" name="ciudad" value="<?php echo isset($_GET['ciudad']) ? $_GET['ciudad'] : '' ?>">
+                                        <input type="hidden" name="pais" value="<?php echo '' ?>">
+                                        <input type="hidden" name="ciudad" value="<?php echo '' ?>">
                                         <input type="hidden" name="orden" value="<?php echo isset($_GET['orden']) ? $_GET['orden'] : '' ?>">
                                     </form>
                                 </div>
@@ -50,7 +50,7 @@
                                                 </option>
                                             <?php endforeach ?>
                                         </select>
-                                        <input type="hidden" name="ciudad" value="<?php echo isset($_GET['ciudad']) ? $_GET['ciudad'] : '' ?>">
+                                        <input type="hidden" name="ciudad" value="<?php echo '' ?>">
                                         <input type="hidden" name="orden" value="<?php echo isset($_GET['orden']) ? $_GET['orden'] : '' ?>">
                                     </form>
                                 </div>
