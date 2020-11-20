@@ -11,7 +11,7 @@
 
 <body>
     <?php
-    $page = 'comentarios';
+    $page = 'comentarios-dinamicos';
     require_once "sidebar.php";
 
     if (isset($_POST['formulario-comentarios_dinamicos'])) {

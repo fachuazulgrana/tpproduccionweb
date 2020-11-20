@@ -4,7 +4,7 @@
 <head>
     <?php
 
-    $page = 'comentarios';
+    $page = 'comentarios-dinamicos';
     require_once("head_admin.php");
 
     if($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/comentarios_dinamicos.php")
