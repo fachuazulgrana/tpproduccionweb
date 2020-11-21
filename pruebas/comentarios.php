@@ -51,34 +51,33 @@ class Comentarios
 					$sql = "INSERT INTO comentarios (`nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES ('$name', '$email', '$calificacion', '$comentario','$fechareg','$ip','$producto_id')";
 					$this->con->exec($sql);
 					$sql = '';
-					if(isset($_POST['adicional'])){
+					if (isset($_POST['adicional'])) {
 						$id = $this->con->lastInsertId();
-						foreach($_POST['adicional'] as $adi){
-							foreach($adi as $key => $val){
+						foreach ($_POST['adicional'] as $adi) {
+							foreach ($adi as $key => $val) {
 								$sql .= "INSERT INTO `comentarios_dinamicos_data`(`comentario_original_id`, `comentario_id`, `informacion`) VALUES ($id,$key,'$val');";
-							}		
+							}
 						}
 						$this->con->exec($sql);
 					}
-					?>
+?>
 					</div>
 					<div class="col-sm-12 col-md-12 py-2">
 						<div class='alert alert-success'>
 							Gracias por dejar su comentario! Será validado a la brevedad.
 						</div>
-					<?php
+				<?php
 					unset($_POST);
-					return; 
+					return;
 				}
-			
 			}
-					?>
+				?>
 					</div>
 					<div class="col-sm-12 col-md-12 py-2">
 						<div class='alert alert-danger'>
 							No puede dejar mas de un comentario por día!
 						</div>
-					<?php
+			<?php
 			unset($_POST);
 			return;
 		}
@@ -124,22 +123,22 @@ class Comentarios
 			return $this->con->query($query);
 		}
 	}*/
-    public function getComent($limit, $pagStart)
-    {
-        $query = "SELECT * FROM comentarios";
+	public function getComent($limit, $pagStart)
+	{
+		$query = "SELECT * FROM comentarios";
 
-        if (!empty($_GET['orden'])) {
-            if ($_GET['orden'] == "1") {
-                $query .= ' WHERE comentarios.activo = 1';
-            } else {
-                $query .= ' WHERE comentarios.activo = 0';
-            }
-        }
+		if (!empty($_GET['orden'])) {
+			if ($_GET['orden'] == "1") {
+				$query .= ' WHERE comentarios.activo = 1';
+			} else {
+				$query .= ' WHERE comentarios.activo = 0';
+			}
+		}
 
-        $query .= " ORDER BY id LIMIT $pagStart, $limit";
+		$query .= " ORDER BY id LIMIT $pagStart, $limit";
 
-        return $this->con->query($query);
-    }
+		return $this->con->query($query);
+	}
 
 	public function getProdName()
 	{
@@ -178,6 +177,14 @@ class Comentarios
 
 		$consulta = $this->con->query($query)->fetch();
 
+		$sql = 'SELECT count(1) as campos FROM comentarios_dinamicos_data WHERE comentario_original_id = ' . $id;
+		$coment_din = $this->con->query($sql)->fetch();
+
+		if ($coment_din['campos'] != 0) {
+			$sql = 'DELETE FROM comentarios_dinamicos_data WHERE comentario_original_id = ' . $id;
+			$this->con->exec($sql);
+		}
+
 		if ($consulta->cantidad == 0) {
 			$query = "DELETE FROM comentarios WHERE id = " . $id;
 
@@ -212,22 +219,21 @@ class Comentarios
 			return 1;
 		}
 		return "Comentario modificado";*/
-
 	}
 
-    public function getPagination()
-    {
-        $query = "SELECT count(id) AS id FROM comentarios";
+	public function getPagination()
+	{
+		$query = "SELECT count(id) AS id FROM comentarios";
 
-        if (!empty($_GET['orden'])) {
-            if ($_GET['orden'] == "1") {
-                $query .= ' WHERE comentarios.activo = 1';
-            } else {
-                $query .= ' WHERE comentarios.activo = 0';
-            }
-        }
+		if (!empty($_GET['orden'])) {
+			if ($_GET['orden'] == "1") {
+				$query .= ' WHERE comentarios.activo = 1';
+			} else {
+				$query .= ' WHERE comentarios.activo = 0';
+			}
+		}
 
-        $resultado = $this->con->query($query)->fetch();
-        return $resultado['id'];
-    }
+		$resultado = $this->con->query($query)->fetch();
+		return $resultado['id'];
+	}
 }
