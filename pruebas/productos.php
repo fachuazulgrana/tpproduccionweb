@@ -163,7 +163,7 @@ class Productos
         $sql = 'SELECT count(1) as comentarios FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
         $co = $this->con->query($sql)->fetch();
         
-        if ($co['comentarios'] == 0) {
+        if ($co['comentarios'] != 0) {
             $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
             $this->con->exec($sql);
         }
@@ -171,7 +171,7 @@ class Productos
         $sql = 'SELECT count(1) as campos FROM campos_dinamicos WHERE producto_id = ' . $id;
         $campos_din = $this->con->query($sql)->fetch();
 
-        if ($campos_din['campos'] == 0) {
+        if ($campos_din['campos'] != 0) {
             $sql = 'DELETE FROM productos_campos_dinamicos WHERE productos_id = ' . $id;
             $this->con->exec($sql);
         }
