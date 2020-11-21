@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 03:43:28
+-- Tiempo de generación: 21-11-2020 a las 07:39:48
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `campos_dinamicos` (
   `id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
   `label` varchar(50) NOT NULL,
-  `tipo` int(11) NOT NULL,
   `valores` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,9 +38,13 @@ CREATE TABLE `campos_dinamicos` (
 -- Volcado de datos para la tabla `campos_dinamicos`
 --
 
-INSERT INTO `campos_dinamicos` (`id`, `label`, `tipo`, `valores`) VALUES
-(1, 'Hola mundo', 1, ''),
-(4, 'Nuevo Campo tipo Check', 2, '');
+INSERT INTO `campos_dinamicos` (`id`, `producto_id`, `label`, `valores`) VALUES
+(10, 137, 'Campo Dinamico', 'Contenido Campo Dinamico'),
+(11, 138, 'Campo Dinamico2', 'Contenido Campo Dinamico2'),
+(12, 139, 'dddddddddddddddddddddd', 'ssfsfdfs'),
+(13, 139, 'Campo Dinamicodef', 'Congfgfdgdgfdg'),
+(14, 139, 'OOOOtro cAMPO', 'oOOOOTRO CAMPO Din'),
+(20, 1, 'campo mad', 'madmad');
 
 -- --------------------------------------------------------
 
@@ -116,16 +120,19 @@ CREATE TABLE `comentarios_dinamicos` (
   `id` int(11) NOT NULL,
   `label` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
-  `opcion` text DEFAULT NULL
+  `opcion` text DEFAULT NULL,
+  `valor` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `comentarios_dinamicos`
 --
 
-INSERT INTO `comentarios_dinamicos` (`id`, `label`, `tipo`, `opcion`) VALUES
-(2, 'Campo Dinamico Input', '1', '1'),
-(6, 'Nuevo Comentario tipo Input', '1', '1');
+INSERT INTO `comentarios_dinamicos` (`id`, `label`, `tipo`, `opcion`, `valor`) VALUES
+(2, 'Color', '3', '1', 'Avion/Tren/Barco'),
+(6, 'Te gusto?', '2', '1', ''),
+(8, 'Estación del Año', '3', '1', 'Verano/Otoño/Invierno/Primavera'),
+(9, 'Comentario Adicional', '1', '1', '');
 
 -- --------------------------------------------------------
 
@@ -421,27 +428,19 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 (42, 'Lagos', 'VISITANDO: Nigeria/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', 'Egipto Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 13, 36550, 1, 0),
 (43, 'Sidney', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 1),
 (44, 'Melbourne', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `productos_campos_dinamicos`
---
-
-CREATE TABLE `productos_campos_dinamicos` (
-  `id` int(11) NOT NULL,
-  `productos_id` int(11) NOT NULL,
-  `campo_dinamico_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `productos_campos_dinamicos`
---
-
-INSERT INTO `productos_campos_dinamicos` (`id`, `productos_id`, `campo_dinamico_id`) VALUES
-(3, 2, 1),
-(6, 1, 1);
+(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
+(128, 'sdgsfs', 'fgfdgdfg', 'gfgdfgfdgd', 1, 24, 1, 1),
+(129, 'dsdf', 'fgdfg', 'gefhdf', 1, 345, 1, 1),
+(130, 'sfsf', 'fdgjfhfhj', 'gsfgs', 1, 34, 1, 1),
+(131, 'ffxv', 'fsgdb', 'vdd', 1, 23, 1, 1),
+(132, 'rfsdfsf', 'gdfhdhd', 'sfgfg', 1, 24, 1, 1),
+(133, 'adfsdf', 'sgfgdfh', 'gdfhdgd', 1, 23, 1, 1),
+(134, 'sdbfnb', 'sgdhdjdm', 'dfgsffds', 1, 32, 1, 1),
+(135, 'dgfhfdh', 'sfgdj', 'hdsgs', 1, 234, 1, 1),
+(136, 'dvdng', 'dfmdgs', 'dhddndn', 1, 345, 1, 1),
+(137, 'gfhfdhd', 'erhjmn', 'gsfdfbd', 1, 245, 1, 1),
+(138, 'dg', 'ehhdgbd', 'gsfgdfg', 1, 5, 1, 1),
+(139, 'admin', 'dfsfh', 'sdsfsf', 1, 34, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -460,6 +459,8 @@ CREATE TABLE `productos_comentarios_dinamicos` (
 --
 
 INSERT INTO `productos_comentarios_dinamicos` (`id`, `productos_id`, `comentarios_dinamicos_id`) VALUES
+(23, 1, 6),
+(24, 1, 8),
 (1, 2, 2);
 
 -- --------------------------------------------------------
@@ -539,7 +540,8 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 -- Indices de la tabla `campos_dinamicos`
 --
 ALTER TABLE `campos_dinamicos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prodcampos_ibfk_1` (`producto_id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -618,14 +620,6 @@ ALTER TABLE `productos`
   ADD KEY `paises_id` (`paises_id`);
 
 --
--- Indices de la tabla `productos_campos_dinamicos`
---
-ALTER TABLE `productos_campos_dinamicos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `productos_id` (`productos_id`),
-  ADD KEY `campo_dinamico_id` (`campo_dinamico_id`);
-
---
 -- Indices de la tabla `productos_comentarios_dinamicos`
 --
 ALTER TABLE `productos_comentarios_dinamicos`
@@ -662,7 +656,7 @@ ALTER TABLE `usuario_perfiles`
 -- AUTO_INCREMENT de la tabla `campos_dinamicos`
 --
 ALTER TABLE `campos_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -680,7 +674,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
 --
 ALTER TABLE `comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -710,19 +704,13 @@ ALTER TABLE `perfiles`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT de la tabla `productos_campos_dinamicos`
---
-ALTER TABLE `productos_campos_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_comentarios_dinamicos`
 --
 ALTER TABLE `productos_comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_info`
@@ -739,6 +727,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `campos_dinamicos`
+--
+ALTER TABLE `campos_dinamicos`
+  ADD CONSTRAINT `prodcampos_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `comentarios`
@@ -771,13 +765,6 @@ ALTER TABLE `perfil_permiso`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`paises_id`) REFERENCES `paises` (`id`);
-
---
--- Filtros para la tabla `productos_campos_dinamicos`
---
-ALTER TABLE `productos_campos_dinamicos`
-  ADD CONSTRAINT `productos_campos_dinamicos_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`),
-  ADD CONSTRAINT `productos_campos_dinamicos_ibfk_2` FOREIGN KEY (`campo_dinamico_id`) REFERENCES `campos_dinamicos` (`id`);
 
 --
 -- Filtros para la tabla `productos_comentarios_dinamicos`
