@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2020 a las 07:39:48
+-- Tiempo de generación: 21-11-2020 a las 09:25:14
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -103,12 +103,7 @@ CREATE TABLE `comentarios` (
 INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`, `activo`) VALUES
 (1, 'asd', 'asd@asd', 2, 'asd', '2019-09-20', '100.100.100', 1, 0),
 (2, 'sad', 'sad@sad', 5, 'sad', '2019-09-20', '100.100.100', 1, 0),
-(8, 'asd', 'sss@sss', 3, 'sasa', '2023-09-20', '::1', 1, 0),
-(9, 'asd', 'asd@asd', 5, 'asd', '2020-09-30', '::1', 9, 1),
-(10, 'nuevo', 'mateo.porcar@live.com.ar', 0, 'sdfsfsdf', '2020-10-28', '::1', 2, 0),
-(11, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'fasfafsdfs', '2020-10-28', '::1', 6, 0),
-(12, 'nuevo', 'mateo.porcar@live.com.ar', 4, 'sfsdfsfs', '2020-10-28', '::1', 5, 0),
-(13, 'nuevo', 'mateo.mateo@gmail.com', 5, 'dvsfsfsdfs', '2020-10-28', '::1', 42, 0);
+(23, 'nuevo', 'mateo.mateo@gmail.com', 3, 'fgsfgdfdfgfdgfdg', '2020-11-21', '::1', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -129,10 +124,33 @@ CREATE TABLE `comentarios_dinamicos` (
 --
 
 INSERT INTO `comentarios_dinamicos` (`id`, `label`, `tipo`, `opcion`, `valor`) VALUES
-(2, 'Color', '3', '1', 'Avion/Tren/Barco'),
+(2, 'Transporte', '3', '1', 'Avion/Tren/Barco'),
 (6, 'Te gusto?', '2', '1', ''),
 (8, 'Estación del Año', '3', '1', 'Verano/Otoño/Invierno/Primavera'),
 (9, 'Comentario Adicional', '1', '1', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios_dinamicos_data`
+--
+
+CREATE TABLE `comentarios_dinamicos_data` (
+  `id` int(11) NOT NULL,
+  `comentario_original_id` int(11) NOT NULL,
+  `comentario_id` int(11) NOT NULL,
+  `informacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentarios_dinamicos_data`
+--
+
+INSERT INTO `comentarios_dinamicos_data` (`id`, `comentario_original_id`, `comentario_id`, `informacion`) VALUES
+(7, 23, 2, 'Tren'),
+(8, 23, 6, 'on'),
+(9, 23, 8, 'Otoño'),
+(10, 23, 9, 'Otro comentario adicional que estoy haciendo');
 
 -- --------------------------------------------------------
 
@@ -459,8 +477,10 @@ CREATE TABLE `productos_comentarios_dinamicos` (
 --
 
 INSERT INTO `productos_comentarios_dinamicos` (`id`, `productos_id`, `comentarios_dinamicos_id`) VALUES
-(23, 1, 6),
-(24, 1, 8),
+(25, 1, 2),
+(26, 1, 6),
+(27, 1, 8),
+(28, 1, 9),
 (1, 2, 2);
 
 -- --------------------------------------------------------
@@ -562,6 +582,14 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `comentarios_dinamicos`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentarios_dinamicos_data`
+--
+ALTER TABLE `comentarios_dinamicos_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prodcom_ibfk_2` (`comentario_id`),
+  ADD KEY `coment_ibfk_1` (`comentario_original_id`);
 
 --
 -- Indices de la tabla `comentarios_guardar`
@@ -668,13 +696,19 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
 --
 ALTER TABLE `comentarios_dinamicos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios_dinamicos_data`
+--
+ALTER TABLE `comentarios_dinamicos_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -710,7 +744,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `productos_comentarios_dinamicos`
 --
 ALTER TABLE `productos_comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_info`
@@ -739,6 +773,13 @@ ALTER TABLE `campos_dinamicos`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `comentarios_dinamicos_data`
+--
+ALTER TABLE `comentarios_dinamicos_data`
+  ADD CONSTRAINT `coment_ibfk_1` FOREIGN KEY (`comentario_original_id`) REFERENCES `comentarios` (`id`),
+  ADD CONSTRAINT `prodcom_ibfk_2` FOREIGN KEY (`comentario_id`) REFERENCES `comentarios_dinamicos` (`id`);
 
 --
 -- Filtros para la tabla `comentarios_guardar`

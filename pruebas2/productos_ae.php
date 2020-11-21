@@ -177,7 +177,6 @@ require_once "sidebar.php";
 					<div class="main container-fluid">
 						<h1 class="page-header">Campos Dinámicos</h1>
 
-
 						<table class="table table-striped" id="tablaGeneral">
 							<thead>
 								<tr>

@@ -180,15 +180,15 @@
                                             <label><?php echo $comdin['label'] ?><?php echo ($comdin['opcion'] == 1) ? ' *' : ''; ?></label>
                                             <?php
                                             if ($comdin['tipo'] == 1) { ?>
-                                                <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                                <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php echo $comdin['label'] ?>" name="adicional[][<?php echo $comdin['comentarios_dinamicos_id'] ?>]" class="form-control">
                                             <?php } ?>
                                             <?php if ($comdin['tipo'] == 2) { ?>
-                                                <input type="checkbox" id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                                <input type="checkbox" id="<?php echo $comdin['label'] ?>" name="adicional[][<?php echo $comdin['comentarios_dinamicos_id'] ?>]" class="form-control">
                                             <?php } ?>
                                             <?php if ($comdin['tipo'] == 3) {
                                                 $select_valores = explode('/', $comdin['valor']);
                                             ?>
-                                                <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="<?php $comdin['label'] ?>" id="<?php $comdin['label'] ?>" class="form-control">
+                                                <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="adicional[][<?php echo $comdin['comentarios_dinamicos_id'] ?>]" id="<?php echo $comdin['label'] ?>" class="form-control">
                                                     <?php foreach ($select_valores as $val) {
                                                     ?>
 
@@ -234,31 +234,6 @@
                                     <?php
                                     $Comentarios->setComentarios();
                                     ?>
-
-
-                                    <!--                                     <div class="modal fade" id="myModal">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            
-                                                
-                                                <div class="modal-header">
-                                                <h4 class="modal-title">Comentario Enviado</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                
-                                                
-                                                <div class="modal-body">
-                                                Muchas gracias.
-                                                </div>
-                                                
-                                                
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                 </div>
                             </div>

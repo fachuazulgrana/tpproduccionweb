@@ -50,6 +50,16 @@ class Comentarios
 					$producto_id = $_POST['productos_id'];
 					$sql = "INSERT INTO comentarios (`nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`) VALUES ('$name', '$email', '$calificacion', '$comentario','$fechareg','$ip','$producto_id')";
 					$this->con->exec($sql);
+					$sql = '';
+					if(isset($_POST['adicional'])){
+						$id = $this->con->lastInsertId();
+						foreach($_POST['adicional'] as $adi){
+							foreach($adi as $key => $val){
+								$sql .= "INSERT INTO `comentarios_dinamicos_data`(`comentario_original_id`, `comentario_id`, `informacion`) VALUES ($id,$key,'$val');";
+							}		
+						}
+						$this->con->exec($sql);
+					}
 					?>
 					</div>
 					<div class="col-sm-12 col-md-12 py-2">
@@ -60,6 +70,7 @@ class Comentarios
 					unset($_POST);
 					return; 
 				}
+			
 			}
 					?>
 					</div>
