@@ -59,16 +59,15 @@ class Productos
         $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
         $this->con->exec($sql);
 
-        if(isset($data['comentario'])){
+        if (isset($data['comentario'])) {
 
-        $sql = '';
-        foreach ($data['comentario'] as $comentario) {
-            $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
+            $sql = '';
+            foreach ($data['comentario'] as $comentario) {
+                $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
                         VALUES (' . $id . ',' . $comentario . ');';
+            }
+            $this->con->exec($sql);
         }
-        $this->con->exec($sql);
-
-    }
 
         // save image
         if (isset($_FILES['imagen'])) {
@@ -84,19 +83,19 @@ class Productos
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
         }
 
-        if(isset($data['label'])){
-        $sql = '';
+        if (isset($data['label'])) {
+            $sql = '';
 
-        foreach ($data['label'] as $k => $campo) {
-            if (!is_array($campo)) {
-                if ($campo != null) {
-                    $desc = $data['text'][$k];
-                    $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
+            foreach ($data['label'] as $k => $campo) {
+                if (!is_array($campo)) {
+                    if ($campo != null) {
+                        $desc = $data['text'][$k];
+                        $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
+                    }
                 }
             }
+            $this->con->exec($sql);
         }
-        $this->con->exec($sql);
-    }
     }
 
     public function save($data)
@@ -123,7 +122,7 @@ class Productos
                 2 => array('nombre' => 'thumb', 'ancho' => '50', 'alto' => '50')
             );
             $ruta = './images/' . $id . '/';
-            if (!is_dir($ruta))
+            if (!is_dir($ruta)) 
                 mkdir($ruta);
 
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
@@ -131,20 +130,20 @@ class Productos
 
         $this->con->exec($sql);
 
-        if(isset($data['label'])){
+        if (isset($data['label'])) {
 
-        $sql = '';
+            $sql = '';
 
-        foreach ($data['label'] as $k => $campo) {
-            if (!is_array($campo)) {
-                if ($campo != null) {
-                    $desc = $data['text'][$k];
-                    $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
+            foreach ($data['label'] as $k => $campo) {
+                if (!is_array($campo)) {
+                    if ($campo != null) {
+                        $desc = $data['text'][$k];
+                        $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
+                    }
                 }
             }
+            $this->con->exec($sql);
         }
-        $this->con->exec($sql);
-    }
         $sql = '';
         if (isset($data['comentario'])) {
             foreach ($data['comentario'] as $comentario) {
@@ -162,7 +161,7 @@ class Productos
 
         $sql = 'SELECT count(1) as comentarios FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
         $co = $this->con->query($sql)->fetch();
-        
+
         if ($co['comentarios'] != 0) {
             $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
             $this->con->exec($sql);
