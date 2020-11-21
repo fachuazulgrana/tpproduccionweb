@@ -115,7 +115,7 @@
                   </a>
                 <?php } ?>
                 <?php if (in_array('pais.del', $_SESSION['usuario']['permisos']['code'])) { ?>
-                  <a href="paises.php?del=<?php echo $pais['id'] ?>">
+                  <a href="paises.php?del=<?php echo $pais['id']?>" <?php echo "&page=" . $prev . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] ?>>
                     <button type="button" class="btn btn-danger btn-xs">Borrar</button>
                   </a>
                 <?php } ?>

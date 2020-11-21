@@ -144,7 +144,7 @@ $next = $pageNumber + 1;
                 </a>
                 <?php } ?>
                 <?php if (in_array('prod.del', $_SESSION['usuario']['permisos']['code'])) { ?>
-                <a href="productos.php?del=<?php echo $prod['id'] ?>">
+                <a href="productos.php?del=<?php echo $prod['id'] ?>" <?php echo "&page=" . $prev . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] ?>>
                   <button type="button" class="btn btn-danger btn-xs">Borrar</button></a> 
                 <?php } ?>
               </td>

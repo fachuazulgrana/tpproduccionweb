@@ -126,7 +126,7 @@
                   </a>
                 <?php } ?>
                 <?php if (in_array('com.del', $_SESSION['usuario']['permisos']['code'])) { ?>
-                  <a href="comentarios.php?del=<?php echo $coment['id'] ?>">
+                  <a href="comentarios.php?del=<?php echo $coment['id'] ?>" <?php echo "&page=" . $prev . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] ?>>
                     <button type="button" class="btn btn-danger btn-xs">Borrar</button>
                   </a>
                 <?php } ?>
