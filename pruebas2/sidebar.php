@@ -70,13 +70,13 @@
     <?php } ?>
 
     <?php if (in_array('com', $_SESSION['usuario']['permisos']['seccion'])) { ?>
-        <li <?php echo ($page == 'comentarios') ? "class=active" : ""; ?>>
+        <li>
             <!-- <a href="comentarios.php"><i class="fa fa-fw fa-comments-o"></i>Comentarios</a> -->
 
-            <button class="dropdown-btn"><i class="fa fa-fw fa-comments-o"></i>Comentarios<i class="fa fa-caret-down"></i></button>
+            <button class="dropdown-btn <?php echo ($page == 'comentarios' || $page == 'comentarios-dinamicos') ? "bg-primary" : ""; ?>"><i class="fa fa-fw fa-comments-o"></i>Comentarios<i class="fa fa-caret-down"></i></button>
             <div class="dropdown-container">
-                <a href="comentarios.php?page=1&orden=&limit="><i class="fa fa-fw fa-list"></i>Listado</a>
-                <a href="comentarios_dinamicos.php"><i class="fa fa-fw fa-plus"></i>Campos Dinámicos</a>
+                <a <?php echo ($page == 'comentarios') ? "class='bg-primary'" : ""; ?> href="comentarios.php?page=1&orden=&limit="><i class="fa fa-fw fa-list"></i>Listado</a>
+                <a <?php echo ($page == 'comentarios-dinamicos') ? "class='bg-primary'" : ""; ?> href="comentarios_dinamicos.php"><i class="fa fa-fw fa-plus"></i>Campos Dinámicos</a>
             </div>
         </li>
     <?php } ?>
