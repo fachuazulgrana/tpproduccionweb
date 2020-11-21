@@ -109,6 +109,12 @@ class ComentariosDinamicos
 		return $this->con->query($query);
 	}
 
+	public function getByProd($id)
+	{
+		$query = 'SELECT * FROM comentarios INNER JOIN comentarios_dinamicos_data ON (comentarios.id = comentarios_dinamicos_data.comentario_original_id) INNER JOIN comentarios_dinamicos ON (comentarios_dinamicos_data.comentario_id = comentarios_dinamicos.id) WHERE comentarios.id = ' . $id;
+		return $this->con->query($query);
+	}
+
 	public function comentarioDinamicoexists($id){
 
 		$query = "SELECT  count(1) as cantidad FROM productos_comentarios_dinamicos WHERE productos_id = " . $id;

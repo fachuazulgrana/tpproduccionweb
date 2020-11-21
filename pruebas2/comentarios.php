@@ -20,6 +20,10 @@
     header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit']);
   }
 
+  if (isset($_GET['dinamico_id'])) {
+    header('Location: tabla_comentario_dinamico.php');
+  }
+
   if (isset($_GET['del'])) {
     $resp = $Comentarios->del($_GET['del']);
     if ($resp == 1) {
@@ -92,6 +96,7 @@
             <th>Comentario</th>
             <th>Fecha</th>
             <th>Activo</th>
+            <th>Campos Extras</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -106,6 +111,11 @@
               <td><?php echo $coment['fecha']; ?></td>
               <td><?php echo ($coment['activo']) ? 'si' : 'no'; ?></td>
 
+              <td>
+                <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
+                  <a href="tabla_comentario_dinamico.php?dinamico_id=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-success btn-xs">Ver</button></a>
+                <?php } ?>
+              </td>
 
               <td>
                 <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
