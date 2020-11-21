@@ -16,8 +16,51 @@
 	}
 
 	?>
-
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+?>
 </head>
+<style>
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var nombre = $("#nombre").val();
+            var texto = $("#texto").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td><input style='width:400px;height:35px' type='text' id='info' name='label[]' value='' placeholder='Ingrese nombre del campo'></td><td><input style='width:400px;height:35px' type='text' id='info' name='text[]' value='' placeholder='Ingrese contenido del campo'></td></tr>";
+            $("table tbody").append(markup);
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+</script>
 <?php
 require_once "sidebar.php";
 ?>
@@ -84,20 +127,6 @@ require_once "sidebar.php";
 						</div>
 
 						<div class="col-4 mt-3">
-							<label for="detalle" class="control-label">Campos Dinamicas</label>
-							<select name="cualidad[]" id="cualidad" multiple='multiple' class="form-control">
-								<?php foreach ($CamposDinamicos->getList() as $j) { ?>
-									<option value="<?php echo $j['id'] ?>" <?php
-																			if (isset($produ->campos)) {
-																				if (in_array($j['id'], $produ->campos)) {
-																					echo ' selected="selected" ';
-																				}
-																			}
-																			?>><?php echo $j['label'] ?></option>
-								<?php } ?>
-							</select>
-						</div>
-						<div class="col-4 mt-3">
 							<label for="activo" class="control-label">Activo</label>
 							<select name="activo" id="activo" class="form-control">
 								<?php if (isset($produ->activo)) { ?>
@@ -128,6 +157,40 @@ require_once "sidebar.php";
 							<label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
 						</div>
 					</div>
+
+					
+
+
+
+					<div class="main container-fluid">
+            <h1 class="page-header">Campos Dinámicos</h1>
+            
+<!--             <form> -->
+				<input type="button" class="add-row btn btn-success btn-xs" value="Add Row">
+                <button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
+<!--             </form> -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Nombre del Campo</th>
+                        <th>Contenido de Campo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+
+
+
 
 					<div class="container mt-4">
 						<div class="row">

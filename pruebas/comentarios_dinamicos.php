@@ -101,7 +101,7 @@ class ComentariosDinamicos
 		$sql = "UPDATE comentarios_dinamicos SET " . implode(',', $columns) . " WHERE id = " . $id;
 
 		$this->con->exec($sql);
-	}
+	} 
 
 	public function getList()
 	{

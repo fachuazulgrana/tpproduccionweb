@@ -29,15 +29,16 @@
             <h1 class="page-header"><?php echo (isset($comdin->label) ? 'Editar Campo' : 'Agregar Campo'); ?></h1>
             <form action="comentarios_dinamicos.php" method="post" class="col-12 from-horizontal">
                 <div class="form-group row">
-                    <label for="comentarios_dinamicos-label" class="col-sm-4 control-label">Texto</label>
-                    <label for="comentarios_dinamicos-tipo" class="col-sm-4 control-label">Tipo</label>
-                    <label for="comentarios_dinamicos-opcion" class="col-sm-4 control-label">Opción</label>
-                    <div class="col-sm-4">
+                    <label for="comentarios_dinamicos-label" class="col-sm-3 control-label">Texto</label>
+                    <label for="comentarios_dinamicos-tipo" class="col-sm-3 control-label">Tipo</label>
+                    <label for="comentarios_dinamicos-tipo" class="col-sm-3 control-label">Valores (Solo Select)</label>
+                    <label for="comentarios_dinamicos-opcion" class="col-sm-3 control-label">Opción</label>
+                    <div class="col-sm-3">
                         <input type="text" class="form-control" id="label" name="label" value="<?php echo (isset($comdin->label) ? $comdin->label : ''); ?>">
                     </div>
 
-                    <div class="col-sm-4">
-                        <select style="width:400px;height:35px" name="tipo" id="tipo">
+                    <div class="col-sm-3">
+                        <select style="width:300px;height:35px" name="tipo" id="tipo">
                             <?php if(isset($comdin->tipo)){ ?>
                                 <option value="<?php  echo 1; ?>" <?php echo ($comdin->tipo == 1) ? 'selected' : ''; ?>> <?php echo 'Input'; ?> </option>
                                 <option value="<?php  echo 2; ?>" <?php echo ($comdin->tipo == 2) ? 'selected' : ''; ?>> <?php echo 'Checkbox'; ?> </option>
@@ -49,8 +50,11 @@
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="col-sm-4">
-                        <select style="width:400px;height:35px" name="opcion" id="opcion">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="valor" name="valor" value="<?php echo (isset($comdin->valor) ? $comdin->valor : ''); ?>">
+                    </div>
+                    <div class="col-sm-3">
+                        <select style="width:300px;height:35px" name="opcion" id="opcion">
                             <?php if(isset($comdin->opcion)){ ?>
                                 <option value="<?php  echo ($comdin->opcion == 1) ? 1 : 0; ?>"><?php echo ($comdin->opcion == 1) ? 'si' : 'no'; ?></option>
                                 <option value="<?php  echo ($comdin->opcion == 1) ? 0 : 1; ?>"><?php echo ($comdin->opcion == 1) ? 'no' : 'si'; ?></option>

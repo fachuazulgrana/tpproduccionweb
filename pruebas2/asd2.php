@@ -1,0 +1,1 @@
+<tr><td><input type='checkbox' name='record'></td><td><input style='width:400px;height:35px' type='text' name='info[][label]' value='ingrese nombre del campo'></td><td><input style='width:400px;height:35px' type='text' name='info[][text]' value='ingrese contenido del campo'></td></tr>
