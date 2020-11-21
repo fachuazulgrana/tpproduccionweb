@@ -446,19 +446,7 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 (42, 'Lagos', 'VISITANDO: Nigeria/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', 'Egipto Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 13, 36550, 1, 0),
 (43, 'Sidney', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 1),
 (44, 'Melbourne', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(128, 'sdgsfs', 'fgfdgdfg', 'gfgdfgfdgd', 1, 24, 1, 1),
-(129, 'dsdf', 'fgdfg', 'gefhdf', 1, 345, 1, 1),
-(130, 'sfsf', 'fdgjfhfhj', 'gsfgs', 1, 34, 1, 1),
-(131, 'ffxv', 'fsgdb', 'vdd', 1, 23, 1, 1),
-(132, 'rfsdfsf', 'gdfhdhd', 'sfgfg', 1, 24, 1, 1),
-(133, 'adfsdf', 'sgfgdfh', 'gdfhdgd', 1, 23, 1, 1),
-(134, 'sdbfnb', 'sgdhdjdm', 'dfgsffds', 1, 32, 1, 1),
-(135, 'dgfhfdh', 'sfgdj', 'hdsgs', 1, 234, 1, 1),
-(136, 'dvdng', 'dfmdgs', 'dhddndn', 1, 345, 1, 1),
-(137, 'gfhfdhd', 'erhjmn', 'gsfdfbd', 1, 245, 1, 1),
-(138, 'dg', 'ehhdgbd', 'gsfgdfg', 1, 5, 1, 1),
-(139, 'admin', 'dfsfh', 'sdsfsf', 1, 34, 1, 1);
+(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0);
 
 -- --------------------------------------------------------
 

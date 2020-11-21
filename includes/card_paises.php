@@ -5,7 +5,7 @@
                 echo "border border-warning";}
               else {
                 echo "";
-              } ?>">
+              } ?>"> 
 
                 <?php if($ciudades['destacado'] == 1): ?>
                 <div class="badge-top">Destacado</div>
