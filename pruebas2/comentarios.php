@@ -112,9 +112,11 @@
               <td><?php echo ($coment['activo']) ? 'si' : 'no'; ?></td>
 
               <td>
+                <?php if($ComentariosDinamicos->validadorBoton($coment['id']) == 1) { ?>
                 <?php if (in_array('com.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
                   <a href="tabla_comentario_dinamico.php?dinamico_id=<?php echo $coment['id'] ?>"><button type="button" class="btn btn-success btn-xs">Ver</button></a>
-                <?php } ?>
+                <?php } 
+              } ?>
               </td>
 
               <td>

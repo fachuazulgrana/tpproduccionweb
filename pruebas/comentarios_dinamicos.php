@@ -111,13 +111,24 @@ class ComentariosDinamicos
 
 	public function getByProd($id)
 	{
-		$query = 'SELECT * FROM comentarios INNER JOIN comentarios_dinamicos_data ON (comentarios.id = comentarios_dinamicos_data.comentario_original_id) INNER JOIN comentarios_dinamicos ON (comentarios_dinamicos_data.comentario_id = comentarios_dinamicos.id) WHERE comentarios.id = ' . $id;
+		$query = 'SELECT * FROM comentarios INNER JOIN comentarios_dinamicos_data ON (comentarios.id = comentarios_dinamicos_data.comentario_original_id) INNER JOIN comentarios_dinamicos ON (comentarios_dinamicos_data.comentario_id = comentarios_dinamicos.id) INNER JOIN productos ON (productos.id = comentarios.productos_id) WHERE comentarios.id = ' . $id;
 		return $this->con->query($query);
 	}
 
 	public function comentarioDinamicoexists($id){
 
 		$query = "SELECT  count(1) as cantidad FROM productos_comentarios_dinamicos WHERE productos_id = " . $id;
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+
+		if ($consulta->cantidad != 0) {
+            return 1;
+		}
+		return 0;
+	}
+
+	public function validadorBoton($id){
+
+		$query = "SELECT  count(1) as cantidad FROM comentarios_dinamicos_data WHERE comentario_original_id = " . $id;
 		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
 
 		if ($consulta->cantidad != 0) {

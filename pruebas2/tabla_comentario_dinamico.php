@@ -36,12 +36,12 @@ if (isset($_GET['del'])) {
 ?>
 
 <div class="content">
-    <h1 class="page-header">Comentarios Dinamicos de </h1>
+    <h1 class="page-header">Comentarios Dinamicos</h1>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Ciudad</th>
             <th>Tipo de Campo</th>
             <th>Contendio</th>
           </tr>
@@ -51,7 +51,7 @@ if (isset($_GET['del'])) {
           foreach ($dinamicos as $din) {
               ?> 
             <tr>
-              <td><?php echo $din['id']; ?></td>
+              <td><?php echo $din['nombre']; ?></td>
               <td><?php echo $din['label']; ?></td>
               <td><?php echo $din['informacion'] ?></td>
 
