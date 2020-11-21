@@ -86,20 +86,4 @@ class CamposDinamicos
 		return 0;
 	}
 
-/* 	public function del222222222($id)
-    {
-        $query = "SELECT count(1) as cantidad FROM usuario_perfiles WHERE perfil_id = " . $id;
-
-        $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
-
-        if ($consulta->cantidad == 0) {
-            $query = "DELETE FROM perfil_permiso WHERE perfil_id = " . $id . ";
-            DELETE FROM perfiles WHERE id_perfil = " . $id . ";";
-
-            $this->con->exec($query);
-            return 1;
-        }
-
-        return "Perfil asignado a un usuario";
-    } */
 }

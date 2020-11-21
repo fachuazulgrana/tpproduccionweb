@@ -9,9 +9,9 @@ class ComentariosDinamicos
 		$this->con = $con;
 	}
 
-	public function getComDin()
+	public function getComDin($id)
 	{
-		$query = 'SELECT * FROM comentarios_dinamicos INNER JOIN productos_comentarios_dinamicos ON (comentarios_dinamicos.id = productos_comentarios_dinamicos.comentarios_dinamicos_id)';
+		$query = 'SELECT * FROM comentarios_dinamicos INNER JOIN productos_comentarios_dinamicos ON (comentarios_dinamicos.id = productos_comentarios_dinamicos.comentarios_dinamicos_id) AND productos_comentarios_dinamicos.productos_id = ' . $id;
 		return $this->con->query($query);
 	}
 
@@ -107,5 +107,16 @@ class ComentariosDinamicos
 	{
 		$query = 'SELECT * FROM comentarios_dinamicos';
 		return $this->con->query($query);
+	}
+
+	public function comentarioDinamicoexists($id){
+
+		$query = "SELECT  count(1) as cantidad FROM productos_comentarios_dinamicos WHERE productos_id = " . $id;
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+
+		if ($consulta->cantidad != 0) {
+            return 1;
+		}
+		return 0;
 	}
 }

@@ -34,6 +34,7 @@
             setcookie("recomendados[$i]", $ciudades['id'], time() + 84600);
         }
         $campo_dinamico = $CamposDinamicos->campoDinamicoexists($ciudades['id']);
+        $comentario_dinamico = $ComentariosDinamicos->comentarioDinamicoexists($ciudades['id']);
         ?>
     </div>
 
@@ -110,7 +111,10 @@
                                 <?php
                                 foreach ($CamposDinamicos->getListByProd($ciudades['id']) as $campos) {
                                 ?>
-                                    <tr><td><?php echo $campos['label']; ?>: </td><td><?php echo $campos['valores']; ?></td></tr>
+                                    <tr>
+                                        <td><?php echo $campos['label']; ?>: </td>
+                                        <td><?php echo $campos['valores']; ?></td>
+                                    </tr>
                                 <?php
                                 }
                                 ?>
@@ -166,30 +170,44 @@
                                     <textarea class="form-control comentario-textarea" name="comentario" required rows="3"></textarea>
                                 </div>
                             </div>
+                            <?php
+                            if ($comentario_dinamico == 1) {
+                            ?>
+                                <?php foreach ($ComentariosDinamicos->getComDin($ciudades['id']) as $comdin) {
+                                ?>
+                                    <div class="row">
+                                        <div class="col-12 form-group">
+                                            <label><?php echo $comdin['label'] ?><?php echo ($comdin['opcion'] == 1) ? ' *' : ''; ?></label>
+                                            <?php
+                                            if ($comdin['tipo'] == 1) { ?>
+                                                <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                            <?php } ?>
+                                            <?php if ($comdin['tipo'] == 2) { ?>
+                                                <input type="checkbox" id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
+                                            <?php } ?>
+                                            <?php if ($comdin['tipo'] == 3) {
+                                                $select_valores = explode('/', $comdin['valor']);
+                                            ?>
+                                                <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="<?php $comdin['label'] ?>" id="<?php $comdin['label'] ?>" class="form-control">
+                                                    <?php foreach ($select_valores as $val) {
+                                                    ?>
 
-                            <?php foreach ($ComentariosDinamicos->getComDin() as $comdin) { ?>
-                                <div class="row">
-                                    <div class="col-12 form-group">
-                                        <label><?php echo $comdin['label'] ?><?php echo ($comdin['opcion'] == 1) ? ' *' : ''; ?></label>
-                                        <?php if ($comdin['tipo'] == 1) { ?>
-                                            <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
-                                        <?php } ?>
+                                                        <option value="<?php echo $val ?>" <?php if (isset($val)) {
+                                                                                                echo ' selected="selected" ';
+                                                                                            } ?>><?php echo $val ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
 
-                                        <?php if ($comdin['tipo'] == 2) { ?>
-
-                                            <input type="checkbox" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
-                                        <?php } ?>
-
-                                        <?php if ($comdin['tipo'] == 3) { ?>
-                                            <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="<?php $comdin['label'] ?>" id="<?php $comdin['label'] ?>" class="form-control">
-                                                <option value="1">Valor 1</option>
-                                                <option value="2">Valor 2</option>
-                                                <option value="3">Valor 3</option>
-                                            </select>
-                                        <?php } ?>
+                                            <?php } ?>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php } ?>
+                                <?php } ?>
+
+                            <?php
+                            }
+                            ?>
 
                             <div class="row">
                                 <div class="col-sm-6 col-md-10">
