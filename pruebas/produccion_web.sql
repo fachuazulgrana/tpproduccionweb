@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2020 a las 17:48:38
+-- Tiempo de generación: 21-11-2020 a las 19:10:10
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -39,11 +39,6 @@ CREATE TABLE `campos_dinamicos` (
 --
 
 INSERT INTO `campos_dinamicos` (`id`, `producto_id`, `label`, `valores`) VALUES
-(10, 137, 'Campo Dinamico', 'Contenido Campo Dinamico'),
-(11, 138, 'Campo Dinamico2', 'Contenido Campo Dinamico2'),
-(12, 139, 'dddddddddddddddddddddd', 'ssfsfdfs'),
-(13, 139, 'Campo Dinamicodef', 'Congfgfdgdgfdg'),
-(14, 139, 'OOOOtro cAMPO', 'oOOOOTRO CAMPO Din'),
 (20, 1, 'campo mad', 'madmad');
 
 -- --------------------------------------------------------
