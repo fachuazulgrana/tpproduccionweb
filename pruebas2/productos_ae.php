@@ -171,11 +171,10 @@ require_once "sidebar.php";
 							<label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
 						</div>
 					</div>
-
-
-
+					
 					<div class="main container-fluid">
 						<h1 class="page-header">Campos Dinámicos</h1>
+						<?php if (isset($produ->id)) { ?>
 
 						<table class="table table-striped" id="tablaGeneral">
 							<thead>
@@ -202,13 +201,11 @@ require_once "sidebar.php";
 								<?php } ?>
 							</tbody>
 						</table>
+						<?php } ?>
 
 
-
-						<!--             <form> -->
 						<input type="button" class="add-row btn btn-success btn-xs" value="Add Row">
 						<button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
-						<!--             </form> -->
 						<table id="tabla2">
 							<thead>
 								<tr>
@@ -224,8 +221,6 @@ require_once "sidebar.php";
 						</table>
 
 					</div>
-
-
 
 					<div class="container mt-4">
 						<div class="row">
