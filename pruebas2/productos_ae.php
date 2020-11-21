@@ -13,53 +13,67 @@
 
 	if (isset($_GET['edit'])) {
 		$produ = $Productos->get($_GET['edit']);
+		$camp = $CamposDinamicos->getListByProd($produ->id);
 	}
 
+	if (isset($_GET['delcampo'])) {
+		$resp = $CamposDinamicos->del($_GET['delcampo']);
+		if ($resp == 1) {
+			header('Location: ' . $_SERVER['HHTP_REFERER']);
+		}
+		echo '<script>alert("' . $resp . '");</script>';
+	}
 	?>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-?>
+
 </head>
 <style>
-    form{
-        margin: 20px 0;
-    }
-    form input, button{
-        padding: 5px;
-    }
-    table{
-        width: 100%;
-        margin-bottom: 20px;
+	form {
+		margin: 20px 0;
+	}
+
+	form input,
+	button {
+		padding: 5px;
+	}
+
+	table {
+		width: 100%;
+		margin-bottom: 20px;
 		border-collapse: collapse;
-    }
-    table, th, td{
-        border: 1px solid #cdcdcd;
-    }
-    table th, table td{
-        padding: 10px;
-        text-align: left;
-    }
+	}
+
+	table,
+	th,
+	td {
+		border: 1px solid #cdcdcd;
+	}
+
+	table th,
+	table td {
+		padding: 10px;
+		text-align: left;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $(".add-row").click(function(){
-            var nombre = $("#nombre").val();
-            var texto = $("#texto").val();
-            var markup = "<tr><td><input type='checkbox' name='record'></td><td><input style='width:400px;height:35px' type='text' id='info' name='label[]' value='' placeholder='Ingrese nombre del campo'></td><td><input style='width:400px;height:35px' type='text' id='info' name='text[]' value='' placeholder='Ingrese contenido del campo'></td></tr>";
-            $("table tbody").append(markup);
-        });
-        
-        // Find and remove selected table rows
-        $(".delete-row").click(function(){
-            $("table tbody").find('input[name="record"]').each(function(){
-            	if($(this).is(":checked")){
-                    $(this).parents("tr").remove();
-                }
-            });
-        });
-    });    
+	$(document).ready(function() {
+		$(".add-row").click(function() {
+			var table = document.getElementById("tabla2");
+			var nombre = $("#nombre").val();
+			var texto = $("#texto").val();
+			var markup = "<tr><td><input type='checkbox' name='record'></td><td><input style='width:400px;height:35px' type='text' id='info' name='label[]' value='' placeholder='Ingrese nombre del campo'></td><td><input style='width:400px;height:35px' type='text' id='info' name='text[]' value='' placeholder='Ingrese contenido del campo'></td></tr>";
+			$("#tabla2").append(markup);
+		});
+
+		// Find and remove selected table rows
+		$(".delete-row").click(function() {
+			$("#tabla2").find('input[name="record"]').each(function() {
+				if ($(this).is(":checked")) {
+					$(this).parents("tr").remove();
+				}
+			});
+		});
+	});
 </script>
 <?php
 require_once "sidebar.php";
@@ -158,37 +172,59 @@ require_once "sidebar.php";
 						</div>
 					</div>
 
-					
-
 
 
 					<div class="main container-fluid">
-            <h1 class="page-header">Campos Dinámicos</h1>
-            
-<!--             <form> -->
-				<input type="button" class="add-row btn btn-success btn-xs" value="Add Row">
-                <button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
-<!--             </form> -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>Nombre del Campo</th>
-                        <th>Contenido de Campo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
+						<h1 class="page-header">Campos Dinámicos</h1>
 
 
+						<table class="table table-striped" id="tablaGeneral">
+							<thead>
+								<tr>
+									<th>Nombre del Campo</th>
+									<th>Valor del Campo</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($CamposDinamicos->getListByProd($produ->id) as $campos) { ?>
+									<tr>
+										<td><?php echo $campos['label']; ?></td>
+										<td><?php echo $campos['valores']; ?></td>
+										<td>
+											<?php if (in_array('prod.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
+												<a href="campos_dinamicos_ae.php?edit=<?php echo $campos['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
+											<?php } ?>
+											<?php if (in_array('prod.del', $_SESSION['usuario']['permisos']['code'])) { ?>
+												<a href="productos_ae.php?delcampo=<?php echo $campos['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
+											<?php } ?>
+										</td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
 
 
 
+						<!--             <form> -->
+						<input type="button" class="add-row btn btn-success btn-xs" value="Add Row">
+						<button type="button" class="delete-row btn btn-danger btn-xs">Delete Row</button>
+						<!--             </form> -->
+						<table id="tabla2">
+							<thead>
+								<tr>
+									<th>Select</th>
+									<th>Nombre del Campo</th>
+									<th>Contenido de Campo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
 
 
 

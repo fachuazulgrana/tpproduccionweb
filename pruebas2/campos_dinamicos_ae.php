@@ -7,9 +7,9 @@
     $page = 'campos_dinamicos';
     require_once("head_admin.php");
 
-    if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/campos_dinamicos.php") {
+/*     if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/campos_dinamicos.php") {
         header('Location:home.php');
-    }
+    } */
 
     if (isset($_GET['edit'])) {
         $campoDinamico = $CamposDinamicos->get($_GET['edit']);
@@ -37,34 +37,8 @@
                         <input type="text" class="form-control" id="label" name="label" value="<?php echo (isset($campoDinamico->label) ? $campoDinamico->label : ''); ?>">
                     </div>
 
-<!--                     <script>
-                        function enableDisableCodigo() {
-
-                            var codigo = document.getElementByName("valores");
-                            var tipo = document.getElementByName("tipo").value;
-
-                            if (tipo == 'Select') {
-                                codigo.disabled = true;
-                            } else {
-                                codigo.disabled = false;
-                            }
-                        }
-                    </script> -->
-
                     <div class="col-sm-6">
-                        <select style="width:400px;height:35px" name="tipo" id="tipo">
-                            <?php if (isset($campoDinamico->tipo)) { ?>
-                                <option value="<?php echo 1; ?>" <?php echo ($campoDinamico->tipo == 1) ? 'selected' : ''; ?>> <?php echo 'Input'; ?> </option>
-                                <option value="<?php echo 2; ?>" <?php echo ($campoDinamico->tipo == 2) ? 'selected' : ''; ?>> <?php echo 'Checkbox'; ?> </option>
-                                <option value="<?php echo 3; ?>" <?php echo ($campoDinamico->tipo == 3) ? 'selected' : ''; ?>> <?php echo 'Select' ?> </option>
-                            <?php } else { ?>
-                                <option value="<?php echo 1; ?>"><?php echo 'Input'; ?></option>
-                                <option value="<?php echo 2; ?>"><?php echo 'Checkbox'; ?></option>
-                                <option value="<?php echo 3; ?>"><?php echo 'Select'; ?></option>
-                            <?php } ?>
-                        </select>
-
-
+                        <input type="text" class="form-control" id="valores" name="valores" value="<?php echo (isset($campoDinamico->valores) ? $campoDinamico->valores : ''); ?>">
                     </div>
 
                     <div class="col-sm-offset-2 col-sm-3">

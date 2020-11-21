@@ -41,7 +41,7 @@
                     <thead>
                         <tr>
                             <th>Nombre del Campo</th>
-                            <th>Tipo de Campo</th>
+                            <th>Valor del Campo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@
                         <?php foreach($CamposDinamicos->getList() as $campos){ ?>
                             <tr>
                                 <td><?php echo $campos['label']; ?></td>
-                                <td><?php echo ($campos['tipo'] == 1) ? 'Input' : (($campos['tipo'] == 2) ? 'Checkbox' : 'Select'); ?></td>
+                                <td><?php echo $campos['valores']; ?></td>
                                 <td>
                                     <?php if (in_array('prod.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
                                         <a href="campos_dinamicos_ae.php?edit=<?php echo $campos['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>

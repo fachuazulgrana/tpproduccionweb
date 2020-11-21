@@ -36,18 +36,8 @@ class Productos
             $productos->comentarios[] = $com['comentarios_dinamicos_id'];
         }
 
-        $consult = 'SELECT campo_dinamico_id
-        FROM productos_campos_dinamicos  
-        WHERE productos_campos_dinamicos.productos_id = ' . $productos->id;
-
-
-        foreach ($this->con->query($consult) as $camp) {
-            $productos->campos[] = $camp['campo_dinamico_id'];
-        }
         return $productos;
     }
-
-
 
 
     public function edit($data)
@@ -66,25 +56,19 @@ class Productos
         $this->con->exec($sql);
 
         $sql = '';
-        $sql = 'DELETE FROM productos_campos_dinamicos WHERE productos_id = ' . $id;
-        $this->con->exec($sql);
-
-        $sql = '';
-        foreach ($data['cualidad'] as $campo) {
-            $sql .= 'INSERT INTO productos_campos_dinamicos(productos_id,campo_dinamico_id) 
-                        VALUES (' . $id . ',' . $campo . ');';
-        }
-        $this->con->exec($sql);
-
-        $sql = '';
         $sql = 'DELETE FROM productos_comentarios_dinamicos WHERE productos_id = ' . $id;
         $this->con->exec($sql);
+
+        if(isset($data['comentario'])){
+
         $sql = '';
         foreach ($data['comentario'] as $comentario) {
             $sql .= 'INSERT INTO productos_comentarios_dinamicos(productos_id,comentarios_dinamicos_id) 
                         VALUES (' . $id . ',' . $comentario . ');';
         }
         $this->con->exec($sql);
+
+    }
 
         // save image
         if (isset($_FILES['imagen'])) {
@@ -99,6 +83,20 @@ class Productos
 
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
         }
+
+        if(isset($data['label'])){
+        $sql = '';
+
+        foreach ($data['label'] as $k => $campo) {
+            if (!is_array($campo)) {
+                if ($campo != null) {
+                    $desc = $data['text'][$k];
+                    $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
+                }
+            }
+        }
+        $this->con->exec($sql);
+    }
     }
 
     public function save($data)
@@ -118,7 +116,7 @@ class Productos
         $id = $this->con->lastInsertId();
 
         // save image
-        /*         if (isset($_FILES['imagen'])) {
+        if (isset($_FILES['imagen'])) {
             $sizes = array(
                 0 => array('nombre' => 'big', 'ancho' => '5000', 'alto' => '10000'),
                 1 => array('nombre' => 'small', 'ancho' => '500', 'alto' => '1000'),
@@ -129,9 +127,11 @@ class Productos
                 mkdir($ruta);
 
             redimensionar($ruta, $_FILES['imagen']['name'], $_FILES['imagen']['tmp_name'], 0, $sizes);
-        } */
+        }
 
-        /*         $this->con->exec($sql); */
+        $this->con->exec($sql);
+
+        if(isset($data['label'])){
 
         $sql = '';
 
@@ -139,14 +139,12 @@ class Productos
             if (!is_array($campo)) {
                 if ($campo != null) {
                     $desc = $data['text'][$k];
-                     $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');"; 
-/*                     $sql .= 'INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) 
-                        VALUES (' . $id . ',' .  $campo . ',' . $desc . ');'; */
+                    $sql .= "INSERT INTO `campos_dinamicos`(`producto_id`, `label`, `valores`) VALUES ($id,'$campo','$desc');";
                 }
             }
         }
         $this->con->exec($sql);
-
+    }
         $sql = '';
         if (isset($data['comentario'])) {
             foreach ($data['comentario'] as $comentario) {

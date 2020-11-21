@@ -15,6 +15,12 @@ class CamposDinamicos
         $query = 'SELECT * FROM campos_dinamicos';
         return $this->con->query($query);
 	}
+
+	public function getListByProd($id)
+    {
+        $query = 'SELECT * FROM campos_dinamicos WHERE producto_id = ' . $id;
+        return $this->con->query($query);
+	}
 	
 
 	public function get($id)
@@ -29,29 +35,11 @@ class CamposDinamicos
 
 	public function del($id)
 	{
+		$query = "DELETE FROM campos_dinamicos WHERE id = " . $id;
 
-		$sql = "SELECT count(1) as campo FROM productos_campos_dinamicos WHERE campo_dinamico_id = " . $id;
-		$campoDin = $this->con->query($sql)->fetch();
+		$this->con->exec($query);
 
-		if ($campoDin->campo == 0) {
-			$sql = '';
-			$sql = "DELETE FROM productos_campos_dinamicos WHERE campo_dinamico_id = " . $id;
-			$this->con->exec($sql);
-		}
-
-
-		$query = "SELECT count(1) as cantidad FROM campos_dinamicos WHERE id = " . $id;
-
-		$consulta = $this->con->query($query)->fetch();
-
-		if ($consulta->cantidad == 0) {
-			$query = "DELETE FROM campos_dinamicos WHERE id = " . $id;
-
-			$this->con->exec($query);
-			return 1;
-		}
-
-		return "Campo dinamico eliminado";
+		return 1;
 	}
 
 	public function edit($data)
@@ -86,4 +74,32 @@ class CamposDinamicos
 		$this->con->exec($sql);
 
 	}
+
+	public function campoDinamicoexists($id){
+
+		$query = "SELECT  count(1) as cantidad FROM campos_dinamicos WHERE producto_id = " . $id;
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+
+		if ($consulta->cantidad != 0) {
+            return 1;
+		}
+		return 0;
+	}
+
+/* 	public function del222222222($id)
+    {
+        $query = "SELECT count(1) as cantidad FROM usuario_perfiles WHERE perfil_id = " . $id;
+
+        $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+
+        if ($consulta->cantidad == 0) {
+            $query = "DELETE FROM perfil_permiso WHERE perfil_id = " . $id . ";
+            DELETE FROM perfiles WHERE id_perfil = " . $id . ";";
+
+            $this->con->exec($query);
+            return 1;
+        }
+
+        return "Perfil asignado a un usuario";
+    } */
 }

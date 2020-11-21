@@ -4,13 +4,13 @@
 <head>
     <?php require_once "includes/head.php";
     $i = 0;
-    if(isset($_COOKIE['cont'])){
+    if (isset($_COOKIE['cont'])) {
         $i = $_COOKIE['cont'] + 1;
-        setcookie('cont', $i, time()+84600);
-    } else{
-    $i = 0;
-    setcookie('cont', $i, time()+84600);
-}?>
+        setcookie('cont', $i, time() + 84600);
+    } else {
+        $i = 0;
+        setcookie('cont', $i, time() + 84600);
+    } ?>
 
     <title>Detalles</title>
 </head>
@@ -19,6 +19,8 @@
     <?php
     $page = 'catalogo';
     require_once "includes/encabezado.php";
+
+
     ?>
 
 
@@ -28,9 +30,10 @@
             if ($ciudades['id'] == $_GET['id']) break;
         }
         echo '<h1>' . $ciudades['nombre'] . '</h1>';
-        if(isset($_SESSION)){
-        setcookie("recomendados[$i]", $ciudades['id'], time()+84600);
+        if (isset($_SESSION)) {
+            setcookie("recomendados[$i]", $ciudades['id'], time() + 84600);
         }
+        $campo_dinamico = $CamposDinamicos->campoDinamicoexists($ciudades['id']);
         ?>
     </div>
 
@@ -95,7 +98,28 @@
                             ?>
                         </tbody>
                     </table>
+
                 </div>
+                <?php
+                if ($campo_dinamico == 1) {
+                ?>
+                    <div class="col-10 pt-3">
+                        <h4>Más Caracteristicas</h4>
+                        <table class="table">
+                            <tbody>
+                                <?php
+                                foreach ($CamposDinamicos->getListByProd($ciudades['id']) as $campos) {
+                                ?>
+                                    <tr><td><?php echo $campos['label']; ?>: </td><td><?php echo $campos['valores']; ?></td></tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-11 col-md-10 col-lg-10 incluye py-2">
@@ -143,20 +167,20 @@
                                 </div>
                             </div>
 
-                            <?php foreach($ComentariosDinamicos->getComDin() as $comdin){ ?>
+                            <?php foreach ($ComentariosDinamicos->getComDin() as $comdin) { ?>
                                 <div class="row">
                                     <div class="col-12 form-group">
                                         <label><?php echo $comdin['label'] ?><?php echo ($comdin['opcion'] == 1) ? ' *' : ''; ?></label>
-                                        <?php if($comdin['tipo'] == 1){ ?>
+                                        <?php if ($comdin['tipo'] == 1) { ?>
                                             <input type="input" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
                                         <?php } ?>
 
-                                        <?php if($comdin['tipo'] == 2){ ?>
-                                            
+                                        <?php if ($comdin['tipo'] == 2) { ?>
+
                                             <input type="checkbox" <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> id="<?php $comdin['label'] ?>" name="<?php $comdin['label'] ?>" class="form-control">
                                         <?php } ?>
 
-                                        <?php if($comdin['tipo'] == 3){ ?>
+                                        <?php if ($comdin['tipo'] == 3) { ?>
                                             <select <?php echo ($comdin['opcion'] == 1) ? 'required' : ''; ?> name="<?php $comdin['label'] ?>" id="<?php $comdin['label'] ?>" class="form-control">
                                                 <option value="1">Valor 1</option>
                                                 <option value="2">Valor 2</option>
