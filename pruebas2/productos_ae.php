@@ -17,11 +17,11 @@
 	}
 
 	if (isset($_GET['delcampo'])) {
-		$resp = $CamposDinamicos->del($_GET['delcampo']);
-		if ($resp == 1) {
-			header('Location: ' . $_SERVER['HHTP_REFERER']);
+		$respu = $CamposDinamicos->del($_GET['delcampo']);
+		if ($respu == 1) {
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}
-		echo '<script>alert("' . $resp . '");</script>';
+		echo '<script>alert("' . $respu . '");</script>';
 	}
 	?>
 
