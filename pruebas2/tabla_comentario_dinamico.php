@@ -63,7 +63,7 @@ if (isset($_GET['del'])) {
           ?>
         </tbody>
       </table>
-      <a href="comentarios.php"><button type="button" class="btn btn-success btn-xs"><?php echo 'Volver a Comentarios'; ?></button></a>
+      <a href="comentarios.php?page=&orden=&limit="><button type="button" class="btn btn-success btn-xs"><?php echo 'Volver a Comentarios'; ?></button></a>
 
 </body>
 </html>
