@@ -12,7 +12,7 @@
                 <?else: ?>
                     <?php endif?>
 
-              <img height="100%" width="100%" src="pruebas/img/<?php echo $ciudades['id'] ?>.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+              <img height="100%" width="100%" src="pruebas2/images/<?php echo $ciudades['id']?>/img_0_small.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
 
                 <div class="card-body">
 
