@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2020 a las 19:10:10
+-- Tiempo de generación: 22-11-2020 a las 21:21:51
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -39,7 +39,9 @@ CREATE TABLE `campos_dinamicos` (
 --
 
 INSERT INTO `campos_dinamicos` (`id`, `producto_id`, `label`, `valores`) VALUES
-(20, 1, 'campo mad', 'madmad');
+(20, 1, 'campo mad', 'madmad'),
+(25, 2, 'Transporte', 'Tren'),
+(26, 2, 'Modo', 'All Inclusive');
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,8 @@ INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `pa
 (11, 'Luisewew', 'dfsdfs', 'mateoporcar2@gmail.com', 'sdfsdfs', '$2y$12$sdgsfgsdfksjfjs5245fde.9./KSdGnGqpB6tZjfSjJFz2QWePrOy', 0, 1, 0),
 (12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 1, 0),
 (13, 'Mateo', 'Porcar', 'mateo@gmail.com.ar', 'mateo10', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1, 0),
-(14, 'Mateo', 'fsdfssfds', 'sdfsf@gmail.com', 'sdfsfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0);
+(14, 'Mateo', 'fsdfssfds', 'sdfsf@gmail.com', 'sdfsfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0),
+(15, 'Luisewew', 'Porcar1', 'mateoporcar@gmail.comfdf', 'pepitodfdfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -96,9 +99,7 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`, `activo`) VALUES
-(1, 'asd', 'asd@asd', 2, 'asd', '2019-09-20', '100.100.100', 1, 0),
-(2, 'sad', 'sad@sad', 5, 'sad', '2019-09-20', '100.100.100', 1, 0),
-(23, 'nuevo', 'mateo.mateo@gmail.com', 3, 'fgsfgdfdfgfdgfdg', '2020-11-21', '::1', 1, 0);
+(24, 'nuevo', 'mateo.porcar@live.com.ar', 3, 'nuevo comentario', '2020-11-21', '::1', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,8 @@ INSERT INTO `comentarios_dinamicos` (`id`, `label`, `tipo`, `opcion`, `valor`) V
 (2, 'Transporte', '3', '1', 'Avion/Tren/Barco'),
 (6, 'Te gusto?', '2', '1', ''),
 (8, 'Estación del Año', '3', '1', 'Verano/Otoño/Invierno/Primavera'),
-(9, 'Comentario Adicional', '1', '1', '');
+(9, 'Comentario Adicional', '1', '1', ''),
+(10, 'Color', '3', '1', 'Amarillo/Blanco/Rojo');
 
 -- --------------------------------------------------------
 
@@ -142,10 +144,11 @@ CREATE TABLE `comentarios_dinamicos_data` (
 --
 
 INSERT INTO `comentarios_dinamicos_data` (`id`, `comentario_original_id`, `comentario_id`, `informacion`) VALUES
-(7, 23, 2, 'Tren'),
-(8, 23, 6, 'on'),
-(9, 23, 8, 'Otoño'),
-(10, 23, 9, 'Otro comentario adicional que estoy haciendo');
+(11, 24, 2, 'Tren'),
+(12, 24, 6, 'on'),
+(13, 24, 8, 'Otoño'),
+(14, 24, 9, 'Otro comentario adicional que estoy haciendo'),
+(15, 24, 10, 'Amarillo');
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,8 @@ INSERT INTO `perfiles` (`id_perfil`, `nombre`) VALUES
 (2, 'gerencia'),
 (3, 'cliente'),
 (4, 'visitante'),
-(10, 'perfil_clientes');
+(10, 'perfil_clientes'),
+(11, 'Desarrollador');
 
 -- --------------------------------------------------------
 
@@ -327,7 +331,11 @@ INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (10, 24),
 (10, 25),
 (10, 26),
-(10, 27);
+(10, 27),
+(11, 13),
+(11, 14),
+(11, 15),
+(11, 16);
 
 -- --------------------------------------------------------
 
@@ -399,7 +407,6 @@ CREATE TABLE `productos` (
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, `precio`, `activo`, `destacado`) VALUES
 (1, 'Madrid', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.\r\n   ', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 58900, 1, 0),
 (2, 'Santiago de Compostela', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 60000, 1, 0),
-(3, 'Covadonga', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 55000, 1, 0),
 (4, 'La Manjoya', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 53200, 1, 0),
 (5, 'Santander', 'VISITANDO: España MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 1, 68500, 1, 0),
 (6, 'Paris', 'VISITANDO: Francia MADRID, SANTIAGO DE COMPOSTELA -RINLO - CABO VIDIO - LA MANJOYA - COVADONGA - CUEVAS DEL SOPLAO - SANTANDER - BILBAO - SAN SEBASTIAN.', 'ESPANIA Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección. - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 2, 68300, 1, 0),
@@ -441,7 +448,11 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 (42, 'Lagos', 'VISITANDO: Nigeria/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', 'Egipto Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 13, 36550, 1, 0),
 (43, 'Sidney', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 1),
 (44, 'Melbourne', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0);
+(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
+(142, 'fewfdsf', 'dfdsfsdf', 'fsdgsg', 1, 35, 1, 1),
+(144, 'sdsdf', 'aefdsfsf', 'sgsdfsdf', 1, 234, 1, 1),
+(146, 'dgs', 'sds', 'sdgsdfs', 1, 134, 1, 1),
+(148, 'otro', 'dfsfdsdfds', 'sfgsfgfdg', 1, 345, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -460,11 +471,14 @@ CREATE TABLE `productos_comentarios_dinamicos` (
 --
 
 INSERT INTO `productos_comentarios_dinamicos` (`id`, `productos_id`, `comentarios_dinamicos_id`) VALUES
-(25, 1, 2),
-(26, 1, 6),
-(27, 1, 8),
-(28, 1, 9),
-(1, 2, 2);
+(38, 1, 2),
+(39, 1, 6),
+(40, 1, 8),
+(41, 1, 9),
+(42, 1, 10),
+(43, 2, 2),
+(44, 148, 6),
+(45, 148, 8);
 
 -- --------------------------------------------------------
 
@@ -506,8 +520,10 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, 
 (42, 'nuevo4443', 'Porcar', 'mateo.porcar2@live.com.ar', 'mateo2', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
 (43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
 (44, 'fafa', 'fafa', 'asd@asd', 'asd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1),
-(45, 'Perfiles', 'Clientes', 'perfcli@gmail.com', 'perf_cli', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
-(46, 'Geren', 'Ger', 'gerencia@gmail.com', 'geren', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0);
+(45, 'Perfiles', 'Clientes', 'perfcli@gmail.com', 'perf_cli', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
+(46, 'Geren', 'Ger', 'gerencia@gmail.com', 'geren', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
+(47, 'Luis', 'Gimenez', 'luis@gimenez.com', 'luis', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1),
+(48, 'desa', 'desa', 'desa@desa.com', 'desarrollador', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -533,7 +549,11 @@ INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
 (43, 1),
 (44, 1),
 (45, 10),
-(46, 2);
+(46, 2),
+(47, 1),
+(47, 2),
+(47, 3),
+(48, 11);
 
 --
 -- Índices para tablas volcadas
@@ -667,31 +687,31 @@ ALTER TABLE `usuario_perfiles`
 -- AUTO_INCREMENT de la tabla `campos_dinamicos`
 --
 ALTER TABLE `campos_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
 --
 ALTER TABLE `comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos_data`
 --
 ALTER TABLE `comentarios_dinamicos_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -715,19 +735,19 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_comentarios_dinamicos`
 --
 ALTER TABLE `productos_comentarios_dinamicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_info`
@@ -739,7 +759,7 @@ ALTER TABLE `productos_info`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Restricciones para tablas volcadas
