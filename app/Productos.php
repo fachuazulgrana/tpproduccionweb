@@ -70,9 +70,8 @@ class Productos
         // save image
         if (isset($_FILES['imagen'])) {
             $sizes = array(
-                0 => array('nombre' => 'big', 'ancho' => '5000', 'alto' => '10000'),
-                1 => array('nombre' => 'small', 'ancho' => '500', 'alto' => '1000'),
-                2 => array('nombre' => 'thumb', 'ancho' => '50', 'alto' => '50')
+                0 => array('nombre' => 'small', 'ancho' => '500', 'alto' => '1000'),
+                1 => array('nombre' => 'thumb', 'ancho' => '50', 'alto' => '50')
             );
             $ruta = '../abm/images/' . $id . '/';
             if (!is_dir($ruta))

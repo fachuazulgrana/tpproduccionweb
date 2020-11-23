@@ -48,7 +48,7 @@
 				<div class="col-5">
 					<div class="imagen1">
 						<a href="abm/images/<?php echo $ciudades['id']; ?>/img_0_small.jpg" data-fancybox="gallery" data-caption="Caption for single image">
-							<img height="100%" width="100%" src="abm/images/<?php echo $ciudades['id']; ?>/img_0_big.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
+							<img height="100%" width="100%" src="abm/images/<?php echo $ciudades['id']; ?>/img_0_small.jpg" alt="imagen de <?php echo $ciudades['nombre']; ?>">
 						</a>
 					</div>
 				</div>
