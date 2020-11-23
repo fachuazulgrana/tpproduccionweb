@@ -26,30 +26,31 @@ class Registrar
 
             if ($password1 != $password2) {
 ?>
+                </div>
                 <div class="col-12 py-2">
                     <div class='alert alert-danger' role='alert'>
                         Las contraseñas no coinciden.
                     </div>
-            <?php
+                <?php
             }
             if ($num_rows_email != 0) {
-            ?>
+                ?>
                 </div>
                 <div class="col-12 py-2">
                     <div class='alert alert-danger' role='alert'>
                         Este email ya esta en uso, por favor utilice otro.
                     </div>
-            <?php
+                <?php
             }
 
             if ($num_rows_usuario != 0) {
-            ?>
+                ?>
                 </div>
                 <div class="col-12 py-2">
                     <div class='alert alert-danger' role='alert'>
                         Este usuario ya esta en uso, por favor utilice otro.
                     </div>
-            <?php
+                <?php
             }
 
             if ($num_rows_usuario == 0 && $num_rows_email == 0 && $password1 == $password2) {
@@ -62,7 +63,7 @@ class Registrar
                 $password = password_hash($password1, PASSWORD_DEFAULT, $salt);
                 $sql = "INSERT INTO clientes (`nombre`, `apellido`, `email`, `user`, `password`, `activo`) VALUES ('$nombre', '$apellido', '$email', '$usuario','$password', 0)";
                 $this->con->exec($sql);
-            ?>
+                ?>
                 </div>
                 <div class="col-12 py-2">
                     <div class='alert alert-success'>
