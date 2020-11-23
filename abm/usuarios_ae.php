@@ -8,9 +8,9 @@
 	require_once('../app/Usuarios.php');
 	require_once('../app/Perfil.php');
 
-	if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/usuarios.php") {
+/* 	if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/usuarios.php") {
 		header('Location:home.php');
-	}
+	} */
 
 	$Usuario = new Usuario($con);
 	$Perfil = new Perfil($con);
