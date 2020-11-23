@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2020 a las 21:21:51
+-- Tiempo de generación: 23-11-2020 a las 22:38:40
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -74,7 +74,9 @@ INSERT INTO `clientes` (`id_usuario`, `nombre`, `apellido`, `email`, `user`, `pa
 (12, 'Mateo1', 'Porcar1', 'mateo@gggmail.com', 'user3', '$2y$12$sdgsfgsdfksjfjs5245fdey4PO8f2gLoOZHzDOOLIJohyK8gRybNC', 0, 1, 0),
 (13, 'Mateo', 'Porcar', 'mateo@gmail.com.ar', 'mateo10', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1, 0),
 (14, 'Mateo', 'fsdfssfds', 'sdfsf@gmail.com', 'sdfsfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0),
-(15, 'Luisewew', 'Porcar1', 'mateoporcar@gmail.comfdf', 'pepitodfdfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0);
+(15, 'Luisewew', 'Porcar1', 'mateoporcar@gmail.comfdf', 'pepitodfdfd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 0, 0),
+(16, 'juan', 'perez', 'juan@perez.com', 'juanperez', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0, 0),
+(17, 'juanpe', 'juanpe', 'juan@pe.com', 'juanpe', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,13 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id`, `nombre`, `email`, `calificacion`, `comentario`, `fecha`, `ip`, `productos_id`, `activo`) VALUES
-(24, 'nuevo', 'mateo.porcar@live.com.ar', 3, 'nuevo comentario', '2020-11-21', '::1', 1, 0);
+(24, 'nuevo', 'mateo.porcar@live.com.ar', 3, 'nuevo comentario', '2020-11-21', '::1', 1, 1),
+(25, 'Comentario prueba', 'cmentaro@comentario.com', 2, 'ranking 2', '2020-11-23', '::1', 2, 1),
+(26, 'otro', 'mateo.mateo@gmail.com', 5, 'comentario para ranking', '2020-11-23', '::1', 4, 1),
+(27, 'otro', 'mateo.porcar@live.com.ar', 4, 'comentario para rankeo', '2020-11-23', '::1', 5, 1),
+(28, 'geren', 'mateo.porcar@gmail.com', 2, 'sgfg', '2020-11-23', '::1', 25, 1),
+(29, 'otro', 'mateo.mateo@gmail.com', 5, 'sdgdfhdfh', '2020-11-23', '::1', 12, 1),
+(30, 'geren', 'mateo.mateo@gmail.com', 1, 'dfsdgds', '2020-11-23', '::1', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +156,8 @@ INSERT INTO `comentarios_dinamicos_data` (`id`, `comentario_original_id`, `comen
 (12, 24, 6, 'on'),
 (13, 24, 8, 'Otoño'),
 (14, 24, 9, 'Otro comentario adicional que estoy haciendo'),
-(15, 24, 10, 'Amarillo');
+(15, 24, 10, 'Amarillo'),
+(16, 25, 2, 'Avion');
 
 -- --------------------------------------------------------
 
@@ -258,10 +267,10 @@ CREATE TABLE `perfiles` (
 INSERT INTO `perfiles` (`id_perfil`, `nombre`) VALUES
 (1, 'administrador'),
 (2, 'gerencia'),
-(3, 'cliente'),
+(3, 'editor'),
 (4, 'visitante'),
-(10, 'perfil_clientes'),
-(11, 'Desarrollador');
+(11, 'desarrollador'),
+(12, 'cliente');
 
 -- --------------------------------------------------------
 
@@ -306,36 +315,39 @@ INSERT INTO `perfil_permiso` (`perfil_id`, `permiso_id`) VALUES
 (1, 25),
 (1, 26),
 (1, 27),
-(2, 5),
-(2, 7),
-(2, 9),
-(2, 11),
-(2, 12),
+(2, 1),
+(2, 2),
+(2, 4),
+(2, 21),
+(2, 22),
+(2, 23),
+(2, 24),
+(2, 25),
+(2, 26),
+(2, 27),
+(3, 5),
 (3, 6),
-(3, 7),
 (3, 8),
+(3, 9),
 (3, 10),
-(3, 11),
 (3, 12),
+(3, 13),
 (3, 14),
-(3, 15),
 (3, 16),
+(3, 17),
 (3, 18),
-(3, 19),
 (3, 20),
-(4, 2),
-(4, 3),
-(10, 21),
-(10, 22),
-(10, 23),
-(10, 24),
-(10, 25),
-(10, 26),
-(10, 27),
+(4, 8),
+(4, 12),
+(4, 16),
+(4, 20),
 (11, 13),
 (11, 14),
 (11, 15),
-(11, 16);
+(11, 16),
+(12, 25),
+(12, 26),
+(12, 27);
 
 -- --------------------------------------------------------
 
@@ -448,11 +460,7 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `detalle`, `paises_id`, 
 (42, 'Lagos', 'VISITANDO: Nigeria/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', 'Egipto Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 13, 36550, 1, 0),
 (43, 'Sidney', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 1),
 (44, 'Melbourne', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0),
-(142, 'fewfdsf', 'dfdsfsdf', 'fsdgsg', 1, 35, 1, 1),
-(144, 'sdsdf', 'aefdsfsf', 'sgsdfsdf', 1, 234, 1, 1),
-(146, 'dgs', 'sds', 'sdgsdfs', 1, 134, 1, 1),
-(148, 'otro', 'dfsfdsdfds', 'sfgsfgfdg', 1, 345, 1, 1);
+(45, 'Brisbane', 'VISITANDO: Australia/ Hope / Kelowna / Revelstoke / Golden / Columbia Ice Field / Canmore /  Banff / Calgar. Incluye: vuelo por American Airlines (Clase turista).', ' Australia Aéreos ES/FE/ES  - 04 Noches de alojamiento con régimen según elección.  - Traslados In / Out  - City Tour  - Notas: AÉREOS NETOS NO COMISONABLES.  - Consulte a su ejecutivo de ventas por asistencia al viajero.', 14, 360630, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -476,9 +484,7 @@ INSERT INTO `productos_comentarios_dinamicos` (`id`, `productos_id`, `comentario
 (40, 1, 8),
 (41, 1, 9),
 (42, 1, 10),
-(43, 2, 2),
-(44, 148, 6),
-(45, 148, 8);
+(43, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -515,15 +521,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `usuario`, `clave`, `activo`, `borrado`) VALUES
-(40, 'mateo', 'Porrc', 'mateo.porcar@live.com.ar', 'mateito', '$2y$12$sdgsfgsdfksjfjs5245fdeKxG1ZfaZCOjh92OVQzqgA6MwHYGEaHa', 1, 1),
 (41, 'nuevo', 'Porrc', 'mateo.mateo@gmail.com', 'mattte', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 0),
-(42, 'nuevo4443', 'Porcar', 'mateo.porcar2@live.com.ar', 'mateo2', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
 (43, 'Mateo', 'Porcar', 'mateo.porcar@gmail.com', 'mateo', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
-(44, 'fafa', 'fafa', 'asd@asd', 'asd', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1),
-(45, 'Perfiles', 'Clientes', 'perfcli@gmail.com', 'perf_cli', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
 (46, 'Geren', 'Ger', 'gerencia@gmail.com', 'geren', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0),
-(47, 'Luis', 'Gimenez', 'luis@gimenez.com', 'luis', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 0, 1),
-(48, 'desa', 'desa', 'desa@desa.com', 'desarrollador', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 1, 0);
+(48, 'desa', 'desa', 'desa@desa.com', 'desarrollador', '$2y$12$sdgsfgsdfksjfjs5245fdeF.Ji93nqah47oNhO65JJ0swJ0YSjbt6', 1, 0),
+(49, 'Nuevo', 'Usuario', 'nuevo@usuario.com', 'nuevousuario', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 0, 1),
+(50, 'Admin', 'Admin', 'admin@admin.com', 'administrador', '$2y$12$sdgsfgsdfksjfjs5245fdesajytGDhCcHSj4cfQpUiVv7FgtmiC9W', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -541,19 +544,12 @@ CREATE TABLE `usuario_perfiles` (
 --
 
 INSERT INTO `usuario_perfiles` (`usuario_id`, `perfil_id`) VALUES
-(40, 1),
-(40, 2),
 (41, 1),
-(42, 1),
-(42, 2),
 (43, 1),
-(44, 1),
-(45, 10),
 (46, 2),
-(47, 1),
-(47, 2),
-(47, 3),
-(48, 11);
+(48, 11),
+(49, 3),
+(50, 1);
 
 --
 -- Índices para tablas volcadas
@@ -693,13 +689,13 @@ ALTER TABLE `campos_dinamicos`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos`
@@ -711,7 +707,7 @@ ALTER TABLE `comentarios_dinamicos`
 -- AUTO_INCREMENT de la tabla `comentarios_dinamicos_data`
 --
 ALTER TABLE `comentarios_dinamicos_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `continentes`
@@ -735,7 +731,7 @@ ALTER TABLE `paises`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -759,7 +755,7 @@ ALTER TABLE `productos_info`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Restricciones para tablas volcadas
