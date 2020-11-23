@@ -11,6 +11,7 @@
     $page = 'registro';
     require_once "includes/encabezado.php";
     include_once 'app/Registrar.php';
+    error_reporting(0);
     ?>
 
     <section class="formulario-contacto py-5">
