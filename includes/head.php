@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('pruebas/mysql-login.php'); ?>
+require_once('database/mysql-login.php'); ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,15 +18,15 @@ require_once('pruebas/mysql-login.php'); ?>
 <?php
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-require_once('pruebas/continente.php');
-require_once('pruebas/pais.php');
-require_once('pruebas/productos.php');
-require_once('pruebas/comentarios.php');
+require_once('app/Continente.php');
+require_once('app/Pais.php');
+require_once('app/Productos.php');
+require_once('app/Comentarios.php');
+require_once('app/Comentarios_dinamicos.php');
+
 require_once('app/Registrar.php');
 require_once('app/Iniciar_Sesion.php');
-require_once('pruebas/comentarios_dinamicos.php');
 require_once('app/CamposDinamicos.php');
-
 
 try {
 	$con = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';port=' . $puerto, $username, $password);
@@ -44,12 +44,6 @@ $Registrar = new Registrar($con);
 $IniciarSesion = new IniciarSesion($con);
 $ComentariosDinamicos = new ComentariosDinamicos($con);
 $CamposDinamicos = new CamposDinamicos($con);
-
-/* if (isset($_GET['logok'])) {
-		header('Location: index.php');
-	} else {
-		unset($_POST);
-	}  */
 
 	if (isset($_POST['IniciarSesion'])) {
 		$res = $IniciarSesion->iniciarSesion($_POST);

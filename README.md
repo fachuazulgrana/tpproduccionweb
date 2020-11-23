@@ -1,6 +1,6 @@
 # Producción Web
 
-Proyecto Educativo grupo 5
+Proyecto Educativo
 
 Participantes:
 
@@ -8,4 +8,3 @@ Alberto Bossio
 Rodrigo Toyama
 Mateo Porcar
 Facundo Criscuolo
-Matias Costilla
