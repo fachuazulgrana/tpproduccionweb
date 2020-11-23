@@ -82,7 +82,7 @@ class Perfil
             }
         }
 
-        $sql = "UPDATE perfiles SET " .implode(',', $columns)." WHERE id_perfiles = " .$id;
+        $sql = "UPDATE perfiles SET " .implode(',', $columns)." WHERE id_perfil = " .$id;
 
         $this->con->exec($sql);
 
