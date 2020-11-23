@@ -42,7 +42,7 @@
 						<tr>
 							<th>Nombre del Campo</th>
 							<th>Valor del Campo</th>
-							<th>Acciones</th>
+							<!-- <th>Acciones</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -50,18 +50,20 @@
 							<tr>
 								<td><?php echo $campos['label']; ?></td>
 								<td><?php echo $campos['valores']; ?></td>
-								<td>
+<!-- 								<td>
 									<?php if (in_array('prod.edit', $_SESSION['usuario']['permisos']['code'])) { ?>
 										<a href="campos_dinamicos_ae.php?edit=<?php echo $campos['id'] ?>"><button type="button" class="btn btn-warning btn-xs">Modificar</button></a>
 									<?php } ?>
 									<?php if (in_array('prod.del', $_SESSION['usuario']['permisos']['code'])) { ?>
 										<a href="campos_dinamicos.php?del=<?php echo $campos['id'] ?>"><button type="button" class="btn btn-danger btn-xs">Borrar</button></a>
 									<?php } ?>
-								</td>
+								</td> -->
 							</tr>
 						<?php } ?>
 					</tbody>
+					
 				</table>
+				<h6>Para agregar, modificar o eliminar campos dinamicos dirijase al producto</h6>
 			</div>
 
 		</div>
