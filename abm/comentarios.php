@@ -17,7 +17,7 @@
 
   if (isset($_GET['edit'])) {
     $Comentarios->edit($_GET['edit'], $coment['activo']);
-    header('Location: comentarios.php?page=1&orden=&limit=');
+    header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] );
   }
 
   if (isset($_GET['dinamico_id'])) {
@@ -27,7 +27,7 @@
   if (isset($_GET['del'])) {
     $resp = $Comentarios->del($_GET['del']);
     if ($resp == 1) {
-      header('Location: comentarios.php?page=1&orden=&limit=');
+      header('Location: comentarios.php?' . "&page=" . $_GET['page'] . "&orden=" . $_GET['orden'] . "&limit=" . $_GET['limit'] );
     }
     echo '<script>alert("' . $resp . '");</script>';
   }
