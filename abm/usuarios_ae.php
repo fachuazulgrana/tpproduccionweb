@@ -8,7 +8,7 @@
 	require_once('../app/Usuarios.php');
 	require_once('../app/Perfil.php');
 
-	if ($_SERVER['HTTP_REFERER'] != "/usuarios.php") {
+	if ($_SERVER['HTTP_REFERER'] != RUTA_BACKEND . "/usuarios.php") {
 		header('Location:home.php');
 	}
 
@@ -45,7 +45,7 @@
 	?>
 </head>
 <?php
-require_once RUTA_BACKEND . "includes/sidebar.php";
+require_once "includes/sidebar.php";
 ?>
 
 <body>
